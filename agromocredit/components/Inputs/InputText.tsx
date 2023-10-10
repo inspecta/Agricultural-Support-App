@@ -7,7 +7,7 @@ interface InputTextProps {
 
 const InputText:  React.FC<InputTextProps> = ({ labelText }) => {
     const [text, setText] = React.useState('');
-    return <TextInput label={labelText} placeholder={labelText} value={text} onChange={text => setText(text)} />;
+    return <TextInput label={labelText} placeholder={labelText} value={text}/>;
     };
 
 export default InputText;

@@ -1,10 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import WelcomeScreen from './screens/Welcome/WelcomeScreen';
+import DashboardScreen from './screens/Dashboard/DashboardScreen'
 
 export default function App() {
   return (
-    <WelcomeScreen />
+    <>
+    { /*<WelcomeScreen />*/ }
+    <DashboardScreen />
+    </>
   );
 }
 
