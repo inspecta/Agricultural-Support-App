@@ -2,11 +2,12 @@ import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { IconButton } from "react-native-paper";
 import ButtonAction from "../../components/Buttons/ButtonAction";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const DashboardScreen = () => {
 
     return (
-        <>
+        <SafeAreaView>
         <Text>Mulinde Derrick </Text>
         <View >
             <Text>Merchant ID</Text>
@@ -49,7 +50,7 @@ const DashboardScreen = () => {
 
         </View>
         
-        </>
+        </SafeAreaView>
     );
 
 }
