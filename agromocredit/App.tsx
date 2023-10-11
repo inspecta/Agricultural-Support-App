@@ -5,6 +5,7 @@ import DashboardScreen from './screens/Dashboard/DashboardScreen'
 import ReceivePaymentScreen from './screens/Earnings/ReceivePaymentScreen';
 import PayLoanScreen from './screens/Credit/PayLoanScreen';
 import EarningsScreen from './screens/Earnings/EarningsScreen';
+import CredditScreen from './screens/Credit/CreditScreen';
 
 export default function App() {
   return (
@@ -13,7 +14,8 @@ export default function App() {
     { /*<DashboardScreen />*/}
     {/*<ReceivePaymentScreen />*/}
     {/*<PayLoanScreen />*/}
-    <EarningsScreen />
+    {/*<EarningsScreen />*/}
+    <CredditScreen />
     </>
   );
 }
