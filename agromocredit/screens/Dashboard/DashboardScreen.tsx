@@ -1,6 +1,6 @@
 import React from "react";
-import { Text, View } from "react-native";
-import { Button, IconButton } from "react-native-paper";
+import { Text, TouchableOpacity, View } from "react-native";
+import { IconButton } from "react-native-paper";
 import ButtonAction from "../../components/Buttons/ButtonAction";
 
 const DashboardScreen = () => {
@@ -26,23 +26,23 @@ const DashboardScreen = () => {
             </View>
             <View>
                 <Text>TRANSACTIONS</Text>
-                <View>
+                <TouchableOpacity>
                     <View>
                         <Text>UGX 20,800</Text>
                     </View>
                     <Text>TOTAL EARNED</Text>
-                </View>
-                <View>
+                </TouchableOpacity>
+                <TouchableOpacity>
                     <View>
                         <Text>UGX 32,800</Text>
                     </View>
                     <Text>TOTAL CREDIT</Text>
-                </View>
+                </TouchableOpacity>
             </View>
             <View>
                 <View>
                     <ButtonAction onPress={() => console.log('Pressed')} buttonText="RECEIVE PAYMENT" />
-                    <ButtonAction onPress={() => console.log('Pressed')} buttonText="PQY LOAN" />
+                    <ButtonAction onPress={() => console.log('Pressed')} buttonText="PAY LOAN" />
                 </View>
                 <ButtonAction onPress={() => console.log('Pressed')} buttonText="MARKET PLACE" />
             </View>
