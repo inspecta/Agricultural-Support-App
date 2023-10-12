@@ -7,6 +7,7 @@ import PayLoanScreen from './screens/Credit/PayLoanScreen';
 import EarningsScreen from './screens/Earnings/EarningsScreen';
 import CreditScreen from './screens/Credit/CreditScreen';
 import BorrowingScreen from './screens/Credit/BorrowingSCreen';
+import LentOutScreen from './screens/Credit/LentOutScreen';
 
 export default function App() {
   return (
@@ -17,7 +18,8 @@ export default function App() {
     {/*<PayLoanScreen />*/}
     {/*<EarningsScreen />*/}
     {/*<CreditScreen />*/}
-    <BorrowingScreen />
+    {/*<BorrowingScreen />*/}
+    <LentOutScreen />
     </>
   );
 }
