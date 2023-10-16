@@ -12,14 +12,14 @@ import LentOutScreen from './screens/Credit/LentOutScreen';
 export default function App() {
   return (
     <>
-    { /*<WelcomeScreen />*/ }
-    { /*<DashboardScreen />*/}
+    {/*<WelcomeScreen />*/}
+    <DashboardScreen />
     {/*<ReceivePaymentScreen />*/}
     {/*<PayLoanScreen />*/}
     {/*<EarningsScreen />*/}
     {/*<CreditScreen />*/}
     {/*<BorrowingScreen />*/}
-    <LentOutScreen />
+    {/*<LentOutScreen />*/}
     </>
   );
 }
