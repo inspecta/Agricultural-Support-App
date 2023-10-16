@@ -17,4 +17,4 @@ const ButtonLink: React.FC<ButtonActionProps> = ({ onPress, buttonText, buttonSt
     </Pressable>
 );
 
-export default ButtonLink;
+export default ButtonLink
