@@ -19,12 +19,12 @@ export const screenStyles = StyleSheet.create({
         marginTop: 10,
     },
     subTitleText: {
-        color: '#fff',
+        color: '#B5BBC9',
         fontSize: 11,
         marginVertical: 1,
     },
     subText: {
-        color: '#fff',
+        color: '#B5BBC9',
         fontSize: 9,
         marginVertical: 1,
     },

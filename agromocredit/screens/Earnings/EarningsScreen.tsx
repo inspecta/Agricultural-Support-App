@@ -10,17 +10,7 @@ import CreditScore from "../../components/CreditScore";
 const EarningsScreen = () => {
     return (
         <SafeAreaView style={screenStyles.container}>
-            <View style={screenStyles.subTitle}>
-                <Text style={screenStyles.pageTitle}>TRANSACTIONS</Text>
-                <Text style={screenStyles.pageTitle}>OCT 2023</Text>
-            </View>
-            <View style={screenStyles.subTitle}>
-                <View>
-                    <Text style={screenStyles.subTitleText}>TOTAL EARNED</Text>
-                    <Text style={screenStyles.majorText}>UGX 20,800</Text>
-                </View>
-                <CreditScore />
-            </View>
+            <EarningsScreenHeaders />
             <View style={screenStyles.subTitle}>
                 <Text style={screenStyles.subTitleText}>COMPARISON TO LAST MONTH</Text>
                 <Text style={screenStyles.subTitleText}>SEP</Text>
