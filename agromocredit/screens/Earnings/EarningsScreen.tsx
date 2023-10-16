@@ -3,23 +3,23 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Text, View } from "react-native";
 import Icon from "react-native-paper/lib/typescript/components/Icon";
 import { IconButton } from "react-native-paper";
+import { styles } from "./EarningsStyle";
+import {screenStyles} from "../screenStyles"
+import CreditScore from "../../components/CreditScore";
 
 const EarningsScreen = () => {
     return (
-        <SafeAreaView>
-            <View>
-                <Text>TRANSACTIONS</Text>
-                <Text>OCT 2023</Text>
+        <SafeAreaView style={screenStyles.container}>
+            <View style={screenStyles.subTitle}>
+                <Text style={screenStyles.pageTitle}>TRANSACTIONS</Text>
+                <Text style={screenStyles.pageTitle}>OCT 2023</Text>
             </View>
-            <View>
+            <View style={screenStyles.subTitle}>
                 <View>
-                    <Text>TOTAL EARNED</Text>
-                    <Text>UGX 20,800</Text>
+                    <Text style={screenStyles.subTitleText}>TOTAL EARNED</Text>
+                    <Text style={screenStyles.majorText}>UGX 20,800</Text>
                 </View>
-                <View>
-                    <IconButton icon="chevron-down" size={17} />
-                    <Text>6.2</Text>
-                </View>
+                <CreditScore />
             </View>
             <View>
                 <Text>COMPARISON TO LAST MONTH</Text>
