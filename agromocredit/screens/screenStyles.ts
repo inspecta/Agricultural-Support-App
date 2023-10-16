@@ -16,11 +16,16 @@ export const screenStyles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginTop: 15,
+        marginTop: 10,
     },
     subTitleText: {
         color: '#fff',
         fontSize: 11,
+        marginVertical: 1,
+    },
+    subText: {
+        color: '#fff',
+        fontSize: 9,
         marginVertical: 1,
     },
     majorText: {

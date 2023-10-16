@@ -21,112 +21,119 @@ const EarningsScreen = () => {
                 </View>
                 <CreditScore />
             </View>
-            <View>
-                <Text>COMPARISON TO LAST MONTH</Text>
-                <Text>SEP</Text>
+            <View style={screenStyles.subTitle}>
+                <Text style={screenStyles.subTitleText}>COMPARISON TO LAST MONTH</Text>
+                <Text style={screenStyles.subTitleText}>SEP</Text>
             </View>
-            <View>
-                <View>
-                    <View>
-                        <Text>15</Text>
-                    </View>
-                    <View>
-                        <Text>MANGOES</Text>
-                        <View>
-                            <IconButton icon="chevron-right" size={17} />
-                            <Text>FRUITS</Text>
-                        </View>
-                    </View>
-                    <View>
-                        <Text>UGX 20,800</Text>
-                        <Text>0771823425</Text>
-                    </View>
-                    <IconButton icon="chevron-right" size={17} />
+            <View style={screenStyles.subTitle}>
+                <Text style={screenStyles.majorText}>UGX 15,300</Text>
+                <View style={screenStyles.subTitle}>
+                    <Text style={styles.comparisonText}>UGX 440</Text>
+                    <IconButton icon="arrow-up" iconColor="#E42C64" size={14} />
                 </View>
-                <View>
-                    <View>
-                        <Text>15</Text>
+            </View>
+            <View style={styles.contentContainer}>
+                <View style={styles.contentRecord}>
+                    <View style={styles.recordDate}>
+                        <Text style={styles.dateText}>15</Text>
                     </View>
-                    <View>
-                        <Text>BANANAS</Text>
-                        <View>
-                            <IconButton icon="chevron-right" size={17} />
-                            <Text>FOOD</Text>
+                    <View style={styles.recordProduct}>
+                        <Text style={screenStyles.subTitleText}>MANGOES</Text>
+                        <View style={styles.productCategory}>
+                            <IconButton icon="fruit-cherries" iconColor="#E42C64" size={15} style={styles.productIcon} />
+                            <Text style={screenStyles.subText}>FRUITS</Text>
                         </View>
                     </View>
                     <View>
-                        <Text>UGX 175,800</Text>
-                        <Text>0771823425</Text>
+                        <Text style={screenStyles.subTitleText}>UGX 20,800</Text>
+                        <Text style={screenStyles.subText}>0771823425</Text>
                     </View>
-                    <IconButton icon="chevron-right" size={17} />
+                    <IconButton icon="chevron-right" size={17} iconColor="#fff" />
                 </View>
-                <View>
-                    <View>
-                        <Text>14</Text>
+                <View style={styles.contentRecord}>
+                    <View style={styles.recordDate}>
+                        <Text style={styles.dateText}>15</Text>
                     </View>
-                    <View>
-                        <Text>MIXED</Text>
-                        <View>
-                            <IconButton icon="chevron-right" size={17} />
-                            <Text>MIXED</Text>
+                    <View style={styles.recordProduct}>
+                        <Text style={screenStyles.subTitleText}>BANANAS</Text>
+                        <View style={styles.productCategory}>
+                            <IconButton icon="food" iconColor="#E42C64" size={15} style={styles.productIcon} />
+                            <Text style={screenStyles.subText}>FOOD</Text>
                         </View>
                     </View>
                     <View>
-                        <Text>UGX 200,800</Text>
-                        <Text>0771823425</Text>
+                        <Text style={screenStyles.subTitleText}>UGX 175,800</Text>
+                        <Text style={screenStyles.subText}>0771823425</Text>
                     </View>
-                    <IconButton icon="chevron-right" size={17} />
+                    <IconButton icon="chevron-right" size={17} iconColor="#fff" />
                 </View>
-                <View>
-                    <View>
-                        <Text>10</Text>
+                <View style={styles.contentRecord}>
+                    <View style={styles.recordDate}>
+                        <Text style={styles.dateText}>14</Text>
                     </View>
-                    <View>
-                        <Text>MILK</Text>
-                        <View>
-                            <IconButton icon="chevron-right" size={17} />
-                            <Text>DAIRY</Text>
+                    <View style={styles.recordProduct}>
+                        <Text style={screenStyles.subTitleText}>MIXED</Text>
+                        <View style={styles.productCategory}>
+                            <IconButton icon="shopping" iconColor="#E42C64" size={15} style={styles.productIcon} />
+                            <Text style={screenStyles.subText}>MIXED</Text>
                         </View>
                     </View>
                     <View>
-                        <Text>UGX 20,800</Text>
-                        <Text>0771823425</Text>
+                        <Text style={screenStyles.subTitleText}>UGX 200,800</Text>
+                        <Text style={screenStyles.subText}>0771823425</Text>
                     </View>
-                    <IconButton icon="chevron-right" size={17} />
+                    <IconButton icon="chevron-right" size={17} iconColor="#fff" />
                 </View>
-                <View>
-                    <View>
-                        <Text>10</Text>
+                <View style={styles.contentRecord}>
+                    <View style={styles.recordDate}>
+                        <Text style={styles.dateText}>10</Text>
                     </View>
-                    <View>
-                        <Text>EGGS</Text>
-                        <View>
-                            <IconButton icon="chevron-right" size={17} />
-                            <Text>POULTRY</Text>
+                    <View style={styles.recordProduct}>
+                        <Text style={screenStyles.subTitleText}>MILK</Text>
+                        <View style={styles.productCategory}>
+                            <IconButton icon="cow" iconColor="#E42C64" size={15} style={styles.productIcon} />
+                            <Text style={screenStyles.subText}>DAIRY</Text>
                         </View>
                     </View>
                     <View>
-                        <Text>UGX 12,800</Text>
-                        <Text>0771823425</Text>
+                        <Text style={screenStyles.subTitleText}>UGX 20,800</Text>
+                        <Text style={screenStyles.subText}>0771823425</Text>
                     </View>
-                    <IconButton icon="chevron-right" size={17} />
+                    <IconButton icon="chevron-right" size={17} iconColor="#fff" />
                 </View>
-                <View>
-                    <View>
-                        <Text>09</Text>
+                <View style={styles.contentRecord}>
+                    <View style={styles.recordDate}>
+                        <Text style={styles.dateText}>10</Text>
                     </View>
-                    <View>
-                        <Text>PINEAPPLES</Text>
-                        <View>
-                            <IconButton icon="chevron-right" size={17} />
-                            <Text>FRUITS</Text>
+                    <View style={styles.recordProduct}>
+                        <Text style={screenStyles.subTitleText}>EGGS</Text>
+                        <View style={styles.productCategory}>
+                            <IconButton icon="egg" iconColor="#E42C64" size={15} style={styles.productIcon} />
+                            <Text style={screenStyles.subText}>POULTRY</Text>
                         </View>
                     </View>
                     <View>
-                        <Text>UGX 10,800</Text>
-                        <Text>0771823425</Text>
+                        <Text style={screenStyles.subTitleText}>UGX 12,800</Text>
+                        <Text style={screenStyles.subText}>0771823425</Text>
                     </View>
-                    <IconButton icon="chevron-right" size={17} />
+                    <IconButton icon="chevron-right" size={17} iconColor="#fff" />
+                </View>
+                <View style={styles.contentRecord}>
+                    <View style={styles.recordDate}>
+                        <Text style={styles.dateText}>09</Text>
+                    </View>
+                    <View style={styles.recordProduct}>
+                        <Text style={screenStyles.subText}>PINEAPPLES</Text>
+                        <View style={styles.productCategory}>
+                            <IconButton icon="fruit-cherries" iconColor="#E42C64" size={15} style={styles.productIcon} />
+                            <Text style={screenStyles.subText}>FRUITS</Text>
+                        </View>
+                    </View>
+                    <View style={styles.recordTransaction}>
+                        <Text style={screenStyles.subTitleText}>UGX 10,800</Text>
+                        <Text style={screenStyles.subText}>0771823425</Text>
+                    </View>
+                    <IconButton icon="chevron-right" size={17} iconColor="#fff" />
                 </View>
             </View>
         </SafeAreaView>
