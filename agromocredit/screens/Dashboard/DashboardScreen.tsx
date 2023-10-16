@@ -18,38 +18,72 @@ const DashboardScreen = () => {
                 <Text style={styles.titleTabs}>85674912</Text>
             </View>
             <View >
-                <View>
-                    <Text>YOUR CURRENT BALANCE</Text>
-                    <Text>UGX 0</Text>
-                </View>
-                <View>
+                <View style={styles.subTitle}>
                     <View>
-                        <IconButton icon="pencil" iconColor="#707070" size={15} />
-                        <Text>CREDIT SCORE</Text>
+                        <Text style={styles.balanceText}>YOUR CURRENT BALANCE</Text>
+                        <Text style={styles.balance}>UGX 89,800</Text>
                     </View>
-                    <Text>6.2</Text>
-                </View>
-                <View>
-                    <Text>TRANSACTIONS</Text>
-                    <TouchableOpacity>
-                        <View>
-                            <Text>UGX 20,800</Text>
+                    <View style={styles.creditScoreContainer}>
+                        <View style={styles.creditScoreTextContainer}>
+                            <IconButton icon="credit-card-fast" iconColor="#fff" size={22} />
+                            <View>
+                                <Text style={styles.creditScoreText}>CREDIT</Text>
+                                <Text style={styles.creditScoreText}>SCORE</Text>
+                            </View>
                         </View>
-                        <Text>TOTAL EARNED</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <View>
-                            <Text>UGX 32,800</Text>
-                        </View>
-                        <Text>TOTAL CREDIT</Text>
-                    </TouchableOpacity>
-                </View>
-                <View>
-                    <View>
-                        <ButtonAction onPress={() => console.log('Pressed')} buttonText="RECEIVE PAYMENT" />
-                        <ButtonAction onPress={() => console.log('Pressed')} buttonText="PAY LOAN" />
+                        <View style={styles.scoreContainer}><Text style={styles.creditScore}>6.2</Text></View>
                     </View>
-                    <ButtonAction onPress={() => console.log('Pressed')} buttonText="MARKET PLACE" />
+                </View>
+                <View style={styles.transactionsContainer}>
+                    <Text style={styles.transactionsTitle}>TRANSACTIONS</Text>
+                    <TouchableOpacity style={styles.transactionsSections}>
+                        <View style={styles.transactionsButton}>
+                            <Text style={styles.transactionsButtonText}>UGX 20,800</Text>
+                        </View>
+                        <Text style={styles.transactionsText}>TOTAL EARNED</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.transactionsSections}>
+                        <View style={styles.transactionsButton}>
+                            <Text style={styles.transactionsButtonText}>UGX 32,800</Text>
+                        </View >
+                        <Text style={styles.transactionsText}>TOTAL CREDIT</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.buttonsContainer}>
+                    <View style={styles.screenButtonsContainer}>
+                        <View style={styles.screenBtn}>
+                            <ButtonAction 
+                                onPress={() => console.log('Pressed')}
+                                buttonText="RECEIVE PAYMENT"
+                                btnColor="#03A9F1"
+                                btnIcon=""
+                                txtColor=""
+                                rippleClr="#03A999"
+                                btnContentStyling={styles.screenBtnStyles}
+                            />
+                        </View>
+                        <View style={styles.screenBtn}>
+                            <ButtonAction
+                                onPress={() => console.log('Pressed')}
+                                buttonText="PAY LOAN" btnColor="#09F9BF"
+                                btnIcon=""
+                                txtColor="#352B73"
+                                rippleClr="#09FFFF"
+                                btnContentStyling={styles.screenBtnStyles}
+                            />
+                        </View>
+                    </View>
+                    <View style={styles.marketBtn}>
+                        <ButtonAction
+                            onPress={() => console.log('Pressed')}
+                            buttonText="MARKET PLACE"
+                            btnColor="#E42C64" 
+                            btnIcon=""
+                            txtColor=""
+                            rippleClr="#E42CCC"
+                            btnContentStyling={styles.marketBtnStyles}
+                        />
+                    </View>
                 </View>
             </View>
         </SafeAreaView>
