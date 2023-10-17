@@ -47,10 +47,10 @@ const ReceivePaymentScreen = () => {
                 <ButtonAction  
                     onPress={() => console.log('Pressed')}
                     buttonText="SEND"
-                    btnColor="#E42C64" 
+                    btnColor="#ffcb05" 
                     btnIcon=""
-                    txtColor=""
-                    rippleClr="#E42CCC"
+                    txtColor="#000"
+                    rippleClr="#ff0"
                     btnContentStyling={styles.sendBtnStyles}
                     />
             </View>

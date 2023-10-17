@@ -13,12 +13,12 @@ export const styles = StyleSheet.create({
     },
     creditScore: {
         fontSize: 18,
-        color: '#fff',
+        color: '#000',
         padding: 10,
         fontWeight: 'bold',
     },
     scoreContainer: {
-        backgroundColor: '#E42C64',
+        backgroundColor: '#ffcb05',
         borderRadius: 24,
     },
 });

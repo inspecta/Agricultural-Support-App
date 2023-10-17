@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
         width: '80%',
         borderRadius: 96,
         borderWidth: 5,
-        borderColor: '#5E5A5A',
+        borderColor: '#ffcb05',
         marginVertical: 10,
         height: 140,
         display: 'flex',

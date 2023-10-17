@@ -2,12 +2,13 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CreditScreenHeader from "../../components/Headers/CreditScreenHeader";
 import { View, Text } from "react-native";
+import { screenStyles } from "../screenStyles";
 
 const CredditScreen = () => {
     return (
-        <SafeAreaView>
+        <SafeAreaView style={screenStyles.creditScreenContainer}>
             <CreditScreenHeader screenTitle="CREDIT STATUS" activeButton="history" />
-            <View>
+            <View style={screenStyles.contentContainer}>
                 <Text>HISTROY</Text>
                 <Text>-UGX 898,000</Text>
                 <View>

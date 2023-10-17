@@ -5,7 +5,7 @@ import Icon from "react-native-paper/lib/typescript/components/Icon";
 import { IconButton } from "react-native-paper";
 import { styles } from "./EarningsStyle";
 import {screenStyles} from "../screenStyles"
-import CreditScore from "../../components/CreditScore";
+import EarningsScreenHeaders from "../../components/Headers/EarningsScreenHeaders";
 
 const EarningsScreen = () => {
     return (
@@ -19,7 +19,7 @@ const EarningsScreen = () => {
                 <Text style={screenStyles.majorText}>UGX 15,300</Text>
                 <View style={screenStyles.subTitle}>
                     <Text style={styles.comparisonText}>UGX 440</Text>
-                    <IconButton icon="arrow-up" iconColor="#E42C64" size={14} />
+                    <IconButton icon="arrow-up" iconColor="#ffcb05" size={14} />
                 </View>
             </View>
             <View style={styles.contentContainer}>
@@ -30,7 +30,7 @@ const EarningsScreen = () => {
                     <View style={styles.recordProduct}>
                         <Text style={screenStyles.subTitleText}>MANGOES</Text>
                         <View style={styles.productCategory}>
-                            <IconButton icon="fruit-cherries" iconColor="#E42C64" size={15} style={styles.productIcon} />
+                            <IconButton icon="fruit-cherries" iconColor="#ffcb05" size={15} style={styles.productIcon} />
                             <Text style={screenStyles.subText}>FRUITS</Text>
                         </View>
                     </View>
@@ -47,7 +47,7 @@ const EarningsScreen = () => {
                     <View style={styles.recordProduct}>
                         <Text style={screenStyles.subTitleText}>BANANAS</Text>
                         <View style={styles.productCategory}>
-                            <IconButton icon="food" iconColor="#E42C64" size={15} style={styles.productIcon} />
+                            <IconButton icon="food" iconColor="#ffcb05" size={15} style={styles.productIcon} />
                             <Text style={screenStyles.subText}>FOOD</Text>
                         </View>
                     </View>
@@ -64,7 +64,7 @@ const EarningsScreen = () => {
                     <View style={styles.recordProduct}>
                         <Text style={screenStyles.subTitleText}>MIXED</Text>
                         <View style={styles.productCategory}>
-                            <IconButton icon="shopping" iconColor="#E42C64" size={15} style={styles.productIcon} />
+                            <IconButton icon="shopping" iconColor="#ffcb05" size={15} style={styles.productIcon} />
                             <Text style={screenStyles.subText}>MIXED</Text>
                         </View>
                     </View>
@@ -81,7 +81,7 @@ const EarningsScreen = () => {
                     <View style={styles.recordProduct}>
                         <Text style={screenStyles.subTitleText}>MILK</Text>
                         <View style={styles.productCategory}>
-                            <IconButton icon="cow" iconColor="#E42C64" size={15} style={styles.productIcon} />
+                            <IconButton icon="cow" iconColor="#ffcb05" size={15} style={styles.productIcon} />
                             <Text style={screenStyles.subText}>DAIRY</Text>
                         </View>
                     </View>
@@ -98,7 +98,7 @@ const EarningsScreen = () => {
                     <View style={styles.recordProduct}>
                         <Text style={screenStyles.subTitleText}>EGGS</Text>
                         <View style={styles.productCategory}>
-                            <IconButton icon="egg" iconColor="#E42C64" size={15} style={styles.productIcon} />
+                            <IconButton icon="egg" iconColor="#ffcb05" size={15} style={styles.productIcon} />
                             <Text style={screenStyles.subText}>POULTRY</Text>
                         </View>
                     </View>
@@ -115,7 +115,7 @@ const EarningsScreen = () => {
                     <View style={styles.recordProduct}>
                         <Text style={screenStyles.subText}>PINEAPPLES</Text>
                         <View style={styles.productCategory}>
-                            <IconButton icon="fruit-cherries" iconColor="#E42C64" size={15} style={styles.productIcon} />
+                            <IconButton icon="fruit-cherries" iconColor="#ffcb05" size={15} style={styles.productIcon} />
                             <Text style={screenStyles.subText}>FRUITS</Text>
                         </View>
                     </View>

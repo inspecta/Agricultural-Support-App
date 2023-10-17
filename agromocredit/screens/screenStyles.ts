@@ -6,6 +6,14 @@ export const screenStyles = StyleSheet.create({
         padding: 30,
         height: '100%',
     },
+    creditScreenContainer: {
+        backgroundColor: '#E42C64',
+        height: '100%',
+    },
+    contentContainer: {
+        backgroundColor: '#fff',
+        elevation: 40,
+    },
     pageTitle: {
         color: '#fff',
         fontSize: 18,

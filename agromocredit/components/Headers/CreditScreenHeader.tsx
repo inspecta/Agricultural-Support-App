@@ -2,6 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { Text } from "react-native";
 import ButtonAction from "../Buttons/ButtonAction";
+import { styles } from "./CreditScreenHeaderStyle";
 
 interface ButtonActionProps {
     activeButton: string;
@@ -10,7 +11,7 @@ interface ButtonActionProps {
 
 const CreditScreenHeader: React.FC<ButtonActionProps> = ({ screenTitle, activeButton }) => {
     return (
-        <View>
+        <View style={styles.container}>
             <Text>{screenTitle}</Text>
             <Text>UGX 567,700</Text>
             <View>

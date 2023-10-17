@@ -48,20 +48,20 @@ const DashboardScreen = () => {
                             <ButtonAction 
                                 onPress={() => console.log('Pressed')}
                                 buttonText="RECEIVE PAYMENT"
-                                btnColor="#03A9F1"
+                                btnColor="#ffcb05"
                                 btnIcon=""
-                                txtColor=""
-                                rippleClr="#03A999"
+                                txtColor="#000"
+                                rippleClr="#ff0"
                                 btnContentStyling={styles.screenBtnStyles}
                             />
                         </View>
                         <View style={styles.screenBtn}>
                             <ButtonAction
                                 onPress={() => console.log('Pressed')}
-                                buttonText="PAY LOAN" btnColor="#09F9BF"
+                                buttonText="PAY LOAN" btnColor="#ffcb05"
                                 btnIcon=""
-                                txtColor="#352B73"
-                                rippleClr="#09FFFF"
+                                txtColor="#000"
+                                rippleClr="#ff0"
                                 btnContentStyling={styles.screenBtnStyles}
                             />
                         </View>
@@ -70,10 +70,10 @@ const DashboardScreen = () => {
                         <ButtonAction
                             onPress={() => console.log('Pressed')}
                             buttonText="MARKET PLACE"
-                            btnColor="#E42C64" 
+                            btnColor="#ffcb05" 
                             btnIcon=""
-                            txtColor=""
-                            rippleClr="#E42CCC"
+                            txtColor="#000"
+                            rippleClr="#ff0"
                             btnContentStyling={styles.marketBtnStyles}
                         />
                     </View>
