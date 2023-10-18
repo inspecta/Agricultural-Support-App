@@ -73,7 +73,8 @@ export const styles = StyleSheet.create({
         marginBottom: 10,
     },
     screenBtnStyles: {
-        height: 100,        
+        height: 100,
+        padding: 0,        
     },
     marketBtnStyles: {
         height: 50,

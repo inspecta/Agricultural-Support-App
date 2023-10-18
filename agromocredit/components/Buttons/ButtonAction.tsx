@@ -10,9 +10,10 @@ interface ButtonActionProps {
   txtColor: string;
   rippleClr: string;
   btnContentStyling: object;
+  txtStyle: object;
 }
 
-const ButtonLink: React.FC<ButtonActionProps> = ({ onPress, buttonText, btnColor, btnIcon, txtColor, rippleClr , btnContentStyling}) => (
+const ButtonLink: React.FC<ButtonActionProps> = ({ onPress, buttonText, btnColor, btnIcon, txtColor, rippleClr , btnContentStyling, txtStyle}) => (
   <Button 
     style={styles.container}
     icon={btnIcon}
@@ -20,7 +21,7 @@ const ButtonLink: React.FC<ButtonActionProps> = ({ onPress, buttonText, btnColor
     onPress={onPress}
     buttonColor={btnColor}
     textColor={txtColor}
-    labelStyle={styles.txtStyle}
+    labelStyle={txtStyle}
     rippleColor={rippleClr}
     contentStyle={btnContentStyling} 
   >

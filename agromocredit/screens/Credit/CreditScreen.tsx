@@ -9,8 +9,8 @@ const CredditScreen = () => {
         <SafeAreaView style={screenStyles.creditScreenContainer}>
             <CreditScreenHeader screenTitle="CREDIT STATUS" activeButton="history" />
             <View style={screenStyles.contentContainer}>
-                <Text>HISTROY</Text>
-                <Text>-UGX 898,000</Text>
+                <Text style={screenStyles.creditScreenSubTitleText}>HISTROY</Text>
+                <Text style={screenStyles.creditScreenMajorText}>-UGX 898,000</Text>
                 <View>
                     <View>
                         <Text>15 SEP</Text>

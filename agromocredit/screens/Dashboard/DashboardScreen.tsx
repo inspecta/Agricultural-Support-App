@@ -13,7 +13,7 @@ const DashboardScreen = () => {
         <SafeAreaView style={screenStyles.container}>
             <View style={screenStyles.subTitle}>
                 <Text style={screenStyles.pageTitle}>MULINDE DERRICK</Text>
-                <Image source={require('./titleImg.png')} />
+                <Image source={require('../assets/titleImg.png')} />
             </View>
             <View style={screenStyles.subTitle} >
                 <Text style={styles.titleTabs}>MERCHANT ID</Text>
@@ -53,6 +53,7 @@ const DashboardScreen = () => {
                                 txtColor="#000"
                                 rippleClr="#ff0"
                                 btnContentStyling={styles.screenBtnStyles}
+                                txtStyle={screenStyles.screenBtnTextStyles}
                             />
                         </View>
                         <View style={styles.screenBtn}>
@@ -63,6 +64,7 @@ const DashboardScreen = () => {
                                 txtColor="#000"
                                 rippleClr="#ff0"
                                 btnContentStyling={styles.screenBtnStyles}
+                                txtStyle={screenStyles.screenBtnTextStyles}
                             />
                         </View>
                     </View>
@@ -75,6 +77,7 @@ const DashboardScreen = () => {
                             txtColor="#000"
                             rippleClr="#ff0"
                             btnContentStyling={styles.marketBtnStyles}
+                            txtStyle={screenStyles.screenBtnTextStyles}
                         />
                     </View>
                 </View>

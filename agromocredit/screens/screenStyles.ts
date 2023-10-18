@@ -7,15 +7,22 @@ export const screenStyles = StyleSheet.create({
         height: '100%',
     },
     creditScreenContainer: {
-        backgroundColor: '#E42C64',
+        backgroundColor: '#ffcb05',
         height: '100%',
     },
     contentContainer: {
         backgroundColor: '#fff',
-        elevation: 40,
+        elevation: 200,
+        minHeight: '70%',
+        padding: 30,
     },
     pageTitle: {
         color: '#fff',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    creditScreenPageTitle: {
+        color: '#000',
         fontSize: 18,
         fontWeight: 'bold',
     },
@@ -31,6 +38,11 @@ export const screenStyles = StyleSheet.create({
         fontSize: 11,
         marginVertical: 1,
     },
+    creditScreenSubTitleText: {
+        color: '#000',
+        fontSize: 14,
+        marginVertical: 1,
+    },
     subText: {
         color: '#B5BBC9',
         fontSize: 9,
@@ -40,5 +52,15 @@ export const screenStyles = StyleSheet.create({
         color: '#fff',
         fontSize: 28,
         marginVertical: 1,
+    },
+    creditScreenMajorText: {
+        color: '#000',
+        fontSize: 28,
+        marginVertical: 1,
+    },
+    screenBtnTextStyles: {
+        fontSize: 12,
+        fontWeight: 'bold',
+        color: '#000',
     },
 });

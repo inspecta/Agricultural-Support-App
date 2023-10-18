@@ -6,6 +6,7 @@ import { IconButton } from "react-native-paper";
 import { styles } from "./EarningsStyle";
 import {screenStyles} from "../screenStyles"
 import EarningsScreenHeaders from "../../components/Headers/EarningsScreenHeaders";
+import TransactionRecord from "../../components/TransactionRecord";
 
 const EarningsScreen = () => {
     return (
@@ -23,108 +24,66 @@ const EarningsScreen = () => {
                 </View>
             </View>
             <View style={styles.contentContainer}>
-                <View style={styles.contentRecord}>
-                    <View style={styles.recordDate}>
-                        <Text style={styles.dateText}>15</Text>
-                    </View>
-                    <View style={styles.recordProduct}>
-                        <Text style={screenStyles.subTitleText}>MANGOES</Text>
-                        <View style={styles.productCategory}>
-                            <IconButton icon="fruit-cherries" iconColor="#ffcb05" size={15} style={styles.productIcon} />
-                            <Text style={screenStyles.subText}>FRUITS</Text>
-                        </View>
-                    </View>
-                    <View>
-                        <Text style={screenStyles.subTitleText}>UGX 20,800</Text>
-                        <Text style={screenStyles.subText}>0771823425</Text>
-                    </View>
-                    <IconButton icon="chevron-right" size={17} iconColor="#fff" />
-                </View>
-                <View style={styles.contentRecord}>
-                    <View style={styles.recordDate}>
-                        <Text style={styles.dateText}>15</Text>
-                    </View>
-                    <View style={styles.recordProduct}>
-                        <Text style={screenStyles.subTitleText}>BANANAS</Text>
-                        <View style={styles.productCategory}>
-                            <IconButton icon="food" iconColor="#ffcb05" size={15} style={styles.productIcon} />
-                            <Text style={screenStyles.subText}>FOOD</Text>
-                        </View>
-                    </View>
-                    <View>
-                        <Text style={screenStyles.subTitleText}>UGX 175,800</Text>
-                        <Text style={screenStyles.subText}>0771823425</Text>
-                    </View>
-                    <IconButton icon="chevron-right" size={17} iconColor="#fff" />
-                </View>
-                <View style={styles.contentRecord}>
-                    <View style={styles.recordDate}>
-                        <Text style={styles.dateText}>14</Text>
-                    </View>
-                    <View style={styles.recordProduct}>
-                        <Text style={screenStyles.subTitleText}>MIXED</Text>
-                        <View style={styles.productCategory}>
-                            <IconButton icon="shopping" iconColor="#ffcb05" size={15} style={styles.productIcon} />
-                            <Text style={screenStyles.subText}>MIXED</Text>
-                        </View>
-                    </View>
-                    <View>
-                        <Text style={screenStyles.subTitleText}>UGX 200,800</Text>
-                        <Text style={screenStyles.subText}>0771823425</Text>
-                    </View>
-                    <IconButton icon="chevron-right" size={17} iconColor="#fff" />
-                </View>
-                <View style={styles.contentRecord}>
-                    <View style={styles.recordDate}>
-                        <Text style={styles.dateText}>10</Text>
-                    </View>
-                    <View style={styles.recordProduct}>
-                        <Text style={screenStyles.subTitleText}>MILK</Text>
-                        <View style={styles.productCategory}>
-                            <IconButton icon="cow" iconColor="#ffcb05" size={15} style={styles.productIcon} />
-                            <Text style={screenStyles.subText}>DAIRY</Text>
-                        </View>
-                    </View>
-                    <View>
-                        <Text style={screenStyles.subTitleText}>UGX 20,800</Text>
-                        <Text style={screenStyles.subText}>0771823425</Text>
-                    </View>
-                    <IconButton icon="chevron-right" size={17} iconColor="#fff" />
-                </View>
-                <View style={styles.contentRecord}>
-                    <View style={styles.recordDate}>
-                        <Text style={styles.dateText}>10</Text>
-                    </View>
-                    <View style={styles.recordProduct}>
-                        <Text style={screenStyles.subTitleText}>EGGS</Text>
-                        <View style={styles.productCategory}>
-                            <IconButton icon="egg" iconColor="#ffcb05" size={15} style={styles.productIcon} />
-                            <Text style={screenStyles.subText}>POULTRY</Text>
-                        </View>
-                    </View>
-                    <View>
-                        <Text style={screenStyles.subTitleText}>UGX 12,800</Text>
-                        <Text style={screenStyles.subText}>0771823425</Text>
-                    </View>
-                    <IconButton icon="chevron-right" size={17} iconColor="#fff" />
-                </View>
-                <View style={styles.contentRecord}>
-                    <View style={styles.recordDate}>
-                        <Text style={styles.dateText}>09</Text>
-                    </View>
-                    <View style={styles.recordProduct}>
-                        <Text style={screenStyles.subText}>PINEAPPLES</Text>
-                        <View style={styles.productCategory}>
-                            <IconButton icon="fruit-cherries" iconColor="#ffcb05" size={15} style={styles.productIcon} />
-                            <Text style={screenStyles.subText}>FRUITS</Text>
-                        </View>
-                    </View>
-                    <View style={styles.recordTransaction}>
-                        <Text style={screenStyles.subTitleText}>UGX 10,800</Text>
-                        <Text style={screenStyles.subText}>0771823425</Text>
-                    </View>
-                    <IconButton icon="chevron-right" size={17} iconColor="#fff" />
-                </View>
+                <TransactionRecord
+                    recordDate={15}
+                    recordValue="MANGOES"
+                    recordIcon="fruit-cherries"
+                    recordSubject="FRUITS"
+                    recordSubAttr1="UGX 20,800"
+                    recordSubAttr2="0771823425"
+                    recordDated={true}
+                    detailsIcon={true}    
+                />
+                <TransactionRecord
+                    recordDate={15}
+                    recordValue="BANANAS"
+                    recordIcon="food"
+                    recordSubject="FOOD"
+                    recordSubAttr1="UGX 175,800"
+                    recordSubAttr2="0771823425"
+                    recordDated={true}
+                    detailsIcon={true}    
+                />
+                <TransactionRecord
+                    recordDate={14}
+                    recordValue="MIXED"
+                    recordIcon="shopping"
+                    recordSubject="MIXED"
+                    recordSubAttr1="UGX 200,800"
+                    recordSubAttr2="0771823425"
+                    recordDated={true}
+                    detailsIcon={true}    
+                />
+                <TransactionRecord
+                    recordDate={14}
+                    recordValue="MILK"
+                    recordIcon="cow"
+                    recordSubject="DIARY"
+                    recordSubAttr1="UGX 200,800"
+                    recordSubAttr2="0771823425"
+                    recordDated={true}
+                    detailsIcon={true}    
+                />
+                <TransactionRecord
+                    recordDate={10}
+                    recordValue="EGGS"
+                    recordIcon="egg"
+                    recordSubject="POULTRY"
+                    recordSubAttr1="UGX 12,800"
+                    recordSubAttr2="0771823425"
+                    recordDated={true}
+                    detailsIcon={true}    
+                />
+                <TransactionRecord
+                    recordDate={9}
+                    recordValue="PINEAPPLES"
+                    recordIcon="fruit-cherries"
+                    recordSubject="FRUITS"
+                    recordSubAttr1="UGX 10,800"
+                    recordSubAttr2="0771823425"
+                    recordDated={true}
+                    detailsIcon={true}    
+                />
             </View>
         </SafeAreaView>
     );
