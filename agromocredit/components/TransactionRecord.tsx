@@ -13,24 +13,25 @@ interface TransactionRecordProps {
     recordSubAttr2: string;
     detailsIcon: boolean;
     recordDated: boolean;
+    creditScreen: boolean;
   }
 
-const TransactionRecord: React.FC<TransactionRecordProps> = ({ recordDate, recordValue, recordIcon, recordSubject, recordSubAttr1, recordSubAttr2 , detailsIcon, recordDated}) => {
+const TransactionRecord: React.FC<TransactionRecordProps> = ({ recordDate, recordValue, recordIcon, recordSubject, recordSubAttr1, recordSubAttr2 , detailsIcon, recordDated, creditScreen}) => {
     return (
         <View style={styles.contentRecord}>
-            <View style={styles.recordDate}>
-                {recordDated ? (<Text style={styles.dateText}>{recordDate}</Text>) : (<Text>xx</Text>)}
+            <View style={creditScreen ? styles.creditScreenRecordDate : styles.recordDate}>
+                {recordDated ? (<Text style={creditScreen ? styles.creditScreenDateText : styles.dateText}>{recordDate}</Text>) : (<Text>xx</Text>)}
             </View>
             <View style={styles.recordProduct}>
-                <Text style={screenStyles.subTitleText}>{recordValue}</Text>
+                <Text style={creditScreen ? screenStyles.creditScreenSubTitleText : screenStyles.subTitleText}>{recordValue}</Text>
                 <View style={styles.productCategory}>
-                    <IconButton icon={recordIcon} iconColor="#ffcb05" size={15} style={styles.productIcon} />
-                    <Text style={screenStyles.subText}>{recordSubject}</Text>
+                    {!creditScreen && (<IconButton icon={recordIcon} iconColor="#ffcb05" size={15} style={styles.productIcon} />)}
+                    <Text style={creditScreen ? screenStyles.creditScreenSubText : screenStyles.subText}>{recordSubject}</Text>
                 </View>
             </View>
             <View>
-                <Text style={screenStyles.subTitleText}>{recordSubAttr1}</Text>
-                <Text style={screenStyles.subText}>{recordSubAttr2}</Text>
+                <Text style={creditScreen ? screenStyles.creditScreenSubTitleText : screenStyles.subTitleText}>{recordSubAttr1}</Text>
+                <Text style={creditScreen ? screenStyles.creditScreenSubText : screenStyles.subText}>{recordSubAttr2}</Text>
             </View>
             {detailsIcon && (<IconButton icon="chevron-right" size={17} iconColor="#fff" />)}
         </View>

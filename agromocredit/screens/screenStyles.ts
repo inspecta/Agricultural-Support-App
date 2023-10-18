@@ -48,6 +48,11 @@ export const screenStyles = StyleSheet.create({
         fontSize: 9,
         marginVertical: 1,
     },
+    creditScreenSubText: {
+        color: '#000',
+        fontSize: 12,
+        marginVertical: 1,
+    },
     majorText: {
         color: '#fff',
         fontSize: 28,
@@ -63,4 +68,7 @@ export const screenStyles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#000',
     },
+    recordContainer: {
+        marginVertical: 10,
+    }
 });

@@ -16,8 +16,8 @@ export default function App() {
     {/*<DashboardScreen />*/}
     {/*<ReceivePaymentScreen />*/}
     {/*<PayLoanScreen />*/}
-    {<EarningsScreen />}
-    {/*<CreditScreen />}
+    {/*<EarningsScreen />*/}
+    {<CreditScreen />}
     {/*<BorrowingScreen />*/}
     {/*<LentOutScreen />*/}
     </>

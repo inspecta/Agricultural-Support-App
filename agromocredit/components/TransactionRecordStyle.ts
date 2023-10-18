@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         gap: 5,
+        alignItems: 'center',
     },
     recordDate: {
         width: '12%',
@@ -26,7 +27,19 @@ export const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        juatifyContent: 'center',
+        justifyContent: 'center',
+    },
+    creditScreenRecordDate: {
+        width: '18%',
+        borderRadius: 96,
+        borderWidth: 6,
+        borderColor: '#ffcb05',
+        marginVertical: 10,
+        height: 60,
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     recordProduct: {
         display: "flex",
@@ -52,5 +65,10 @@ export const styles = StyleSheet.create({
         margin: 7,
         fontSize: 14,
         color: '#fff'
+    },
+    creditScreenDateText: {
+        margin: 7,
+        fontSize: 14,
+        color: '#000'
     }
 });
