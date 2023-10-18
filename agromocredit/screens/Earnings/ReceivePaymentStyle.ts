@@ -27,16 +27,20 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         marginVertical: 5,
     },
+    sendBtnStyles: {
+        height: 60,
+    },
+    sendBtnTextStyles: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
     textInput: {
         height: 60,
-        width: "85%",
+        width: '85%',
         backgroundColor: "transparent",
         borderBottomColor: "#5B6373",
         borderBottomWidth: .5,
         color: '#fff',
         marginVertical: 20,
-    },
-    sendBtnStyles: {
-        height: 60,
     },
 });

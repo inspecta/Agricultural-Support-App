@@ -14,12 +14,12 @@ export default function App() {
     <>
     {/*<WelcomeScreen />*/}
     {/*<DashboardScreen />*/}
-    {/*<ReceivePaymentScreen />*/}
+    {<ReceivePaymentScreen />}
     {/*<PayLoanScreen />*/}
     {/*<EarningsScreen />}
     {/*<CreditScreen />*/}
     {/*<BorrowingScreen />*/}
-    {<LentOutScreen />}
+    {/*<LentOutScreen />*/}
     </>
   );
 }

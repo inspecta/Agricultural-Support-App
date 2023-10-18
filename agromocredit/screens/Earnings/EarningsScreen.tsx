@@ -32,7 +32,8 @@ const EarningsScreen = () => {
                     recordSubAttr1="UGX 20,800"
                     recordSubAttr2="0771823425"
                     recordDated={true}
-                    detailsIcon={true}    
+                    detailsIcon={true}
+                    creditScreen={false}    
                 />
                 <TransactionRecord
                     recordDate={15}
@@ -42,7 +43,8 @@ const EarningsScreen = () => {
                     recordSubAttr1="UGX 175,800"
                     recordSubAttr2="0771823425"
                     recordDated={true}
-                    detailsIcon={true}    
+                    detailsIcon={true}
+                    creditScreen={false}    
                 />
                 <TransactionRecord
                     recordDate={14}
@@ -52,7 +54,8 @@ const EarningsScreen = () => {
                     recordSubAttr1="UGX 200,800"
                     recordSubAttr2="0771823425"
                     recordDated={true}
-                    detailsIcon={true}    
+                    detailsIcon={true}
+                    creditScreen={false}    
                 />
                 <TransactionRecord
                     recordDate={14}
@@ -62,7 +65,8 @@ const EarningsScreen = () => {
                     recordSubAttr1="UGX 200,800"
                     recordSubAttr2="0771823425"
                     recordDated={true}
-                    detailsIcon={true}    
+                    detailsIcon={true}
+                    creditScreen={false}    
                 />
                 <TransactionRecord
                     recordDate={10}
@@ -72,7 +76,8 @@ const EarningsScreen = () => {
                     recordSubAttr1="UGX 12,800"
                     recordSubAttr2="0771823425"
                     recordDated={true}
-                    detailsIcon={true}    
+                    detailsIcon={true}
+                    creditScreen={false}    
                 />
                 <TransactionRecord
                     recordDate={9}
@@ -82,7 +87,8 @@ const EarningsScreen = () => {
                     recordSubAttr1="UGX 10,800"
                     recordSubAttr2="0771823425"
                     recordDated={true}
-                    detailsIcon={true}    
+                    detailsIcon={true}
+                    creditScreen={true}    
                 />
             </View>
         </SafeAreaView>

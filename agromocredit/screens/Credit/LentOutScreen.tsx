@@ -2,7 +2,6 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CreditScreenHeader from "../../components/Headers/CreditScreenHeader";
 import { View, Text } from "react-native";
-import { IconButton } from "react-native-paper";
 import { screenStyles } from "../screenStyles";
 import TransactionRecord from "../../components/TransactionRecord";
 

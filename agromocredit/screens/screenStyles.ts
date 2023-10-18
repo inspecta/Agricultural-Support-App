@@ -70,5 +70,5 @@ export const screenStyles = StyleSheet.create({
     },
     recordContainer: {
         marginVertical: 10,
-    }
+    },
 });

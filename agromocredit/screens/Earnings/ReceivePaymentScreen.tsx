@@ -52,7 +52,8 @@ const ReceivePaymentScreen = () => {
                     txtColor="#000"
                     rippleClr="#ff0"
                     btnContentStyling={styles.sendBtnStyles}
-                    />
+                    txtStyle={styles.sendBtnTextStyles}
+                />
             </View>
         </SafeAreaView>
         
