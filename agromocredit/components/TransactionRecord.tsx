@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import { IconButton } from 'react-native-paper';
+import { IconButton, RadioButton } from 'react-native-paper';
 import {styles} from "./TransactionRecordStyle"
 import { screenStyles } from '../screens/screenStyles';
 
@@ -17,10 +17,23 @@ interface TransactionRecordProps {
   }
 
 const TransactionRecord: React.FC<TransactionRecordProps> = ({ recordDate, recordValue, recordIcon, recordSubject, recordSubAttr1, recordSubAttr2 , detailsIcon, recordDated, creditScreen}) => {
+    
+    const [checked, setChecked] = React.useState('0704445667');
+    
     return (
         <View style={styles.contentRecord}>
             <View style={creditScreen ? styles.creditScreenRecordDate : styles.recordDate}>
-                {recordDated ? (<Text style={creditScreen ? styles.creditScreenDateText : styles.dateText}>{recordDate}</Text>) : (<Text>xx</Text>)}
+                {recordDated ? (<Text style={creditScreen ? styles.creditScreenDateText : styles.dateText}>{recordDate}</Text>) : 
+                (<View>
+                        <RadioButton
+                            color='#ffcb05'
+                            uncheckedColor='#ffcb05'
+                            value="0704445667"
+                            status={checked === '0704445667' ? 'checked' : 'unchecked'}
+                            onPress={()=>setChecked('')}
+                        />
+                </View>)
+                }
             </View>
             <View style={styles.recordProduct}>
                 <Text style={creditScreen ? screenStyles.creditScreenSubTitleText : screenStyles.subTitleText}>{recordValue}</Text>

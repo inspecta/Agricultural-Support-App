@@ -71,4 +71,27 @@ export const screenStyles = StyleSheet.create({
     recordContainer: {
         marginVertical: 10,
     },
+    creditScreenTextInput: {
+        height: 60,
+        backgroundColor: "transparent",
+        borderBottomColor: "#5B6373",
+        borderBottomWidth: .5,
+        color: '#fff',
+        marginVertical: 20,
+    },
+    textInput: {
+        height: 60,
+        width: '85%',
+        backgroundColor: "transparent",
+        borderBottomColor: "#5B6373",
+        borderBottomWidth: .5,
+        color: '#fff',
+        marginVertical: 20,
+    },
+    creditBtnStyles: {
+        height: 50,
+    },
+    creditBtnTextStyles: {
+        fontWeight: 'bold',
+    },
 });

@@ -6,7 +6,6 @@ import { IconButton } from "react-native-paper";
 import InputText from "../../components/Inputs/InputText";
 import ButtonAction from "../../components/Buttons/ButtonAction";
 import { screenStyles } from "../screenStyles";
-import { styles } from "./BorrowingStyle";
 import TransactionRecord from "../../components/TransactionRecord";
 
 const BorrowingScreen = () => {
@@ -42,7 +41,7 @@ const BorrowingScreen = () => {
                 </View>
                 <View style={screenStyles.creditScreenSubTitleText}>
                     <Text>AMOUNT</Text>
-                    <InputText txtStyle={styles.textInput} labelText="UGX 450,000" />
+                    <InputText txtStyle={screenStyles.creditScreenTextInput} labelText="UGX 450,000" />
                     <ButtonAction
                         onPress={() => console.log('Pressed')}
                         buttonText="BORROW"
@@ -50,8 +49,8 @@ const BorrowingScreen = () => {
                         btnIcon=""
                         txtColor="#000"
                         rippleClr="#ff0"
-                        btnContentStyling={styles.creditBtnStyles}
-                        txtStyle={styles.creditBtnTextStyles}
+                        btnContentStyling={screenStyles.creditBtnStyles}
+                        txtStyle={screenStyles.creditBtnTextStyles}
                     />
                 </View>
             </View>
