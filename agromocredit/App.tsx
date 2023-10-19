@@ -13,10 +13,10 @@ export default function App() {
   return (
     <>
     {/*<WelcomeScreen />*/}
-    <DashboardScreen />
+    {<DashboardScreen />}
     {/*<ReceivePaymentScreen />*/}
     {/*<PayLoanScreen />*/}
-    {/*<EarningsScreen />*/}
+    {/*<EarningsScreen />}
     {/*<CreditScreen />*/}
     {/*<BorrowingScreen />*/}
     {/*<LentOutScreen />*/}

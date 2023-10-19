@@ -5,57 +5,50 @@ import CreditScreenHeader from "../../components/Headers/CreditScreenHeader";
 import { RadioButton } from "react-native-paper";
 import InputText from "../../components/Inputs/InputText";
 import ButtonAction from "../../components/Buttons/ButtonAction";
+import { screenStyles } from "../screenStyles";
+import TransactionRecord from "../../components/TransactionRecord";
 
 const PayLoanScreen = () => {
-
-    const [checked, setChecked] = React.useState('0704445667');
     
     return (
-    <SafeAreaView>
+    <SafeAreaView style={screenStyles.creditScreenContainer}>
         <CreditScreenHeader screenTitle="CREDIT STATUS" activeButton="pay" />
-        <View>
-            <Text>OUTSTANDING LOANS</Text>
-            <Text>-UGX 567,000</Text>
-            <View>
-                <View>
-                    <View>
-                        <RadioButton
-                            value="0704445667"
-                            status={checked === '0704445667' ? 'checked' : 'unchecked'}
-                            onPress={()=>setChecked('0704445667')}
-                        />
-                    </View>
-                    <View>
-                        <Text>MULUNDO SAM</Text>
-                        <Text>WEED MASTER</Text>
-                    </View>
-                    <View>
-                        <Text>-UGX 477,000</Text>
-                        <Text>UGX 500,000</Text>
-                    </View>
-                </View>
-                <View>
-                    <View>
-                        <RadioButton
-                            value="mtn"
-                            status={checked === 'mtn' ? 'checked' : 'unchecked'}
-                            onPress={()=>setChecked('mtn')}
-                        />
-                    </View>
-                    <View>
-                        <Text>MTN</Text>
-                        <Text>GENERAL</Text>
-                    </View>
-                    <View>
-                        <Text>-UGX 50,000</Text>
-                        <Text>UGX 150,000</Text>
-                    </View>
-                </View>
+        <View style={screenStyles.contentContainer}>
+            <Text style={screenStyles.creditScreenSubTitleText}>OUTSTANDING LOANS</Text>
+            <Text style={screenStyles.creditScreenMajorText}>- UGX 567,000</Text>
+            <View style={screenStyles.recordContainer}>
+                <TransactionRecord
+                    recordDate=""
+                    recordValue="MULUNDO SAM"
+                    recordIcon=""
+                    recordSubject="WEED MASTER"
+                    recordSubAttr1="UGX 498,000"
+                    recordSubAttr2="UGX 500,000"
+                    recordDated={false}
+                    detailsIcon={false}
+                    creditScreen={true}    
+                />
+                <TransactionRecord
+                    recordDate=""
+                    recordValue="MTN"
+                    recordIcon=""
+                    recordSubject="GENERAL"
+                    recordSubAttr1="UGX 50,000"
+                    recordSubAttr2="UGX 150,000"
+                    recordDated={false}
+                    detailsIcon={false}
+                    creditScreen={true}    
+                />
             </View>
             <View>
                 <Text>AMOUNT</Text>
-                <InputText labelText="UGX 498,100" />
-                <ButtonAction buttonText="PAY" onPress={() => console.log("Pressed")} />
+                <InputText txtStyle={screenStyles.creditScreenTextInput} labelText="UGX 450,000" />
+                    <ButtonAction
+                        onPress={() => console.log('Pressed')}
+                        buttonText="PAY"
+                        buttonStyles={screenStyles.creditBtnStyles}
+                        buttonTxtStyles={screenStyles.creditBtnTextStyles}
+                    />
             </View>
         </View>
     </SafeAreaView>

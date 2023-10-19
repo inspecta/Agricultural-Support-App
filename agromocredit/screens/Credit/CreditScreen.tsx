@@ -2,65 +2,61 @@ import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CreditScreenHeader from "../../components/Headers/CreditScreenHeader";
 import { View, Text } from "react-native";
+import { screenStyles } from "../screenStyles";
+import TransactionRecord from "../../components/TransactionRecord";
 
 const CredditScreen = () => {
     return (
-        <SafeAreaView>
+        <SafeAreaView style={screenStyles.creditScreenContainer}>
             <CreditScreenHeader screenTitle="CREDIT STATUS" activeButton="history" />
-            <View>
-                <Text>HISTROY</Text>
-                <Text>-UGX 898,000</Text>
-                <View>
-                    <View>
-                        <Text>15 SEP</Text>
-                    </View>
-                    <View>
-                        <Text>MULUNDO SAM</Text>
-                        <Text>WEED MASTER</Text>
-                    </View>
-                    <View>
-                        <Text>UGX 20,800</Text>
-                        <Text>UGX 500,000</Text>
-                    </View>
-                </View>
-                <View>
-                    <View>
-                        <Text>22 APR</Text>
-                    </View>
-                    <View>
-                        <Text>MOMO</Text>
-                        <Text>GENERAL</Text>
-                    </View>
-                    <View>
-                        <Text>UGX 0</Text>
-                        <Text>UGX 200,000</Text>
-                    </View>
-                </View>
-                <View>
-                    <View>
-                        <Text>13 MAR</Text>
-                    </View>
-                    <View>
-                        <Text>MULUNDO SAM</Text>
-                        <Text>WEED MASTER</Text>
-                    </View>
-                    <View>
-                        <Text>UGX 0</Text>
-                        <Text>UGX 500,000</Text>
-                    </View>
-                </View>
-                <View>
-                    <View>
-                        <Text>02 JAN</Text>
-                    </View>
-                    <View>
-                        <Text>MOMO</Text>
-                        <Text>GENERAL</Text>
-                    </View>
-                    <View>
-                        <Text>UGX 0</Text>
-                        <Text>UGX 600,000</Text>
-                    </View>
+            <View style={screenStyles.contentContainer}>
+                <Text style={screenStyles.creditScreenSubTitleText}>HISTROY</Text>
+                <Text style={screenStyles.creditScreenMajorText}>- UGX 898,000</Text>
+                <View style={screenStyles.recordContainer}>
+                    <TransactionRecord
+                        recordDate="15 SEP"
+                        recordValue="MULUNDO SAM"
+                        recordIcon=""
+                        recordSubject="WEED MASTER"
+                        recordSubAttr1="-UGX 20,800"
+                        recordSubAttr2="UGX 500,000"
+                        recordDated={true}
+                        detailsIcon={false}
+                        creditScreen={true}    
+                    />
+                    <TransactionRecord
+                        recordDate="22 APR"
+                        recordValue="MOMO"
+                        recordIcon=""
+                        recordSubject="GENERAL"
+                        recordSubAttr1="UGX 0"
+                        recordSubAttr2="GX 200,000"
+                        recordDated={true}
+                        detailsIcon={false}
+                        creditScreen={true}    
+                    />
+                    <TransactionRecord
+                        recordDate="13 MAR"
+                        recordValue="MULUNDO SAM"
+                        recordIcon=""
+                        recordSubject="WEED MASTER"
+                        recordSubAttr1="UGX 0"
+                        recordSubAttr2="GX 500,000"
+                        recordDated={true}
+                        detailsIcon={false}
+                        creditScreen={true}    
+                    />
+                    <TransactionRecord
+                        recordDate="02 JAN"
+                        recordValue="MOMO"
+                        recordIcon=""
+                        recordSubject="GENERAL"
+                        recordSubAttr1="UGX 0"
+                        recordSubAttr2="GX 600,000"
+                        recordDated={true}
+                        detailsIcon={false}
+                        creditScreen={true}    
+                    />
                 </View>
             </View>
         </SafeAreaView>
