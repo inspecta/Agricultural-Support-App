@@ -44,31 +44,25 @@ const DashboardScreen = () => {
                 </View>
                 <View style={styles.buttonsContainer}>
                     <View style={styles.screenButtonsContainer}>
-                        <View style={styles.screenBtn}>
                             <ButtonAction 
                                 onPress={() => console.log('Pressed')}
                                 buttonText="RECEIVE PAYMENT"
                                 buttonStyles={styles.btnStyles}
                                 buttonTxtStyles={screenStyles.creditBtnTextStyles}
                             />
-                        </View>
-                        <View style={styles.screenBtn}>
                             <ButtonAction
                                 onPress={() => console.log('Pressed')}
                                 buttonText="PAY LOAN"
                                 buttonStyles={styles.btnStyles}
                                 buttonTxtStyles={screenStyles.creditBtnTextStyles}
                             />
-                        </View>
                     </View>
-                    <View style={styles.marketBtn}>
                         <ButtonAction
                             onPress={() => console.log('Pressed')}
                             buttonText="MARKET PLACE"
                             buttonStyles={screenStyles.creditBtnStyles}
                             buttonTxtStyles={screenStyles.creditBtnTextStyles}
                         />
-                    </View>
                 </View>
             </View>
         </SafeAreaView>

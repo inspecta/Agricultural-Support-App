@@ -96,6 +96,7 @@ export const screenStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         elevation: 10,
+        width: '100%',
     },
     creditBtnTextStyles: {
         fontWeight: 'bold',

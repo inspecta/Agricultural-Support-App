@@ -64,14 +64,6 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         gap: 20,
     },
-    marketBtn: {
-        width: '100%',
- 
-    },
-    screenBtn: {
-        width: '45%',
-        marginBottom: 10,
-    },
     btnStyles: {
         height: 100,
         backgroundColor: '#ffcb05',
@@ -80,5 +72,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         elevation: 10,
+        width: '47%',
+        marginBottom: 10,
     },
 });
