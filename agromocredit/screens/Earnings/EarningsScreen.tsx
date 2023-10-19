@@ -88,7 +88,7 @@ const EarningsScreen = () => {
                     recordSubAttr2="0771823425"
                     recordDated={true}
                     detailsIcon={true}
-                    creditScreen={true}    
+                    creditScreen={false}    
                 />
             </View>
         </SafeAreaView>

@@ -23,42 +23,26 @@ const CreditScreenHeader: React.FC<ButtonActionProps> = ({ screenTitle, activeBu
                 <ButtonAction
                     onPress={() => console.log('Pressed')}
                     buttonText="PAY NOW"
-                    btnColor="#000" 
-                    btnIcon=""
-                    txtColor="#ffcb05"
-                    rippleClr="#ff0"
-                    btnContentStyling={styles.creditBtnStyles}
-                    txtStyle={styles.creditBtnTextStyles}
+                    buttonStyles={activeButton === 'pay' ? styles.activeBtnStyles : styles.creditBtnStyles}
+                    buttonTxtStyles={activeButton === 'pay' ? styles.activeBtnTextStyles : styles.creditBtnTextStyles}
                 />
                 <ButtonAction
                     onPress={() => console.log('Pressed')}
                     buttonText="CREDIT HISTORY"
-                    btnColor="#000" 
-                    btnIcon=""
-                    txtColor="#ffcb05"
-                    rippleClr="#ff0"
-                    btnContentStyling={styles.creditBtnStyles}
-                    txtStyle={styles.creditBtnTextStyles}
+                    buttonStyles={activeButton === 'history' ? styles.activeBtnStyles : styles.creditBtnStyles}
+                    buttonTxtStyles={activeButton === 'history' ? styles.activeBtnTextStyles : styles.creditBtnTextStyles}
                 />
                 <ButtonAction
                     onPress={() => console.log('Pressed')}
                     buttonText="LENT OUT"
-                    btnColor="#000" 
-                    btnIcon=""
-                    txtColor="#ffcb05"
-                    rippleClr="#ff0"
-                    btnContentStyling={styles.creditBtnStyles}
-                    txtStyle={styles.creditBtnTextStyles}
+                    buttonStyles={activeButton === 'lent' ? styles.activeBtnStyles : styles.creditBtnStyles}
+                    buttonTxtStyles={activeButton === 'lent' ? styles.activeBtnTextStyles : styles.creditBtnTextStyles}
                 />
                 <ButtonAction
                     onPress={() => console.log('Pressed')}
                     buttonText="MOMO BORROW"
-                    btnColor="#000" 
-                    btnIcon=""
-                    txtColor="#ffcb05"
-                    rippleClr="#ff0"
-                    btnContentStyling={styles.creditBtnStyles}
-                    txtStyle={styles.creditBtnTextStyles}
+                    buttonStyles={activeButton === 'borrow' ? styles.activeBtnStyles : styles.creditBtnStyles}
+                    buttonTxtStyles={activeButton === 'borrow' ? styles.activeBtnTextStyles : styles.creditBtnTextStyles}
                 />
             </View>
         </View>

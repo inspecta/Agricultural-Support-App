@@ -48,23 +48,16 @@ const DashboardScreen = () => {
                             <ButtonAction 
                                 onPress={() => console.log('Pressed')}
                                 buttonText="RECEIVE PAYMENT"
-                                btnColor="#ffcb05"
-                                btnIcon=""
-                                txtColor="#000"
-                                rippleClr="#ff0"
-                                btnContentStyling={styles.screenBtnStyles}
-                                txtStyle={screenStyles.screenBtnTextStyles}
+                                buttonStyles={styles.btnStyles}
+                                buttonTxtStyles={screenStyles.creditBtnTextStyles}
                             />
                         </View>
                         <View style={styles.screenBtn}>
                             <ButtonAction
                                 onPress={() => console.log('Pressed')}
-                                buttonText="PAY LOAN" btnColor="#ffcb05"
-                                btnIcon=""
-                                txtColor="#000"
-                                rippleClr="#ff0"
-                                btnContentStyling={styles.screenBtnStyles}
-                                txtStyle={screenStyles.screenBtnTextStyles}
+                                buttonText="PAY LOAN"
+                                buttonStyles={styles.btnStyles}
+                                buttonTxtStyles={screenStyles.creditBtnTextStyles}
                             />
                         </View>
                     </View>
@@ -72,12 +65,8 @@ const DashboardScreen = () => {
                         <ButtonAction
                             onPress={() => console.log('Pressed')}
                             buttonText="MARKET PLACE"
-                            btnColor="#ffcb05" 
-                            btnIcon=""
-                            txtColor="#000"
-                            rippleClr="#ff0"
-                            btnContentStyling={styles.marketBtnStyles}
-                            txtStyle={screenStyles.screenBtnTextStyles}
+                            buttonStyles={screenStyles.creditBtnStyles}
+                            buttonTxtStyles={screenStyles.creditBtnTextStyles}
                         />
                     </View>
                 </View>

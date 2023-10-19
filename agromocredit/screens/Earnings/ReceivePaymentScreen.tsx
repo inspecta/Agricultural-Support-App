@@ -47,12 +47,8 @@ const ReceivePaymentScreen = () => {
                 <ButtonAction  
                     onPress={() => console.log('Pressed')}
                     buttonText="SEND"
-                    btnColor="#ffcb05" 
-                    btnIcon=""
-                    txtColor="#000"
-                    rippleClr="#ff0"
-                    btnContentStyling={styles.sendBtnStyles}
-                    txtStyle={styles.sendBtnTextStyles}
+                    buttonStyles={screenStyles.creditBtnStyles}
+                    buttonTxtStyles={screenStyles.creditBtnTextStyles}
                 />
             </View>
         </SafeAreaView>

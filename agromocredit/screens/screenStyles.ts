@@ -12,7 +12,7 @@ export const screenStyles = StyleSheet.create({
     },
     contentContainer: {
         backgroundColor: '#fff',
-        elevation: 200,
+        elevation: -200,
         minHeight: '70%',
         padding: 30,
     },
@@ -90,8 +90,16 @@ export const screenStyles = StyleSheet.create({
     },
     creditBtnStyles: {
         height: 50,
+        backgroundColor: '#ffcb05',
+        borderRadius: 12,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 10,
     },
     creditBtnTextStyles: {
         fontWeight: 'bold',
+        color: '#000',
+        textAlign: 'center',
     },
 });

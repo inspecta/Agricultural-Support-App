@@ -72,11 +72,13 @@ export const styles = StyleSheet.create({
         width: '45%',
         marginBottom: 10,
     },
-    screenBtnStyles: {
+    btnStyles: {
         height: 100,
-        padding: 0,        
+        backgroundColor: '#ffcb05',
+        borderRadius: 12,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        elevation: 10,
     },
-    marketBtnStyles: {
-        height: 50,
-    }
 });

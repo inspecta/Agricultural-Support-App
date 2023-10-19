@@ -45,12 +45,8 @@ const BorrowingScreen = () => {
                     <ButtonAction
                         onPress={() => console.log('Pressed')}
                         buttonText="BORROW"
-                        btnColor="#ffcb05" 
-                        btnIcon=""
-                        txtColor="#000"
-                        rippleClr="#ff0"
-                        btnContentStyling={screenStyles.creditBtnStyles}
-                        txtStyle={screenStyles.creditBtnTextStyles}
+                        buttonStyles={screenStyles.creditBtnStyles}
+                        buttonTxtStyles={screenStyles.creditBtnTextStyles}
                     />
                 </View>
             </View>
