@@ -62,7 +62,8 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         marginVertical: 10,
         justifyContent: 'center',
-        gap: 20,
+        gap: 10,
+        flexWrap: 'wrap',
     },
     btnStyles: {
         height: 100,

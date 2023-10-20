@@ -13,6 +13,7 @@ interface User {
   name: string
   balance: number
   id: number
+  phoneNumber: string
 }
 
 interface DashboardScreenProps {
@@ -29,12 +30,12 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
 
   const [currentBalance, setCurrentBalance] = useState<number | null>(null)
   const [totalEarned, setTotalEarned] = useState<number | null>(null)
-  const [totalCredit, setTotalCredit] = useState<number | null>(null)
+  const [totalWithdrawn, setTotalWithdrawn] = useState<number | null>(null)
 
   const fetchBalance = async () => {
     try {
       const response = await axios.get(
-        `http://192.168.1.117:8080/${route.params.user.id}/get-balance`
+        `http://192.168.9.43:8080/${route.params.user.id}/get-balance`
       )
       setCurrentBalance(response.data)
     } catch (error) {
@@ -45,7 +46,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
   const fetchTotalEarned = async () => {
     try {
       const response = await axios.get(
-        `http://192.168.1.117:8080/${route.params.user.id}/total-earned`
+        `http://192.168.9.43:8080/${route.params.user.id}/total-earned`
       )
       setTotalEarned(response.data)
     } catch (error) {
@@ -53,12 +54,12 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
     }
   }
 
-  const fetchTotalCredit = async () => {
+  const fetchTotalWithdrawn = async () => {
     try {
       const response = await axios.get(
-        `http://192.168.1.117:8080/${route.params.user.id}/total-credit`
+        `http://192.168.9.43:8080/${route.params.user.id}/total-credit`
       )
-      setTotalCredit(response.data)
+      setTotalWithdrawn(response.data)
     } catch (error) {
       console.error("Error fetching data:", error)
     }
@@ -66,12 +67,12 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
 
   useEffect(() => {
     fetchTotalEarned()
-    fetchTotalCredit()
+    fetchTotalWithdrawn()
     fetchBalance()
 
     const intervalId = setInterval(() => {
       fetchTotalEarned()
-      fetchTotalCredit()
+      fetchTotalWithdrawn()
       fetchBalance()
     }, 1000)
 
@@ -85,8 +86,8 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
                 <Image source={require('../assets/titleImg.png')} />
             </View>
             <View style={screenStyles.subTitle} >
-                <Text style={styles.titleTabs}>MERCHANT ID</Text>
-                <Text style={styles.titleTabs}>85674912</Text>
+                <Text style={styles.titleTabs}>CUSTOMER ID</Text>
+                <Text style={styles.titleTabs}>{user.phoneNumber}</Text>
             </View>
             <View >
                 <View style={screenStyles.subTitle}>
@@ -98,17 +99,29 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
                 </View>
                 <View style={styles.transactionsContainer}>
                     <Text style={styles.transactionsTitle}>TRANSACTIONS</Text>
-                    <TouchableOpacity style={styles.transactionsSections}>
+                    <TouchableOpacity
+                        style={styles.transactionsSections}
+                        onPress={() => {
+                          navigation.navigate("Earnings", {
+                            user: user,
+                          })
+                        }}>
                         <View style={styles.transactionsButton}>
-                            <Text style={styles.transactionsButtonText}>UGX {totalEarned !== null ? totalEarned : "Loading..."}</Text>
+                            <Text style={styles.transactionsButtonText}>UGX {totalEarned !== null ? totalEarned : 0}</Text>
                         </View>
-                        <Text style={styles.transactionsText}>TOTAL EARNED</Text>
+                        <Text style={styles.transactionsText}>EARNINGS</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.transactionsSections}>
+                    <TouchableOpacity 
+                        style={styles.transactionsSections}
+                        onPress={() => {
+                          navigation.navigate("Credit", {
+                            user: user,
+                          })
+                        }}>
                         <View style={styles.transactionsButton}>
-                            <Text style={styles.transactionsButtonText}>UGX {totalCredit !== null ? totalCredit : "Loading..."}</Text>
+                            <Text style={styles.transactionsButtonText}>UGX {totalWithdrawn !== null ? totalWithdrawn : 0}</Text>
                         </View >
-                        <Text style={styles.transactionsText}>TOTAL CREDIT</Text>
+                        <Text style={styles.transactionsText}>WITHDRAWALS</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.buttonsContainer}>
@@ -129,10 +142,20 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
                                     user: user,
                                   })
                                 }}
-                                buttonText="PAY LOAN"
+                                buttonText="WITHDRAW"
                                 buttonStyles={styles.btnStyles}
                                 buttonTxtStyles={screenStyles.creditBtnTextStyles}
                             />
+                            <ButtonAction
+                            onPress={() => {
+                              navigation.navigate("Credit", {
+                                user: user,
+                              })
+                            }}
+                            buttonText="LOANS"
+                            buttonStyles={screenStyles.creditBtnStyles}
+                            buttonTxtStyles={screenStyles.creditBtnTextStyles}
+                        />
                     </View>
                         <ButtonAction
                             onPress={() => console.log('Pressed')}
