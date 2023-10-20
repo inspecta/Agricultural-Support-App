@@ -144,5 +144,6 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
             </View>
         </SafeAreaView>
     );
+  }
 
 export default DashboardScreen

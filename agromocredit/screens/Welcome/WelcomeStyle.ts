@@ -1,11 +1,17 @@
 import { StyleSheet } from "react-native"
 
 export const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff",
-  },
   welcomeImage: {
-    height: 200,
+    height: 300,
+    width: '100%',
   },
-  welcomeText: {},
+  buttonsContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    margin: 40,
+    marginTop: 40,
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 20,
+  },
 })

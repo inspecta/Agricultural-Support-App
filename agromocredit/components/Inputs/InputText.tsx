@@ -5,14 +5,15 @@ interface InputTextProps {
     labelText?: string
     name?: string
     txtStyle: object;
+    onChangeText?: (text: string) => void;
+    value?: string;
   }
 
-const InputText:  React.FC<InputTextProps> = ({ labelText, txtStyle, name, ...rest }) => {
+const InputText:  React.FC<InputTextProps> = ({ labelText, txtStyle, name, onChangeText, value, ...rest }) => {
     const [text, setText] = React.useState('');
     return (
       <View>
-        {labelText && <Text>{labelText}</Text>}
-        <TextInput style={txtStyle} label={labelText} placeholder={labelText} value={text} {...rest}/>;
+        <TextInput onChangeText={onChangeText} style={txtStyle} placeholder={labelText} value={value} {...rest}/>;
       </View>
     )
   };
