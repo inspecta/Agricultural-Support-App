@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { View, Text, Image, TouchableOpacity } from "react-native"
+import { View, Text, Image, TouchableOpacity, ImageBackground } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { styles } from "./WelcomeStyle"
 import ButtonAction from "../../components/Buttons/ButtonAction"
@@ -27,7 +27,7 @@ const WelcomeScreen = () => {
     setIsLoading(true)
 
     try {
-      const url = "http://localhost:8080/login-user"
+      const url = "http://192.168.9.43:8080/login-user"
 
       const response = await axios.post(url, {
         phoneNumber: momoNumber,
@@ -71,13 +71,19 @@ const WelcomeScreen = () => {
     )
   } else if (activeForm === "register") {
     bottomContent = (
-      <>
-        <Text style={screenStyles.creditScreenSubTitleText}>CREATE AN ACCOUNT</Text>
+      <View style={styles.buttonsContainer}>
+        <Text style={screenStyles.creditScreenPageTitle}>CREATE AN ACCOUNT</Text>
         <InputText labelText="Email" txtStyle={screenStyles.textInput} />
         <InputText labelText="MOMO Registered Number" txtStyle={screenStyles.textInput} />
         <InputText labelText="Full Name" txtStyle={screenStyles.textInput} />
         <InputText labelText="Password" txtStyle={screenStyles.textInput} />
         <InputText labelText="Confirm Password" txtStyle={screenStyles.textInput} />
+        <ButtonAction
+          onPress={() => handleChange("login")}
+          buttonText="REGISTER"
+          buttonStyles={screenStyles.creditBtnStyles}
+          buttonTxtStyles={screenStyles.creditBtnTextStyles}
+        />
         <Text style={screenStyles.creditScreenSubText}>Already have an account?</Text>
         <ButtonAction
           onPress={() => handleChange("login")}
@@ -85,12 +91,12 @@ const WelcomeScreen = () => {
           buttonStyles={screenStyles.creditBtnStyles}
           buttonTxtStyles={screenStyles.creditBtnTextStyles}
         />
-      </>
+      </View>
     )
   } else if (activeForm === "login") {
     bottomContent = (
-      <>
-        <Text style={screenStyles.creditScreenSubTitleText}>SIGN IN</Text>
+      <View style={styles.buttonsContainer}>
+        <Text style={screenStyles.creditScreenPageTitle}>SIGN IN</Text>
         <InputText
           labelText="MOMO Registered Number"
           name="momoNumber"
@@ -120,19 +126,17 @@ const WelcomeScreen = () => {
         />
         {/* Loading Indicator */}
         {isLoading && LoadingIndicator()}
-      </>
+      </View>
     )
   }
 
   return (
     <SafeAreaView style={screenStyles.creditScreenContainer}>
-      <TouchableOpacity style={styles.banner} onPress={() => handleChange("buttons")}>
-        <Image
-          source={require("../../assets/welcome.png")}
-          style={styles.welcomeImage}
-        />
-      </TouchableOpacity>
-      <View>{bottomContent}</View>
+      <ImageBackground source={require("../../assets/welcome.png")} style={styles.welcomeScreenContainer}>
+        <TouchableOpacity style={styles.banner} onPress={() => handleChange("buttons")}>
+        </TouchableOpacity>
+        <View style={styles.bottomContent}>{bottomContent}</View>
+      </ImageBackground>
     </SafeAreaView>
   )
 }
