@@ -16,14 +16,7 @@ import generateAccessToken from "../../functions/GenerateToken"
 import LoadingIndicator from "../Notifications/LoadingIndicator"
 
 const ReceivePaymentScreen: React.FC = ({ route }) => {
-  const [searchQuery, setSearchQuery] = React.useState("")
   const [isLoading, setIsLoading] = React.useState(false)
-
-  const products = ["MILK", "ORANGES", "PINEAPPLES"]
-
-  const handleSelect = (selectedItem: any, index: number) => {
-    setSearchQuery(selectedItem)
-  }
 
   const navigation = useNavigation()
   const { user } = route.params
@@ -106,7 +99,7 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
         setNotificationVisible(true)
 
         const txnResponse = await axios.post(
-          `http://192.168.1.117:8080/add-transaction?userId=${user.id}`,
+          `http://192.168.9.43:8080/add-transaction?userId=${user.id}`,
           transactionData
         )
 
@@ -132,24 +125,7 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
             <EarningsScreenHeaders />
             <Text style={screenStyles.subTitleText}>REQUEST FOR PAYMENT</Text>
             <View style={styles.requestPaymentForm}>
-                <Text style={screenStyles.subText}>FOR</Text>
-                <View style={styles.dropDown}>
-                    <SelectDropDown
-                            buttonStyle={styles.dropdownButton}
-                            buttonTextStyle={styles.dropdownButtonText}
-                            defaultButtonText="Pick a Product"
-                            data={products} 
-                            onSelect={(selectedItem, index)=>{
-                                handleSelect(selectedItem, index)
-                            }}
-                            buttonTextAfterSelection={(selectedItem, index)=>{
-                                return selectedItem
-                            }}
-                            rowTextForSelection={(item, index)=>{
-                                return item
-                            }}/>
-                    <IconButton icon="chevron-down" size={17} />
-                </View>
+                <Text style={screenStyles.subText}>FOR {user.balance}</Text>
                 <InputText
                     txtStyle={styles.textInput}
                     labelText="From"
@@ -163,6 +139,13 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
                     name="amount"
                     value={formValues.amount}
                     onChangeText={(text) => handleInputChange("amount", text)}
+                />
+                <InputText
+                    txtStyle={styles.textInput}
+                    labelText="Reason"
+                    name="reason"
+                    value={formValues.reason}
+                    onChangeText={(text) => handleInputChange("reason", text)} 
                 />
                 <ButtonAction  
                     onPress={handleFormSubmit}
