@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native"
 
 export const styles = StyleSheet.create({
+  banner: {
+    margin: 0,
+  },
   welcomeImage: {
     height: 300,
     width: '100%',

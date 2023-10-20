@@ -126,7 +126,7 @@ const WelcomeScreen = () => {
 
   return (
     <SafeAreaView style={screenStyles.creditScreenContainer}>
-      <TouchableOpacity onPress={() => handleChange("buttons")}>
+      <TouchableOpacity style={styles.banner} onPress={() => handleChange("buttons")}>
         <Image
           source={require("../../assets/welcome.png")}
           style={styles.welcomeImage}

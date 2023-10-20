@@ -12,9 +12,7 @@ interface InputTextProps {
 const InputText:  React.FC<InputTextProps> = ({ labelText, txtStyle, name, onChangeText, value, ...rest }) => {
     const [text, setText] = React.useState('');
     return (
-      <View>
-        <TextInput onChangeText={onChangeText} style={txtStyle} placeholder={labelText} value={value} {...rest}/>;
-      </View>
+        <TextInput onChangeText={onChangeText} style={txtStyle} placeholder={labelText} value={value} {...rest}/>
     )
   };
 
