@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { Text, TouchableOpacity, View, Image } from "react-native";
-import { IconButton } from "react-native-paper";
 import ButtonAction from "../../components/Buttons/ButtonAction";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./DashboardStyle";
