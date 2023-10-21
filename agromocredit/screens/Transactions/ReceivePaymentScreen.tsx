@@ -2,8 +2,6 @@ import React, { useState } from "react"
 import { Text, View, ActivityIndicator, StyleSheet } from "react-native"
 import InputText from "../../components/Inputs/InputText";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { IconButton, TextInput } from 'react-native-paper';
-import SelectDropDown from "react-native-select-dropdown";
 import ButtonAction from "../../components/Buttons/ButtonAction";
 import { screenStyles } from "../screenStyles";
 import {styles} from "./ReceivePaymentStyle" 
@@ -116,7 +114,7 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
   const handleOK = () => {
     setNotificationVisible(false)
     navigation.navigate("Dashboard", {
-      user,
+      user: user,
     })
   }
 
@@ -125,7 +123,7 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
             <EarningsScreenHeaders />
             <Text style={screenStyles.subTitleText}>REQUEST FOR PAYMENT</Text>
             <View style={styles.requestPaymentForm}>
-                <Text style={screenStyles.subText}>FOR {user.balance}</Text>
+                <Text style={screenStyles.subText}>FOR</Text>
                 <InputText
                     txtStyle={styles.textInput}
                     labelText="From"

@@ -2,16 +2,15 @@ import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
 import WelcomeScreen from "./screens/Welcome/WelcomeScreen"
 import DashboardScreen from "./screens/Dashboard/DashboardScreen"
-import ReceivePaymentScreen from "./screens/Earnings/ReceivePaymentScreen"
+import ReceivePaymentScreen from "./screens/Transactions/ReceivePaymentScreen"
 import PayLoanScreen from "./screens/Credit/PayLoanScreen"
-import EarningsScreen from "./screens/Earnings/EarningsScreen"
+import EarningsScreen from "./screens/Transactions/EarningsScreen"
 import CreditScreen from "./screens/Credit/CreditScreen"
 import BorrowingScreen from "./screens/Credit/BorrowingSCreen"
 import LentOutScreen from "./screens/Credit/LentOutScreen"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
-import WithdrawScreenal from "./screens/Earnings/WithdrawalScreen"
-import TransactionsScreen from "./screens/Transactions/TransactionsScreen"
+import WithdrawScreenal from "./screens/Transactions/WithdrawalScreen"
 
 const Stack = createStackNavigator()
 
@@ -26,7 +25,6 @@ export default function App() {
           component={ReceivePaymentScreen}
         />
         <Stack.Screen name="Withdraw" component={WithdrawScreenal} />
-        <Stack.Screen name="Transactions" component={TransactionsScreen} />
         <Stack.Screen name="Borrowing" component={BorrowingScreen} />
         <Stack.Screen name="PayLoan" component={PayLoanScreen} />
         <Stack.Screen name="Earnings" component={EarningsScreen} />

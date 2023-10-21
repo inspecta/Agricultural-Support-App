@@ -43,7 +43,7 @@ const EarningsScreen: React.FC = ({ route }) => {
 
         fetchTransactions()
     }, [user.id])
-
+ 
     return (
         <SafeAreaView style={screenStyles.container}>
             <EarningsScreenHeaders  />
@@ -65,8 +65,8 @@ const EarningsScreen: React.FC = ({ route }) => {
                     {transactions.length === 0 && (
                         <Text>No transactions at the moment</Text>
                     )}
-                    {transactions.map((transaction, index) => (
-                        <TransactionRecord
+                    {transactions.map((transaction, index) => {
+                        return(<TransactionRecord
                             key={transaction.id}
                             recordDate={formatDateTime(transaction.transactionDate).date}
                             recordValue={transaction.description}
@@ -77,8 +77,8 @@ const EarningsScreen: React.FC = ({ route }) => {
                             recordDated={true}
                             detailsIcon={true}
                             creditScreen={false}    
-                        />
-                    ))}
+                            />)
+})}
                 </ScrollView>
             )}
         </SafeAreaView>
