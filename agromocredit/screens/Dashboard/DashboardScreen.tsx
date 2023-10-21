@@ -114,7 +114,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
                     <TouchableOpacity 
                         style={styles.transactionsSections}
                         onPress={() => {
-                          navigation.navigate("Credit", {
+                          navigation.navigate("Withdraws", {
                             user: user,
                           })
                         }}>
@@ -138,7 +138,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
                             />
                             <ButtonAction
                                 onPress={() => {
-                                  navigation.navigate("LentOut", {
+                                  navigation.navigate("Withdraw", {
                                     user: user,
                                   })
                                 }}

@@ -113,9 +113,9 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
 
   const handleOK = () => {
     setNotificationVisible(false)
-    navigation.navigate("Dashboard", {
-      user: user,
-    })
+    // navigation.navigate("Dashboard", {
+    //   user: user,
+    // })
   }
 
     return (

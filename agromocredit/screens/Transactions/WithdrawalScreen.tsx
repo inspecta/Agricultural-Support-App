@@ -7,6 +7,11 @@ import axios from "axios"
 import LoadingIndicator from "../Notifications/LoadingIndicator"
 import CustomModal from "../Notifications/CustomModal"
 import { useNavigation } from "@react-navigation/native"
+import EarningsScreenHeaders from "../../components/Headers/EarningsScreenHeaders"
+import { screenStyles } from "../screenStyles"
+import InputText from "../../components/Inputs/InputText"
+import { styles } from "./ReceivePaymentStyle"
+import ButtonAction from "../../components/Buttons/ButtonAction"
 
 const WithdrawScreen: React.FC = ({ route }) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -17,7 +22,7 @@ const WithdrawScreen: React.FC = ({ route }) => {
   const fetchBalance = async () => {
     try {
       const response = await axios.get(
-        `http://192.168.1.117:8080/${route.params.user.id}/get-balance`
+        `http://192.168.9.43:8080/${route.params.user.id}/get-balance`
       )
       setCurrentBalance(response.data)
     } catch (error) {
@@ -122,7 +127,7 @@ const WithdrawScreen: React.FC = ({ route }) => {
           setNotificationVisible(true)
 
           await axios.post(
-            `http://192.168.1.117:8080/add-transaction?userId=${route.params.user.id}`,
+            `http://192.168.9.43:8080/add-transaction?userId=${route.params.user.id}`,
             transactionData
           )
 
@@ -145,31 +150,41 @@ const WithdrawScreen: React.FC = ({ route }) => {
   }
 
   return (
-    <SafeAreaView>
-      <Text>WITHDRAW MONEY</Text>
-      <View>
-        <Text>AVAILABLE BALANCE</Text>
-        <Text>{currentBalance}</Text>
+    <SafeAreaView style={screenStyles.container}>
+      <EarningsScreenHeaders  />
+      <View style={screenStyles.subTitle}>
+          <Text style={screenStyles.subTitleText}>CURRENT BALANCE</Text>
+          <Text style={screenStyles.subTitleText}>SEP</Text>
       </View>
-      <View>
-        <Text>Owner: {user.phoneNumber}</Text>
+      <View style={screenStyles.subTitle}>
+          <Text style={screenStyles.majorText}>UGX {currentBalance}</Text>
+          <View style={screenStyles.subTitle}>
+              <Text style={screenStyles.subTitleText}>{user.phoneNumber}</Text>
+          </View>
       </View>
 
       {withdrawalError ? (
         <Text style={{ color: "red" }}>{withdrawalError}</Text>
       ) : null}
 
-      <TextInput
-        placeholder="Amount"
-        value={formValues.amount}
-        onChangeText={(text) => handleInputChange("amount", text)}
+      <InputText
+          txtStyle={styles.textInput}
+          labelText="Amount"
+          value={formValues.amount}
+          onChangeText={(text) => handleInputChange("amount", text)} 
       />
-      <TextInput
-        placeholder="Reason"
+      <InputText
+        txtStyle={styles.textInput}
+        labelText="Reason"
         value={formValues.reason}
         onChangeText={(text) => handleInputChange("reason", text)}
       />
-      <Button title="Withdraw" onPress={handleWithdrawal} />
+      <ButtonAction  
+          onPress={handleWithdrawal}
+          buttonText="WITHDRAW"
+          buttonStyles={screenStyles.creditBtnStyles}
+          buttonTxtStyles={screenStyles.creditBtnTextStyles}
+      />
       <CustomModal
         visible={notificationVisible}
         onClose={handleOK}
