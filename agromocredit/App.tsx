@@ -11,6 +11,7 @@ import LentOutScreen from "./screens/Credit/LentOutScreen"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import WithdrawScreenal from "./screens/Transactions/WithdrawalScreen"
+import WithdrawalsScreen from "./screens/Transactions/WithdrawalsScreen"
 
 const Stack = createStackNavigator()
 
@@ -25,6 +26,7 @@ export default function App() {
           component={ReceivePaymentScreen}
         />
         <Stack.Screen name="Withdraw" component={WithdrawScreenal} />
+        <Stack.Screen name="Withdraws" component={WithdrawalsScreen} />
         <Stack.Screen name="Borrowing" component={BorrowingScreen} />
         <Stack.Screen name="PayLoan" component={PayLoanScreen} />
         <Stack.Screen name="Earnings" component={EarningsScreen} />
