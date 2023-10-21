@@ -80,13 +80,14 @@ export const screenStyles = StyleSheet.create({
         marginVertical: 20,
     },
     textInput: {
-        height: 60,
+        height: 30,
         width: '85%',
         backgroundColor: "transparent",
         borderBottomColor: "#5B6373",
         borderBottomWidth: .5,
         color: '#fff',
-        marginVertical: 20,
+        marginVertical: 10,
+        padding: 0,
     },
     creditBtnStyles: {
         height: 50,
