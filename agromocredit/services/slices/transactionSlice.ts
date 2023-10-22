@@ -15,7 +15,10 @@ export const transactionSlice = createApi({
         query: (userId) => `/${userId}/total-credit`,
     }),
     getEarnings: builder.query({
-        query: (userId) => `/transactions/${userId}`,
+        query: (userId) => `/request-payment/${userId}`,
+    }),
+    getWithdraws: builder.query({
+      query: (userId) => `/withdraw/${userId}`,
     }),
     getCreditScore: builder.query({
       query: (userId) => `/calculate-credit-score/${userId}`,
@@ -46,4 +49,5 @@ export const {
     useGetEarningsQuery,
     useAddTransactionMutation,
     useGetCreditScoreQuery,
+    useGetWithdrawsQuery,
 } = transactionSlice;
