@@ -13,6 +13,7 @@ import WithdrawScreenal from "./screens/Transactions/WithdrawalScreen"
 import WithdrawalsScreen from "./screens/Transactions/WithdrawalsScreen"
 import {Provider} from "react-redux";
 import { store } from "./services/store"
+import TransferScreen from "./screens/Transactions/TransferScreen"
 
 const Stack = createStackNavigator()
 
@@ -21,7 +22,10 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Welcome" screenOptions={{headerShown: false}}>
+        <Stack.Navigator
+          initialRouteName="Welcome"
+          screenOptions={{ headerShown: false }}
+        >
           <Stack.Screen name="Welcome" component={WelcomeScreen} />
           <Stack.Screen name="Dashboard" component={DashboardScreen} />
           <Stack.Screen
@@ -35,6 +39,7 @@ export default function App() {
           <Stack.Screen name="Earnings" component={EarningsScreen} />
           <Stack.Screen name="Credit" component={CreditScreen} />
           <Stack.Screen name="LentOut" component={LentOutScreen} />
+          <Stack.Screen name="Transfer" component={TransferScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

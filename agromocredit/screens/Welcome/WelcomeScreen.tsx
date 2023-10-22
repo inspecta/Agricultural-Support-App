@@ -1,5 +1,10 @@
 import React, { useState } from "react"
-import { View, Text, Image, TouchableOpacity, ImageBackground } from "react-native"
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { styles } from "./WelcomeStyle"
 import ButtonAction from "../../components/Buttons/ButtonAction"
@@ -16,7 +21,7 @@ const WelcomeScreen = () => {
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = React.useState(false)
 
-  const [loginUser, {data: loginData, isError:isLoginError, error: loginError, isLoading:loginLoading, isSuccess: loginSucess}] = useLoginUserMutation() 
+  const [loginUser] = useLoginUserMutation() 
  
   const navigation = useNavigation()
 
@@ -52,7 +57,9 @@ const WelcomeScreen = () => {
   if (activeForm === "buttons") {
     bottomContent = (
       <View style={styles.buttonsContainer}>
-        <Text style={screenStyles.creditScreenPageTitle}>WELCOME TO AGROMOCREDIT</Text>
+        <Text style={screenStyles.creditScreenPageTitle}>
+          WELCOME TO AGROMOCREDIT
+        </Text>
         <ButtonAction
           onPress={() => handleChange("register")}
           buttonText="CREATE ACCOUNT"
@@ -70,19 +77,29 @@ const WelcomeScreen = () => {
   } else if (activeForm === "register") {
     bottomContent = (
       <View style={styles.buttonsContainer}>
-        <Text style={screenStyles.creditScreenPageTitle}>CREATE AN ACCOUNT</Text>
+        <Text style={screenStyles.creditScreenPageTitle}>
+          CREATE AN ACCOUNT
+        </Text>
         <InputText labelText="Email" txtStyle={screenStyles.textInput} />
-        <InputText labelText="MOMO Registered Number" txtStyle={screenStyles.textInput} />
+        <InputText
+          labelText="MOMO Registered Number"
+          txtStyle={screenStyles.textInput}
+        />
         <InputText labelText="Full Name" txtStyle={screenStyles.textInput} />
         <InputText labelText="Password" txtStyle={screenStyles.textInput} />
-        <InputText labelText="Confirm Password" txtStyle={screenStyles.textInput} />
+        <InputText
+          labelText="Confirm Password"
+          txtStyle={screenStyles.textInput}
+        />
         <ButtonAction
           onPress={() => handleChange("login")}
           buttonText="REGISTER"
           buttonStyles={screenStyles.creditBtnStyles}
           buttonTxtStyles={screenStyles.creditBtnTextStyles}
         />
-        <Text style={screenStyles.creditScreenSubText}>Already have an account?</Text>
+        <Text style={screenStyles.creditScreenSubText}>
+          Already have an account?
+        </Text>
         <ButtonAction
           onPress={() => handleChange("login")}
           buttonText="LOGIN"
@@ -109,12 +126,12 @@ const WelcomeScreen = () => {
           value={password}
           txtStyle={screenStyles.textInput}
         />
-        <ButtonAction 
-            onPress={handleLogin}
-            buttonText="LOGIN"
-            buttonStyles={screenStyles.creditBtnStyles}
-            buttonTxtStyles={screenStyles.creditBtnTextStyles} 
-          />
+        <ButtonAction
+          onPress={handleLogin}
+          buttonText="LOGIN"
+          buttonStyles={screenStyles.creditBtnStyles}
+          buttonTxtStyles={screenStyles.creditBtnTextStyles}
+        />
         <Text style={screenStyles.creditScreenSubText}>Not registered?</Text>
         <ButtonAction
           onPress={() => handleChange("register")}
@@ -130,9 +147,14 @@ const WelcomeScreen = () => {
 
   return (
     <SafeAreaView style={screenStyles.creditScreenContainer}>
-      <ImageBackground source={require("../../assets/welcome.png")} style={styles.welcomeScreenContainer}>
-        <TouchableOpacity style={styles.banner} onPress={() => handleChange("buttons")}>
-        </TouchableOpacity>
+      <ImageBackground
+        source={require("../../assets/welcome.png")}
+        style={styles.welcomeScreenContainer}
+      >
+        <TouchableOpacity
+          style={styles.banner}
+          onPress={() => handleChange("buttons")}
+        ></TouchableOpacity>
         <View style={styles.bottomContent}>{bottomContent}</View>
       </ImageBackground>
     </SafeAreaView>
