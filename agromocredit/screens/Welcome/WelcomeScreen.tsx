@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import {
   View,
   Text,
-  Image,
   TouchableOpacity,
   ImageBackground,
 } from "react-native"
@@ -22,7 +21,7 @@ const WelcomeScreen = () => {
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = React.useState(false)
 
-  const [loginUser, {data: loginData, isError:isLoginError, error: loginError, isLoading:loginLoading, isSuccess: loginSucess}] = useLoginUserMutation() 
+  const [loginUser] = useLoginUserMutation() 
  
   const navigation = useNavigation()
 

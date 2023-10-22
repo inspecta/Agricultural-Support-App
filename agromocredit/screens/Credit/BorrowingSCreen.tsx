@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
 import CreditScreenHeader from "../../components/Headers/CreditScreenHeader"
-import { View, Text } from "react-native"
+import { View, Text, ScrollView } from "react-native"
 import InputText from "../../components/Inputs/InputText"
 import ButtonAction from "../../components/Buttons/ButtonAction"
 import { screenStyles } from "../screenStyles"
@@ -47,7 +47,7 @@ const BorrowingScreen: React.FC<DashboardScreenProps> = ({ route }) => {
     const fetchCreditScore = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.9.200:8080/calculate-credit-score/${user.id}`
+          `https://agromocredit.onrender.com/calculate-credit-score/${user.id}`
         )
         setCreditScore(response.data)
       } catch (error) {
@@ -106,7 +106,8 @@ const BorrowingScreen: React.FC<DashboardScreenProps> = ({ route }) => {
   }
 
   return (
-    <SafeAreaView style={screenStyles.creditScreenContainer}>
+    <SafeAreaView>
+      <ScrollView style={screenStyles.creditScreenContainer}>
       <CreditScreenHeader screenTitle="CREDIT STATUS" activeButton="borrow" />
       <View style={screenStyles.contentContainer}>
         <Text style={screenStyles.creditScreenSubTitleText}>
@@ -154,6 +155,7 @@ const BorrowingScreen: React.FC<DashboardScreenProps> = ({ route }) => {
         />
       </View>
       {isLoading && LoadingIndicator()}
+      </ScrollView>
     </SafeAreaView>
   )
 }

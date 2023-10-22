@@ -8,6 +8,7 @@ import CreditScore from "../../components/CreditScore"
 import { useNavigation } from "@react-navigation/native"
 import axios from "axios"
 import { useGetBalanceQuery, useGetTotalEarnedQuery, useGetTotalCreditQuery } from "../../services/slices/transactionSlice";
+import { ScrollView } from "react-native-gesture-handler"
 
 interface User {
   name: string
@@ -51,7 +52,8 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
   }, [bal, earnings, credit]);
 
   return (
-    <SafeAreaView style={screenStyles.container}>
+    <SafeAreaView>
+      <ScrollView style={screenStyles.container}>
       <View style={screenStyles.subTitle}>
         <Text style={screenStyles.pageTitle}>{user.name.toUpperCase()}</Text>
         <Image source={require("../assets/titleImg.png")} />
@@ -162,6 +164,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
           />
         </View>
       </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
