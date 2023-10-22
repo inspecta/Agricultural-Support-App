@@ -9,6 +9,7 @@ import TransactionRecord from "../../components/TransactionRecord";
 import axios from "axios"
 import LoadingIndicator from "../Notifications/LoadingIndicator"
 import formatDateTime from "../../functions/FormatDateTime"
+import { useGetEarningsQuery } from "../../services/slices/transactionSlice";
 
 interface Transaction {
     id: number
@@ -27,22 +28,18 @@ const WithdrawalsScreen: React.FC = ({ route }) => {
     const [transactions, setTransactions] = useState<Transaction[]>([])
     const [isLoading, setIsLoading] = useState(true)
 
-    useEffect(() => {
-        const fetchTransactions = async () => {
-        const transactionsUrl = `http://192.168.9.43:8080/transactions/${user.id}`
+    const { 
+        data: earnings, 
+        error: earningsError, 
+        isLoading: loadingEarnings 
+    } = useGetEarningsQuery(user.id)
 
-        try {
-            const response = await axios.get(transactionsUrl)
-            setTransactions(response.data)
-        } catch (error) {
-            console.error("Error fetching transactions:", error)
-        } finally {
+    useEffect(() => {
+        if(earnings) {
+            setTransactions(earnings)
             setIsLoading(false)
         }
-        }
-
-        fetchTransactions()
-    }, [user.id])
+    }, [earnings])
  
     return (
         <SafeAreaView style={screenStyles.container}>
