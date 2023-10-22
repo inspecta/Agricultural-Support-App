@@ -17,6 +17,14 @@ export const transactionSlice = createApi({
     getEarnings: builder.query({
         query: (userId) => `/transactions/${userId}`,
     }),
+    addTransaction: builder.mutation({
+      query: ({ transaction, userId }) => ({
+        url: `/add-transaction?userId=${userId}`, // Use ? for query parameters
+        method: 'POST',
+        body: transaction,
+      }),
+    }),
+    
     loginUser: builder.mutation({
       query: (user) => ({
         url: '/login-user',
@@ -33,4 +41,5 @@ export const {
     useGetTotalCreditQuery,
     useLoginUserMutation,
     useGetEarningsQuery,
+    useAddTransactionMutation,
 } = transactionSlice;

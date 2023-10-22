@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native"
 import axios from "axios"
 import LoadingIndicator from "../Notifications/LoadingIndicator"
 import { screenStyles } from "../screenStyles"
+import { useLoginUserMutation } from "../../services/slices/transactionSlice"
 
 const WelcomeScreen = () => {
   const [activeForm, setActiveForm] = useState("buttons")
@@ -15,6 +16,8 @@ const WelcomeScreen = () => {
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = React.useState(false)
 
+  const [loginUser] = useLoginUserMutation() 
+ 
   const navigation = useNavigation()
 
   let bottomContent
@@ -25,6 +28,8 @@ const WelcomeScreen = () => {
 
   const handleLogin = async () => {
     setIsLoading(true)
+
+    const result = loginUser({phoneNumber: momoNumber, password: password})
 
     try {
       const url = "http://192.168.9.43:8080/login-user"

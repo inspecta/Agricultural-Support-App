@@ -12,10 +12,12 @@ import generateNewReferenceId from "../../functions/GenerateReferenceId"
 import CustomModal from "../Notifications/CustomModal"
 import generateAccessToken from "../../functions/GenerateToken"
 import LoadingIndicator from "../Notifications/LoadingIndicator"
+import { useAddTransactionMutation } from "../../services/slices/transactionSlice";
 
 const ReceivePaymentScreen: React.FC = ({ route }) => {
   const [isLoading, setIsLoading] = React.useState(false)
-
+  const [addTransaction] = useAddTransactionMutation()
+  
   const navigation = useNavigation()
   const { user } = route.params
 
@@ -96,10 +98,7 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
 
         setNotificationVisible(true)
 
-        const txnResponse = await axios.post(
-          `http://192.168.9.43:8080/add-transaction?userId=${user.id}`,
-          transactionData
-        )
+        addTransaction({transaction:transactionData, userId: user.id})
 
         setIsLoading(false)
       } else {
@@ -113,9 +112,9 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
 
   const handleOK = () => {
     setNotificationVisible(false)
-    // navigation.navigate("Dashboard", {
-    //   user: user,
-    // })
+    navigation.navigate("Dashboard", {
+    user: user,
+    })
   }
 
     return (
