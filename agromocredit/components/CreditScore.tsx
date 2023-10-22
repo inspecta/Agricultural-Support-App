@@ -4,6 +4,7 @@ import { IconButton } from "react-native-paper"
 import { styles } from "./CreditScoreStyle"
 import { screenStyles } from "../screens/screenStyles"
 import axios from "axios"
+import { useGetCreditScoreQuery } from "../services/slices/transactionSlice"
 
 interface CreditScoreProps {
   owner: number
@@ -11,21 +12,14 @@ interface CreditScoreProps {
 
 const CreditScore: React.FC<CreditScoreProps> = ({ owner }) => {
   const [creditScore, setCreditScore] = useState(0)
+  const {data:scoreValue } = useGetCreditScoreQuery(owner)
 
   useEffect(() => {
-    const fetchCreditScore = async () => {
-      try {
-        const response = await axios.get(
-          `http://192.168.9.200:8080/calculate-credit-score/${owner}`
-        )
-        setCreditScore(response.data)
-      } catch (error) {
-        console.error("Error fetching credit score:", error)
-      }
+    if(scoreValue) {
+        setCreditScore(scoreValue)
     }
 
-    fetchCreditScore()
-  }, [owner])
+  }, [scoreValue])
 
   return (
     <View style={styles.container}>
