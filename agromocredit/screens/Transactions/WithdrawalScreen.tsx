@@ -20,23 +20,9 @@ const WithdrawScreen: React.FC = ({ route }) => {
   const [notificationVisible, setNotificationVisible] = useState(false)
   const [withdrawalError, setWithdrawalError] = useState("")
   const [currentBalance, setCurrentBalance] = useState<number | null>(null)
-<<<<<<< HEAD
   
   const { data: balance } = useGetBalanceQuery(route.params.user.id)
   const [addTransaction] = useAddTransactionMutation()
-=======
-
-  const fetchBalance = async () => {
-    try {
-      const response = await axios.get(
-        `http://192.168.9.200:8080/${route.params.user.id}/get-balance`
-      )
-      setCurrentBalance(response.data)
-    } catch (error) {
-      console.error("Error fetching balance :", error)
-    }
-  }
->>>>>>> d5902ea (Update earnings, receipt and Withdraw screens)
 
   useEffect(() => {
     if(balance) setCurrentBalance(balance)
@@ -128,14 +114,7 @@ const WithdrawScreen: React.FC = ({ route }) => {
 
           setNotificationVisible(true)
 
-<<<<<<< HEAD
           addTransaction({transaction:transactionData, userId: user.id})
-=======
-          await axios.post(
-            `http://192.168.9.200:8080/add-transaction?userId=${route.params.user.id}`,
-            transactionData
-          )
->>>>>>> d5902ea (Update earnings, receipt and Withdraw screens)
 
           setIsLoading(false)
         } else {
