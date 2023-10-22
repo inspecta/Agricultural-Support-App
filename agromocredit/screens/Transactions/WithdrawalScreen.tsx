@@ -7,7 +7,7 @@ import axios from "axios"
 import LoadingIndicator from "../Notifications/LoadingIndicator"
 import CustomModal from "../Notifications/CustomModal"
 import { useNavigation } from "@react-navigation/native"
-import EarningsScreenHeaders from "../../components/Headers/EarningsScreenHeaders"
+import TransactionsScreenHeaders from "../../components/Headers/TransactionsScreenHeaders"
 import { screenStyles } from "../screenStyles"
 import InputText from "../../components/Inputs/InputText"
 import { styles } from "./ReceivePaymentStyle"
@@ -136,13 +136,13 @@ const WithdrawScreen: React.FC = ({ route }) => {
 
   return (
     <SafeAreaView style={screenStyles.container}>
-      <EarningsScreenHeaders />
+      <TransactionsScreenHeaders pageTitle="WITHDRAW"/>
       <View style={screenStyles.subTitle}>
         <Text style={screenStyles.subTitleText}>CURRENT BALANCE</Text>
         <Text style={screenStyles.subTitleText}>SEP</Text>
       </View>
       <View style={screenStyles.subTitle}>
-        <Text style={screenStyles.majorText}>UGX {currentBalance}</Text>
+        <Text style={screenStyles.majorText}>UGX {currentBalance?.toLocaleString()}</Text>
         <View style={screenStyles.subTitle}>
           <Text style={screenStyles.subTitleText}>{user.phoneNumber}</Text>
         </View>

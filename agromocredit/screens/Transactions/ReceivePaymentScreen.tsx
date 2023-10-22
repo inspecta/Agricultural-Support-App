@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import ButtonAction from "../../components/Buttons/ButtonAction"
 import { screenStyles } from "../screenStyles"
 import { styles } from "./ReceivePaymentStyle"
-import EarningsScreenHeaders from "../../components/Headers/EarningsScreenHeaders"
+import EarningsScreenHeaders from "../../components/Headers/TransactionsScreenHeaders"
 import { useNavigation } from "@react-navigation/native"
 import axios from "axios"
 import generateNewReferenceId from "../../functions/GenerateReferenceId"
@@ -119,7 +119,7 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
 
   return (
     <SafeAreaView style={screenStyles.container}>
-      <EarningsScreenHeaders />
+      <EarningsScreenHeaders pageTitle="RECEIVE PAYMENT"/>
       <Text style={screenStyles.subTitleText}>REQUEST FOR PAYMENT</Text>
       <View style={styles.requestPaymentForm}>
         <Text style={screenStyles.subText}>FOR</Text>
