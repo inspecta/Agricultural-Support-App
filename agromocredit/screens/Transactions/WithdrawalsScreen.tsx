@@ -24,7 +24,6 @@ interface Transaction {
 const WithdrawalsScreen: React.FC = ({ route }) => {
 
     const { user } = route.params
-    console.log(user)
     const [transactions, setTransactions] = useState<Transaction[]>([])
     const [isLoading, setIsLoading] = useState(true)
 

@@ -13,9 +13,6 @@ const params = {
   "payerMessage": "This ",
 };
 
-console.log(params);
-
-
 export const momoSlice = createApi({
     reducerPath: 'momoapi',
     baseQuery: fetchBaseQuery({ baseUrl: 'https://sandbox.momodeveloper.mtn.com' }),
