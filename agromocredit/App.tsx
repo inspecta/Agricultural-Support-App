@@ -19,25 +19,27 @@ const Stack = createStackNavigator()
 export default function App() {
   
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Welcome" screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Welcome" component={WelcomeScreen} />
-          <Stack.Screen name="Dashboard" component={DashboardScreen} />
-          <Stack.Screen
-            name="ReceivePaymentScreen"
-            component={ReceivePaymentScreen}
-          />
-          <Stack.Screen name="Withdraw" component={WithdrawScreenal} />
-          <Stack.Screen name="Withdraws" component={WithdrawalsScreen} />
-          <Stack.Screen name="Borrowing" component={BorrowingScreen} />
-          <Stack.Screen name="PayLoan" component={PayLoanScreen} />
-          <Stack.Screen name="Earnings" component={EarningsScreen} />
-          <Stack.Screen name="Credit" component={CreditScreen} />
-          <Stack.Screen name="LentOut" component={LentOutScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Welcome"
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name="Welcome" component={WelcomeScreen} />
+        <Stack.Screen name="Dashboard" component={DashboardScreen} />
+        <Stack.Screen
+          name="ReceivePaymentScreen"
+          component={ReceivePaymentScreen}
+        />
+        <Stack.Screen name="Withdraw" component={WithdrawScreenal} />
+        <Stack.Screen name="Withdraws" component={WithdrawalsScreen} />
+        <Stack.Screen name="Borrowing" component={BorrowingScreen} />
+        <Stack.Screen name="PayLoan" component={PayLoanScreen} />
+        <Stack.Screen name="Earnings" component={EarningsScreen} />
+        <Stack.Screen name="Credit" component={CreditScreen} />
+        <Stack.Screen name="LentOut" component={LentOutScreen} />
+        <Stack.Screen name="Transfer" component={TransferScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
