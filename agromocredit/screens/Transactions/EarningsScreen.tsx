@@ -22,7 +22,6 @@ interface Transaction {
   
 
 const EarningsScreen: React.FC = ({ route }) => {
-
     const { user } = route.params
     const [transactions, setTransactions] = useState<Transaction[]>([])
     const [isLoading, setIsLoading] = useState(true)

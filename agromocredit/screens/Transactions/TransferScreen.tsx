@@ -12,19 +12,12 @@ import { screenStyles } from "../screenStyles"
 import InputText from "../../components/Inputs/InputText"
 import { styles } from "./ReceivePaymentStyle"
 import ButtonAction from "../../components/Buttons/ButtonAction"
-import { useGetBalanceQuery } from "../../services/slices/transactionSlice"
-import { useAddTransactionMutation } from "../../services/slices/transactionSlice"
 
-const WithdrawScreen: React.FC = ({ route }) => {
+const TransferScreen: React.FC = ({ route }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [notificationVisible, setNotificationVisible] = useState(false)
   const [withdrawalError, setWithdrawalError] = useState("")
   const [currentBalance, setCurrentBalance] = useState<number | null>(null)
-<<<<<<< HEAD
-  
-  const { data: balance } = useGetBalanceQuery(route.params.user.id)
-  const [addTransaction] = useAddTransactionMutation()
-=======
 
   const fetchBalance = async () => {
     try {
@@ -36,15 +29,21 @@ const WithdrawScreen: React.FC = ({ route }) => {
       console.error("Error fetching balance :", error)
     }
   }
->>>>>>> d5902ea (Update earnings, receipt and Withdraw screens)
 
   useEffect(() => {
-    if(balance) setCurrentBalance(balance)
-  }, [balance])
+    fetchBalance()
+
+    const intervalId = setInterval(() => {
+      fetchBalance()
+    }, 5000)
+
+    return () => clearInterval(intervalId)
+  }, [])
 
   const [formValues, setFormValues] = useState({
     amount: "",
     reason: "",
+    phoneNumber: "",
   })
 
   const handleInputChange = (name: string, value: string) => {
@@ -54,7 +53,7 @@ const WithdrawScreen: React.FC = ({ route }) => {
     })
   }
 
-  const [transactionDetails, setTransactionDetails] = useState({
+  const [paymentDetails, setPaymentDetails] = useState({
     amount: "",
     payerNumber: "",
     reason: "",
@@ -63,19 +62,19 @@ const WithdrawScreen: React.FC = ({ route }) => {
   const navigation = useNavigation()
   const { user } = route.params
 
-  const handleWithdrawal = async () => {
+  const handlePayment = async () => {
     setIsLoading(true)
 
-    const withdrawalAmount = parseFloat(formValues.amount)
+    const paymentAmount = parseFloat(formValues.amount)
 
-    if (isNaN(withdrawalAmount)) {
+    if (isNaN(paymentAmount)) {
       setWithdrawalError("Please enter a valid amount.")
       setIsLoading(false)
-    } else if (withdrawalAmount > currentBalance) {
-      setWithdrawalError("Withdrawal amount exceeds available balance.")
+    } else if (paymentAmount > currentBalance) {
+      setWithdrawalError("Amount can't exceed available balance.")
       setIsLoading(false)
-    } else if (withdrawalAmount < 500) {
-      setWithdrawalError("Minimum withdraw amount is 500.")
+    } else if (paymentAmount < 500) {
+      setWithdrawalError("Minimum payment amount is 1000.")
       setIsLoading(false)
     } else {
       setWithdrawalError("")
@@ -91,8 +90,8 @@ const WithdrawScreen: React.FC = ({ route }) => {
           partyIdType: "MSISDN",
           partyId: user.phoneNumber,
         },
-        payerMessage: "WITHDRAW",
-        payeeNote: "AGRIC APP WITHDRAW",
+        payerMessage: formValues.reason,
+        payeeNote: "AGROMOCREDIT PAYMENT",
       }
 
       const headers = {
@@ -104,7 +103,7 @@ const WithdrawScreen: React.FC = ({ route }) => {
 
       try {
         const response = await axios.post(
-          "https://sandbox.momodeveloper.mtn.com/disbursement/v1_0/deposit",
+          "https://sandbox.momodeveloper.mtn.com/disbursement/v1_0/transfer",
           withdrawParams,
           {
             headers,
@@ -116,11 +115,11 @@ const WithdrawScreen: React.FC = ({ route }) => {
             amount: formValues.amount,
             description: withdrawParams.payerMessage,
             partyInvolved: withdrawParams.payee.partyId,
-            transactionType: "WITHDRAW",
+            transactionType: "MAKE_PAYMENT",
             transactionDate: new Date().toISOString(),
           }
 
-          setTransactionDetails({
+          setPaymentDetails({
             amount: transactionData.amount,
             payerNumber: transactionData.partyInvolved,
             reason: transactionData.description,
@@ -128,14 +127,10 @@ const WithdrawScreen: React.FC = ({ route }) => {
 
           setNotificationVisible(true)
 
-<<<<<<< HEAD
-          addTransaction({transaction:transactionData, userId: user.id})
-=======
           await axios.post(
             `http://192.168.9.200:8080/add-transaction?userId=${route.params.user.id}`,
             transactionData
           )
->>>>>>> d5902ea (Update earnings, receipt and Withdraw screens)
 
           setIsLoading(false)
         } else {
@@ -164,9 +159,9 @@ const WithdrawScreen: React.FC = ({ route }) => {
       </View>
       <View style={screenStyles.subTitle}>
         <Text style={screenStyles.majorText}>UGX {currentBalance}</Text>
-        <View style={screenStyles.subTitle}>
+        {/* <View style={screenStyles.subTitle}>
           <Text style={screenStyles.subTitleText}>{user.phoneNumber}</Text>
-        </View>
+        </View> */}
       </View>
 
       {withdrawalError ? (
@@ -175,24 +170,37 @@ const WithdrawScreen: React.FC = ({ route }) => {
 
       <InputText
         txtStyle={styles.textInput}
-        labelText="Amount"
+        labelText="Phone Number To Send Money To"
+        value={formValues.phoneNumber}
+        onChangeText={(text) => handleInputChange("phoneNumber", text)}
+      />
+
+      <InputText
+        txtStyle={styles.textInput}
+        labelText="Amount To Pay"
         value={formValues.amount}
         onChangeText={(text) => handleInputChange("amount", text)}
       />
+      <InputText
+        txtStyle={styles.textInput}
+        labelText="Reason For Payment"
+        value={formValues.reason}
+        onChangeText={(text) => handleInputChange("reason", text)}
+      />
       <ButtonAction
-        onPress={handleWithdrawal}
-        buttonText="WITHDRAW"
+        onPress={handlePayment}
+        buttonText="PAY MONEY"
         buttonStyles={screenStyles.creditBtnStyles}
         buttonTxtStyles={screenStyles.creditBtnTextStyles}
       />
       <CustomModal
         visible={notificationVisible}
         onClose={handleOK}
-        transactionDetails={transactionDetails}
+        transactionDetails={paymentDetails}
       />
       {isLoading && LoadingIndicator()}
     </SafeAreaView>
   )
 }
 
-export default WithdrawScreen
+export default TransferScreen
