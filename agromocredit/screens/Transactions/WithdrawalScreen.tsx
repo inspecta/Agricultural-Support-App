@@ -12,33 +12,21 @@ import { screenStyles } from "../screenStyles"
 import InputText from "../../components/Inputs/InputText"
 import { styles } from "./ReceivePaymentStyle"
 import ButtonAction from "../../components/Buttons/ButtonAction"
+import { useGetBalanceQuery } from "../../services/slices/transactionSlice"
+import { useAddTransactionMutation } from "../../services/slices/transactionSlice"
 
 const WithdrawScreen: React.FC = ({ route }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [notificationVisible, setNotificationVisible] = useState(false)
   const [withdrawalError, setWithdrawalError] = useState("")
   const [currentBalance, setCurrentBalance] = useState<number | null>(null)
-
-  const fetchBalance = async () => {
-    try {
-      const response = await axios.get(
-        `http://192.168.9.43:8080/${route.params.user.id}/get-balance`
-      )
-      setCurrentBalance(response.data)
-    } catch (error) {
-      console.error("Error fetching balance :", error)
-    }
-  }
+  
+  const { data: balance } = useGetBalanceQuery(route.params.user.id)
+  const [addTransaction] = useAddTransactionMutation()
 
   useEffect(() => {
-    fetchBalance()
-
-    const intervalId = setInterval(() => {
-      fetchBalance()
-    }, 5000)
-
-    return () => clearInterval(intervalId)
-  }, [])
+    if(balance) setCurrentBalance(balance)
+  }, [balance])
 
   const [formValues, setFormValues] = useState({
     amount: "",
@@ -126,10 +114,7 @@ const WithdrawScreen: React.FC = ({ route }) => {
 
           setNotificationVisible(true)
 
-          await axios.post(
-            `http://192.168.9.43:8080/add-transaction?userId=${route.params.user.id}`,
-            transactionData
-          )
+          addTransaction({transaction:transactionData, userId: user.id})
 
           setIsLoading(false)
         } else {
