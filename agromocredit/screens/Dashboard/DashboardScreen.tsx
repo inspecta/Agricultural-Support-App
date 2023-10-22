@@ -103,16 +103,6 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
             <Text style={styles.transactionsText}>WITHDRAWALS</Text>
           </TouchableOpacity>
         </View>
-        <ButtonAction
-          onPress={() => {
-            navigation.navigate("Borrowing", {
-              user: user,
-            })
-          }}
-          buttonText="REQUEST LOAN"
-          buttonStyles={styles.btnStyles}
-          buttonTxtStyles={screenStyles.creditBtnTextStyles}
-        />
         <View style={styles.buttonsContainer}>
           <View style={styles.screenButtonsContainer}>
             <ButtonAction
@@ -121,7 +111,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
                   user: user,
                 })
               }}
-              buttonText="RECEIVE PAYMENT"
+              buttonText="RECEIVE A PAYMENT"
               buttonStyles={styles.btnStyles}
               buttonTxtStyles={screenStyles.creditBtnTextStyles}
             />
@@ -141,8 +131,8 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
                   user: user,
                 })
               }}
-              buttonText="PAY MONEY"
-              buttonStyles={screenStyles.creditBtnStyles}
+              buttonText="MAKE A PAYMENT"
+              buttonStyles={styles.btnStyles}
               buttonTxtStyles={screenStyles.creditBtnTextStyles}
             />
             <ButtonAction
@@ -157,7 +147,11 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
             />
           </View>
           <ButtonAction
-            onPress={() => console.log("Pressed")}
+            onPress={() => {
+              navigation.navigate("MarketPlace", {
+                user: user,
+              })
+            }}
             buttonText="MARKET PLACE"
             buttonStyles={screenStyles.creditBtnStyles}
             buttonTxtStyles={screenStyles.creditBtnTextStyles}

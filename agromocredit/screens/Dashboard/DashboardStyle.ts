@@ -73,7 +73,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         elevation: 10,
-        width: '47%',
+        width: '30%',
         marginBottom: 10,
     },
 });
