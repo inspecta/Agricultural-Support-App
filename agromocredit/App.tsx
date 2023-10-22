@@ -13,6 +13,7 @@ import WithdrawScreenal from "./screens/Transactions/WithdrawalScreen"
 import WithdrawalsScreen from "./screens/Transactions/WithdrawalsScreen"
 import {Provider} from "react-redux";
 import { store } from "./services/store"
+import TransferScreen from "./screens/Transactions/TransferScreen"
 
 const Stack = createStackNavigator()
 
