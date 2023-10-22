@@ -8,6 +8,7 @@ import { useNavigation } from "@react-navigation/native"
 import axios from "axios"
 import LoadingIndicator from "../Notifications/LoadingIndicator"
 import { screenStyles } from "../screenStyles"
+import { useLoginUserMutation } from "../../services/slices/transactionSlice"
 
 const WelcomeScreen = () => {
   const [activeForm, setActiveForm] = useState("buttons")
@@ -15,6 +16,8 @@ const WelcomeScreen = () => {
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = React.useState(false)
 
+  const [loginUser, {data: loginData, isError:isLoginError, error: loginError, isLoading:loginLoading, isSuccess: loginSucess}] = useLoginUserMutation() 
+ 
   const navigation = useNavigation()
 
   let bottomContent
@@ -27,19 +30,14 @@ const WelcomeScreen = () => {
     setIsLoading(true)
 
     try {
-      const url = "http://192.168.9.43:8080/login-user"
+      const result = await loginUser({phoneNumber: momoNumber, password: password})
 
-      const response = await axios.post(url, {
-        phoneNumber: momoNumber,
-        password: password,
-      })
-
-      if (response.status === 200) {
+      if ('data' in result && result.data) {
         setIsLoading(false)
-        const userData = response.data
+        const userData = result.data
         navigation.navigate("Dashboard", {
           user: userData,
-        })
+        } as { user: any })
       } else {
         console.log("Not authenticated")
       }
