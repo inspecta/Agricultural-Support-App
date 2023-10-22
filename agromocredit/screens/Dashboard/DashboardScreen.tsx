@@ -7,6 +7,7 @@ import { screenStyles } from "../screenStyles";
 import CreditScore from "../../components/CreditScore";
 import { useNavigation } from "@react-navigation/native"
 import axios from "axios"
+import { useGetBalanceQuery, useGetTotalEarnedQuery, useGetTotalCreditQuery } from "../../services/slices/transactionSlice";
 
 interface User {
   name: string
@@ -26,59 +27,30 @@ interface DashboardScreenProps {
 const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
   const { user } = route.params
   const navigation = useNavigation()
-
   const [currentBalance, setCurrentBalance] = useState<number | null>(null)
   const [totalEarned, setTotalEarned] = useState<number | null>(null)
   const [totalWithdrawn, setTotalWithdrawn] = useState<number | null>(null)
 
-  const fetchBalance = async () => {
-    try {
-      const response = await axios.get(
-        `http://192.168.9.43:8080/${route.params.user.id}/get-balance`
-      )
-      setCurrentBalance(response.data)
-    } catch (error) {
-      console.error("Error fetching balance :", error)
-    }
-  }
+  const {
+    data: bal,
+  } = useGetBalanceQuery(user.id);
 
-  const fetchTotalEarned = async () => {
-    try {
-      const response = await axios.get(
-        `http://192.168.9.43:8080/${route.params.user.id}/total-earned`
-      )
-      setTotalEarned(response.data)
-    } catch (error) {
-      console.error("Error fetching data:", error)
-    }
-  }
+  const {
+    data: earnings,
+  } = useGetTotalEarnedQuery(user.id)
 
-  const fetchTotalWithdrawn = async () => {
-    try {
-      const response = await axios.get(
-        `http://192.168.9.43:8080/${route.params.user.id}/total-credit`
-      )
-      setTotalWithdrawn(response.data)
-    } catch (error) {
-      console.error("Error fetching data:", error)
-    }
-  }
+  const {
+    data: credit,
+  } = useGetTotalCreditQuery(user.id)
 
   useEffect(() => {
-    fetchTotalEarned()
-    fetchTotalWithdrawn()
-    fetchBalance()
+    // Set state values when data is available
+    if (bal) setCurrentBalance(bal);
+    if (earnings) setTotalEarned(earnings);
+    if (credit) setTotalWithdrawn(credit);
+  }, [bal, earnings, credit]);
 
-    const intervalId = setInterval(() => {
-      fetchTotalEarned()
-      fetchTotalWithdrawn()
-      fetchBalance()
-    }, 1000)
-
-    return () => clearInterval(intervalId)
-  }, [])
-
-    return (
+  return (
         <SafeAreaView style={screenStyles.container}>
             <View style={screenStyles.subTitle}>
                 <Text style={screenStyles.pageTitle}>{user.name.toUpperCase()}</Text>
