@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { View, Text, TextInput, Button } from "react-native"
+import { View, Text, TextInput, Button, Image } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import generateAccessTokenDisbursement from "../../functions/GenerateTokenDisbursement"
 import generateNewReferenceId from "../../functions/GenerateReferenceId"
@@ -11,6 +11,7 @@ import TransactionsScreenHeaders from "../../components/Headers/TransactionsScre
 import { screenStyles } from "../screenStyles"
 import InputText from "../../components/Inputs/InputText"
 import { styles } from "./ReceivePaymentStyle"
+import { withdrawStyles } from "./WithdrawalStyle"
 import ButtonAction from "../../components/Buttons/ButtonAction"
 import { useGetBalanceQuery } from "../../services/slices/transactionSlice"
 import { useAddTransactionMutation } from "../../services/slices/transactionSlice"
@@ -169,6 +170,13 @@ const WithdrawScreen: React.FC = ({ route }) => {
         transactionDetails={transactionDetails}
       />
       {isLoading && LoadingIndicator()}
+      <View style={withdrawStyles.logoContainer}>
+          {/* Add momo logo here */}
+          <Image
+            source={require('../../screens/assets/momoLogo.jpg')}
+            style={withdrawStyles.logo}  
+          />
+        </View>
     </SafeAreaView>
   )
 }

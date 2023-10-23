@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { View, Text, TextInput, Button } from "react-native"
+import { View, Text, TextInput, Button,Image } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import generateAccessTokenDisbursement from "../../functions/GenerateTokenDisbursement"
 import generateNewReferenceId from "../../functions/GenerateReferenceId"
@@ -198,6 +198,15 @@ const TransferScreen: React.FC = ({ route }) => {
         transactionDetails={paymentDetails}
       />
       {isLoading && LoadingIndicator()}
+      
+      <View style={styles.logoContainer}>
+          {/* Add momo logo here */}
+          <Image
+            source={require('../../screens/assets/momoLogo.jpg')}
+            style={{ width: 100, height: 100, marginTop: 15 }}
+          />
+        </View>
+
     </SafeAreaView>
   )
 }
