@@ -14,9 +14,10 @@ interface CreditScreenHeaderProps {
         id: number
         phoneNumber: string
     }
+    handleTabs: (activeButton: string) => void
   }
 
-const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, activeButton, user }) => {
+const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, activeButton, handleTabs }) => {
     const navigation = useNavigation()
     return (
         <View style={styles.container}>
@@ -29,31 +30,19 @@ const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, ac
             </View> 
             <View style={styles.buttonContainer}>
                 <ButtonAction
-                    onPress={() => {
-                        navigation.navigate("PayLoan", {
-                            user: user
-                        })
-                      }}
+                    onPress={() => {handleTabs('pay')}}
                     buttonText="PAY NOW"
                     buttonStyles={activeButton === 'pay' ? styles.activeBtnStyles : styles.creditBtnStyles}
                     buttonTxtStyles={activeButton === 'pay' ? styles.activeBtnTextStyles : styles.creditBtnTextStyles}
                 />
                 <ButtonAction
-                    onPress={() => {
-                        navigation.navigate("Credit", {
-                            user: user
-                        })
-                      }}
+                    onPress={() => {handleTabs('history')}}
                     buttonText="CREDIT HISTORY"
                     buttonStyles={activeButton === 'history' ? styles.activeBtnStyles : styles.creditBtnStyles}
                     buttonTxtStyles={activeButton === 'history' ? styles.activeBtnTextStyles : styles.creditBtnTextStyles}
                 />
                 <ButtonAction
-                    onPress={() => {
-                        navigation.navigate("Borrowing", {
-                            user: user
-                        })
-                      }}
+                    onPress={() => {handleTabs('borrow')}}
                     buttonText="MOMO BORROW"
                     buttonStyles={activeButton === 'borrow' ? styles.activeBtnStyles : styles.creditBtnStyles}
                     buttonTxtStyles={activeButton === 'borrow' ? styles.activeBtnTextStyles : styles.creditBtnTextStyles}
