@@ -62,7 +62,7 @@ const CategoryProductsScreen: React.FC = ({ route }) => {
                   onPress={() => {
                     navigation.navigate("Product", {
                       product: product,
-                      creditScore: creditScore,
+                      maxLoan: maxLoan,
                         user: user,
                     });
                   }}
