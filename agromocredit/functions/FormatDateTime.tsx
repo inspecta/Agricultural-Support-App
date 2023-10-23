@@ -4,16 +4,20 @@ const formatDateTime = (
   const originalDate = new Date(dateTimeStr)
 
   const day: string = originalDate.getDate().toString().padStart(2, "0")
-  const month: string = (originalDate.getMonth() + 1)
-    .toString()
-    .padStart(2, "0")
-  const year: string = (originalDate.getFullYear() % 100).toString()
+  const monthNames = [
+    "JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+    "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+  ]
+  const month: string = monthNames[originalDate.getMonth()]
 
-  const formattedDate: string = `${day}/${month}/${year}`
+  const year: string = originalDate.getFullYear().toString().slice(-2)
 
   // Extract time components
   const hours: string = originalDate.getHours().toString().padStart(2, "0")
   const minutes: string = originalDate.getMinutes().toString().padStart(2, "0")
+
+  const formattedDate: string = `${day} ${month} ${hours}:${minutes}`
+  // console.log(formattedDate)
 
   // Format time as "HH:mm Hrs"
   const formattedTime: string = `${hours}:${minutes} Hrs`

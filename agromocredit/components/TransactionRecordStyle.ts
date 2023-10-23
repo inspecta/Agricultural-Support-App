@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
     },
     recordDate: {
-        width: '18%',
+        width: '24%',
         borderRadius: 96,
         borderWidth: 4,
         borderColor: '#5E5A5A',
@@ -54,12 +54,12 @@ export const styles = StyleSheet.create({
     },
     dateText: {
         margin: 7,
-        fontSize: 14,
+        fontSize: 10,
         color: '#fff'
     },
     creditScreenDateText: {
         margin: 7,
-        fontSize: 14,
+        fontSize: 10,
         color: '#000'
     }
 });

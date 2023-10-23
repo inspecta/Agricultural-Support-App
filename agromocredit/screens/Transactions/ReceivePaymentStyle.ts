@@ -43,4 +43,12 @@ export const styles = StyleSheet.create({
         color: '#fff',
         marginVertical: 20,
     },
+    logoContainer: {
+        alignItems: "center",
+      },
+      logo: {
+        width: 70,
+        height: 70,
+        marginTop: 2
+      }
 });

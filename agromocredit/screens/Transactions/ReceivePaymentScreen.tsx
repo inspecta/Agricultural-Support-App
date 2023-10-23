@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Text, View, ActivityIndicator, StyleSheet } from "react-native"
+import { Text, View, ActivityIndicator, StyleSheet, Image } from "react-native"
 import InputText from "../../components/Inputs/InputText"
 import { SafeAreaView } from "react-native-safe-area-context"
 import ButtonAction from "../../components/Buttons/ButtonAction"
@@ -158,6 +158,13 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
         />
       </View>
       {isLoading && LoadingIndicator()}
+      <View style={styles.logoContainer}>
+          {/* Add momo logo here */}
+          <Image
+            source={require('../../screens/assets/momoLogo.jpg')}
+            style={styles.logo}  
+          />
+        </View>
     </SafeAreaView>
   )
 }
