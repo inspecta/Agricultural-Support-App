@@ -25,5 +25,8 @@ export const marketPlaceSlice = createApi({
 });
 
 export const {
-    
+  useGetProductsByCategoryQuery,
+  useGetProductByIdQuery,
+  useGetProductsQuery,
+  useAddProductMutation,
 } = marketPlaceSlice;
