@@ -34,8 +34,8 @@ export const styles = StyleSheet.create({
     },
     productName: {
         color: '#fff',
-        fontSize: 16,
-        fontWeight: 'bold',
+        fontSize: 15,
+        fontWeight: '400',
     },
     productPrice: {
         color: '#ffcb05',
