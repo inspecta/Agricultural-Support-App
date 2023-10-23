@@ -6,7 +6,6 @@ import PayLoanScreen from "./screens/Credit/PayLoanScreen"
 import EarningsScreen from "./screens/Transactions/EarningsScreen"
 import CreditScreen from "./screens/Credit/CreditScreen"
 import BorrowingScreen from "./screens/Credit/BorrowingSCreen"
-import LentOutScreen from "./screens/Credit/LentOutScreen"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import WithdrawScreenal from "./screens/Transactions/WithdrawalScreen"
@@ -41,7 +40,6 @@ export default function App() {
           <Stack.Screen name="PayLoan" component={PayLoanScreen} />
           <Stack.Screen name="Earnings" component={EarningsScreen} />
           <Stack.Screen name="Credit" component={CreditScreen} />
-          <Stack.Screen name="LentOut" component={LentOutScreen} />
           <Stack.Screen name="Transfer" component={TransferScreen} />
           <Stack.Screen name="MarketPlace" component={ItemCategorieScreen} />
           <Stack.Screen name="CategoryProducts" component={CategoryProductsScreen} />
