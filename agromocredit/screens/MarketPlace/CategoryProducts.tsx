@@ -24,10 +24,9 @@ const CategoryProductsScreen: React.FC = ({ route }) => {
 
   const { data: creditScore } = useGetCreditScoreQuery(user.id);
 
-  const maxLoan = creditScore ? creditScore/10 * 1000000 : 0;
+  const maxLoan = creditScore ? (creditScore / 10) * 1000000 : 0;
 
   const handleLoadMore = () => {
-    setLoadMore(true);
     setProductsDisplaying(productsDisplaying + 6);
   };
 
@@ -63,7 +62,7 @@ const CategoryProductsScreen: React.FC = ({ route }) => {
                     navigation.navigate("Product", {
                       product: product,
                       maxLoan: maxLoan,
-                        user: user,
+                      user: user,
                     });
                   }}
                 >
@@ -78,27 +77,27 @@ const CategoryProductsScreen: React.FC = ({ route }) => {
                         <Text style={styles.productPrice}>{product.price}</Text>
                       </View>
                       {product.price <= maxLoan ? (
-                      <IconButton
-                        icon="credit-card-clock"
-                        iconColor="#ffcb05"
-                        size={18}
-                        style={marketStyles.creditableIcon}
-                      />
-                        ) : (
-                            <IconButton
-                            icon="credit-card-clock"
-                            iconColor="#fff"
-                            size={18}
-                            style={marketStyles.creditableIcon}
-                            />
-                        )}
+                        <IconButton
+                          icon="credit-card-clock"
+                          iconColor="#ffcb05"
+                          size={18}
+                          style={marketStyles.creditableIcon}
+                        />
+                      ) : (
+                        <IconButton
+                          icon="credit-card-clock"
+                          iconColor="#fff"
+                          size={18}
+                          style={marketStyles.creditableIcon}
+                        />
+                      )}
                     </View>
                   </ImageBackground>
                 </TouchableOpacity>
               );
             })}
           </View>
-          {loadMore && (
+          {productsDisplaying < products.length && ( // Check if there are more products to load
             <ButtonAction
               onPress={handleLoadMore}
               buttonText="LOAD MORE ..."
