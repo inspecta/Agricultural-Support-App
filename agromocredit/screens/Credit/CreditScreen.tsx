@@ -25,16 +25,20 @@ const CredditScreen = ({ route }) => {
 
   return (
     <SafeAreaView style={screenStyles.creditScreenContainer}>
-      <CreditScreenHeader screenTitle="CREDIT STATUS" activeButton="history" />
+      <CreditScreenHeader
+        screenTitle="CREDIT STATUS"
+        activeButton="history"
+        user={user}
+      />
       <View style={screenStyles.contentContainer}>
-        <Text style={screenStyles.creditScreenSubTitleText}>HISTORY</Text>
+        <Text style={screenStyles.creditScreenSubTitleText}>LOAN HISTORY</Text>
         <Text style={screenStyles.creditScreenMajorText}>
-          {userLoanBalance.toLocaleString()}
+          UGX {userLoanBalance?.toLocaleString()}
         </Text>
         <View style={screenStyles.recordContainer}>
           {isLoading ? (
             LoadingIndicator()
-          ) : fetchedLoans && Array.isArray(fetchedLoans) ? (
+          ) : fetchedLoans && fetchedLoans.length > 0 ? (
             fetchedLoans.map((loan) => {
               const formattedDate = new Date(
                 loan.created_at
@@ -57,7 +61,9 @@ const CredditScreen = ({ route }) => {
               )
             })
           ) : (
-            <Text>No loan records available</Text>
+            <View>
+              <Text>No loan records available</Text>
+            </View>
           )}
         </View>
       </View>

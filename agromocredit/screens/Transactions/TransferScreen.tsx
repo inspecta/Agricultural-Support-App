@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { View, Text, TextInput, Button,Image } from "react-native"
+import { View, Text, TextInput, Button, Image } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import generateAccessTokenDisbursement from "../../functions/GenerateTokenDisbursement"
 import generateNewReferenceId from "../../functions/GenerateReferenceId"
@@ -12,6 +12,10 @@ import { screenStyles } from "../screenStyles"
 import InputText from "../../components/Inputs/InputText"
 import { styles } from "./ReceivePaymentStyle"
 import ButtonAction from "../../components/Buttons/ButtonAction"
+import {
+  useGetBalanceQuery,
+  useAddTransactionMutation,
+} from "../../services/slices/transactionSlice"
 
 const TransferScreen: React.FC = ({ route }) => {
   const navigation = useNavigation()
@@ -19,28 +23,9 @@ const TransferScreen: React.FC = ({ route }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [notificationVisible, setNotificationVisible] = useState(false)
   const [withdrawalError, setWithdrawalError] = useState("")
-  const [currentBalance, setCurrentBalance] = useState<number | null>(null)
 
-  const fetchBalance = async () => {
-    try {
-      const response = await axios.get(
-        `http://192.168.9.200:8080/${route.params.user.id}/get-balance`
-      )
-      setCurrentBalance(response.data)
-    } catch (error) {
-      console.error("Error fetching balance :", error)
-    }
-  }
-
-  useEffect(() => {
-    fetchBalance()
-
-    const intervalId = setInterval(() => {
-      fetchBalance()
-    }, 5000)
-
-    return () => clearInterval(intervalId)
-  }, [])
+  const { data: userBalance } = useGetBalanceQuery(user.id)
+  const [addTransaction] = useAddTransactionMutation()
 
   const [formValues, setFormValues] = useState({
     amount: "",
@@ -69,7 +54,7 @@ const TransferScreen: React.FC = ({ route }) => {
     if (isNaN(paymentAmount)) {
       setWithdrawalError("Please enter a valid amount.")
       setIsLoading(false)
-    } else if (paymentAmount > currentBalance) {
+    } else if (paymentAmount > userBalance) {
       setWithdrawalError("Amount can't exceed available balance.")
       setIsLoading(false)
     } else if (paymentAmount < 500) {
@@ -126,10 +111,7 @@ const TransferScreen: React.FC = ({ route }) => {
 
           setNotificationVisible(true)
 
-          await axios.post(
-            `http://192.168.9.200:8080/add-transaction?userId=${route.params.user.id}`,
-            transactionData
-          )
+          addTransaction({ transaction: transactionData, userId: user.id })
 
           setIsLoading(false)
         } else {
@@ -154,13 +136,9 @@ const TransferScreen: React.FC = ({ route }) => {
       <EarningsScreenHeaders pageTitle="PAY MONEY" owner={user.id} />
       <View style={screenStyles.subTitle}>
         <Text style={screenStyles.subTitleText}>CURRENT BALANCE</Text>
-        {/* <Text style={screenStyles.subTitleText}>SEP</Text> */}
       </View>
       <View style={screenStyles.subTitle}>
-        <Text style={screenStyles.majorText}>UGX {currentBalance}</Text>
-        {/* <View style={screenStyles.subTitle}>
-          <Text style={screenStyles.subTitleText}>{user.phoneNumber}</Text>
-        </View> */}
+        <Text style={screenStyles.majorText}>UGX {userBalance}</Text>
       </View>
 
       {withdrawalError ? (
@@ -198,15 +176,14 @@ const TransferScreen: React.FC = ({ route }) => {
         transactionDetails={paymentDetails}
       />
       {isLoading && LoadingIndicator()}
-      
-      <View style={styles.logoContainer}>
-          {/* Add momo logo here */}
-          <Image
-            source={require('../../screens/assets/momoLogo.jpg')}
-            style={{ width: 100, height: 100, marginTop: 15 }}
-          />
-        </View>
 
+      <View style={styles.logoContainer}>
+        {/* Add momo logo here */}
+        <Image
+          source={require("../../screens/assets/momoLogo.jpg")}
+          style={{ width: 100, height: 100, marginTop: 15 }}
+        />
+      </View>
     </SafeAreaView>
   )
 }

@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 export const transactionSlice = createApi({
-  reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://agromocredit.onrender.com' }),
-  tagTypes: ['transaction'],
+  reducerPath: "api",
+  baseQuery: fetchBaseQuery({ baseUrl: "https://agromocredit.onrender.com" }),
+  tagTypes: ["transaction"],
   endpoints: (builder) => ({
     getBalance: builder.query({
       query: (userId) => `/${userId}/get-balance`,
@@ -15,7 +15,13 @@ export const transactionSlice = createApi({
       query: (userId) => `/${userId}/total-credit`,
     }),
     getEarnings: builder.query({
-      query: (userId) => `/transactions/${userId}`,
+      query: (userId) => `/request-payment/${userId}`,
+    }),
+    getWithdraws: builder.query({
+      query: (userId) => `/withdraw/${userId}`,
+    }),
+    getCreditScore: builder.query({
+      query: (userId) => `/calculate-credit-score/${userId}`,
     }),
     getUserLoans: builder.query({
       query: (userId) => `/loans/${userId}`,
@@ -48,6 +54,8 @@ export const {
   useLoginUserMutation,
   useGetEarningsQuery,
   useAddTransactionMutation,
+  useGetCreditScoreQuery,
+  useGetWithdrawsQuery,
   useGetUserLoansQuery,
   useGetTotalLoanBalanceQuery,
 } = transactionSlice

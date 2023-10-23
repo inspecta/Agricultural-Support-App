@@ -39,7 +39,6 @@ const BorrowingScreen: React.FC<DashboardScreenProps> = ({ route }) => {
     loanProvider: "",
     reason: "",
   })
-  const [loanDetails, setLoanDetails] = useState([])
 
   /** Maximum amount a user can borrow at the moment */
   const MAXIMUM_BORROWING_AMOUNT = 1000000
@@ -119,7 +118,7 @@ const BorrowingScreen: React.FC<DashboardScreenProps> = ({ route }) => {
           <Text style={screenStyles.creditScreenMajorText}>
             UGX {user_maximum_amount}{" "}
           </Text>
-          <Text style={{ fontSize: 13, color: "red" }}>Interest Rate: 6%</Text>
+          <Text style={{ fontSize: 13, color: "red" }}>Interest Rate: 8.0%</Text>
           {/* 
           <View style={screenStyles.recordContainer}>
             {loanDetails.map((loanDetail) => {
