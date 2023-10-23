@@ -152,7 +152,7 @@ const TransferScreen: React.FC = ({ route }) => {
 
   return (
     <SafeAreaView style={screenStyles.container}>
-      <EarningsScreenHeaders pageTitle="PAY MONEY" />
+      <EarningsScreenHeaders pageTitle="PAY MONEY" owner={user.id} />
       <View style={screenStyles.subTitle}>
         <Text style={screenStyles.subTitleText}>CURRENT BALANCE</Text>
         <Text style={screenStyles.subTitleText}>SEP</Text>

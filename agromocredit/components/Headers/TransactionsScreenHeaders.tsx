@@ -5,9 +5,10 @@ import { screenStyles } from "../../screens/screenStyles"
 
 interface TransactionsScreenHeaderProps {
     pageTitle: string;
+    owner: number
   }
 
-const EarningsScreenHeaders: React.FC<TransactionsScreenHeaderProps> = ({ pageTitle }) => {
+const EarningsScreenHeaders: React.FC<TransactionsScreenHeaderProps> = ({ pageTitle, owner }) => {
     return (
         <>
             <View style={screenStyles.subTitle}>
@@ -19,7 +20,7 @@ const EarningsScreenHeaders: React.FC<TransactionsScreenHeaderProps> = ({ pageTi
                     <Text style={screenStyles.subTitleText}>TOTAL EARNED</Text>
                     <Text style={screenStyles.majorText}>UGX 20,800</Text>
                 </View>
-                <CreditScore />
+                <CreditScore owner={owner}/>
             </View>
         </>
     )

@@ -67,7 +67,6 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
           <View>
             <Text style={screenStyles.subTitleText}>YOUR CURRENT BALANCE</Text>
             <Text style={screenStyles.majorText}>UGX {currentBalance?.toLocaleString()}</Text>
-            {/* <Text style={screenStyles.majorText}>UGX {currentBalance.toLocaleString()}</Text> */}
           </View>
           <CreditScore owner={user.id} />
         </View>

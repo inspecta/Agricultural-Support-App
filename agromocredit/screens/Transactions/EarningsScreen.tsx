@@ -40,7 +40,7 @@ const EarningsScreen: React.FC = ({ route }) => {
  
     return (
         <SafeAreaView style={screenStyles.container}>
-            <TransactionsScreenHeaders  pageTitle = "EARNINGS"/>
+            <TransactionsScreenHeaders  pageTitle = "EARNINGS" owner={user.id}/>
             <View style={screenStyles.subTitle}>
                 <Text style={screenStyles.subTitleText}>CURRENT BALANCE</Text>
                 <Text style={screenStyles.subTitleText}>SEP</Text>

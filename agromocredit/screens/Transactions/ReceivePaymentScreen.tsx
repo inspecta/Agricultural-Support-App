@@ -119,7 +119,7 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
 
   return (
     <SafeAreaView style={screenStyles.container}>
-      <EarningsScreenHeaders pageTitle="RECEIVE PAYMENT"/>
+      <EarningsScreenHeaders pageTitle="RECEIVE PAYMENT" owner={user.id}/>
       <Text style={screenStyles.subTitleText}>REQUEST FOR PAYMENT</Text>
       <View style={styles.requestPaymentForm}>
         <Text style={screenStyles.subText}>FOR</Text>
