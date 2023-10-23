@@ -6,9 +6,27 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./ItemCategoriesStyle";
 import { marketStyles } from "./marketStyles";
 import { useNavigation } from "@react-navigation/native"
+import ButtonAction from "../../components/Buttons/ButtonAction";
+import { screenStyles } from "../screenStyles";
 
-const ItemCategoriesScreen = () => {
+interface User {
+    name: string
+    balance: number
+    id: number
+    phoneNumber: string
+  }
+  
+  interface ItemCategoriesScreenProps {
+    route: {
+      params: {
+        user: User
+      }
+    }
+  }
+
+const ItemCategoriesScreen: React.FC<ItemCategoriesScreenProps> = ({ route }) => {
     const navigation = useNavigation()
+    const { user } = route.params
   return (
     <SafeAreaView>
         <ScrollView style={marketStyles.container}>
@@ -88,6 +106,16 @@ const ItemCategoriesScreen = () => {
                     <Text style={marketStyles.smallText}>87 items</Text>
                 </TouchableOpacity>
             </View>
+            <ButtonAction
+                onPress={() => {
+                    navigation.navigate("Transfer", {
+                        user: user,
+                    })
+                }}
+                buttonText="MAKING A PAYMENT?"
+                buttonStyles={screenStyles.creditBtnStyles}
+                buttonTxtStyles={screenStyles.creditBtnTextStyles}
+                />
         </ScrollView>
     </SafeAreaView>
   )

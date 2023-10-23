@@ -41,8 +41,4 @@ export const styles = StyleSheet.create({
         color: '#ffcb05',
         fontSize: 12,
     },
-    creditableIcon: {
-        padding: -5,
-        margin: -5,
-    },
 });

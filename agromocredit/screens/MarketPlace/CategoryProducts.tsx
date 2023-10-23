@@ -41,7 +41,14 @@ const CategoryProductsScreen: React.FC = ({ route }) => {
                 />
             <ScrollView>
             <View  style={marketStyles.categoriesContainer}>
-                <TouchableOpacity style={styles.categoryCard}>
+                <TouchableOpacity 
+                    style={styles.categoryCard}
+                    onPress={() => {
+                        navigation.navigate("Product", {
+                            product: { productName: "Polvo", price: "UGX 15000", image: require("./assets/pestcide2.jpg") },
+                        })
+                    }}
+                    >
                     <ImageBackground
                         source={require("./assets/pestcide2.jpg")}
                         style={styles.cardImage}
@@ -52,11 +59,18 @@ const CategoryProductsScreen: React.FC = ({ route }) => {
                             <Text style={styles.productName}>Polvo</Text>
                             <Text style={styles.productPrice}>UGX 15000</Text>
                         </View>
-                        <IconButton icon="credit-card-clock" iconColor="#ffcb05" size={18} style={styles.creditableIcon} />
+                        <IconButton icon="credit-card-clock" iconColor="#ffcb05" size={18} style={marketStyles.creditableIcon} />
                     </View>
                     </ImageBackground>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.categoryCard}>
+                <TouchableOpacity 
+                    style={styles.categoryCard}
+                    onPress={() => {
+                        navigation.navigate("Product", {
+                            product: { productName: "Coffee", price: "UGX 5000", image: require("./assets/machine1.jpg") },
+                        })
+                    }}
+                    >
                     <ImageBackground
                         source={require("./assets/seedling1.jpeg")}
                         style={styles.cardImage}
@@ -67,11 +81,18 @@ const CategoryProductsScreen: React.FC = ({ route }) => {
                             <Text style={styles.productName}>Coffee</Text>
                             <Text style={styles.productPrice}>UGX 5000</Text>
                         </View>
-                        <IconButton icon="credit-card-clock" iconColor="#ffcb05" size={18} style={styles.creditableIcon} />
+                        <IconButton icon="credit-card-clock" iconColor="#ffcb05" size={18} style={marketStyles.creditableIcon} />
                     </View>
                     </ImageBackground>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.categoryCard}>
+                <TouchableOpacity
+                    style={styles.categoryCard}
+                    onPress={() => {
+                        navigation.navigate("Product", {
+                            product: { productName: "Irrigator", price: "UGX 600000", image: require("./assets/pestcide1.webp") },
+                        })
+                    }}
+                    >
                     <ImageBackground
                         source={require("./assets/machine1.jpg")}
                         style={styles.cardImage}
@@ -82,7 +103,7 @@ const CategoryProductsScreen: React.FC = ({ route }) => {
                             <Text style={styles.productName}>Irrigator</Text>
                             <Text style={styles.productPrice}>UGX 600000</Text>
                         </View>
-                        <IconButton icon="credit-card-clock" iconColor="#fff" size={18} style={styles.creditableIcon} />
+                        <IconButton icon="credit-card-clock" iconColor="#fff" size={18} style={marketStyles.creditableIcon} />
                     </View>
                     </ImageBackground>
                 </TouchableOpacity>
@@ -97,7 +118,7 @@ const CategoryProductsScreen: React.FC = ({ route }) => {
                             <Text style={styles.productName}>Raid</Text>
                             <Text style={styles.productPrice}>UGX 30000</Text>
                         </View>
-                        <IconButton icon="credit-card-clock" iconColor="#ffcb05" size={18} style={styles.creditableIcon} />
+                        <IconButton icon="credit-card-clock" iconColor="#ffcb05" size={18} style={marketStyles.creditableIcon} />
                     </View>
                     </ImageBackground>
                 </TouchableOpacity>
@@ -112,7 +133,7 @@ const CategoryProductsScreen: React.FC = ({ route }) => {
                             <Text style={styles.productName}>Sprayer</Text>
                             <Text style={styles.productPrice}>UGX 300000</Text>
                         </View>
-                        <IconButton icon="credit-card-clock" iconColor="#fff" size={18} style={styles.creditableIcon} />
+                        <IconButton icon="credit-card-clock" iconColor="#fff" size={18} style={marketStyles.creditableIcon} />
                     </View>
                     </ImageBackground>
                 </TouchableOpacity>
@@ -127,7 +148,7 @@ const CategoryProductsScreen: React.FC = ({ route }) => {
                             <Text style={styles.productName}>Bayer</Text>
                             <Text style={styles.productPrice}>UGX 150000</Text>
                         </View>
-                        <IconButton icon="credit-card-clock" iconColor="#ffcb05" size={18} style={styles.creditableIcon} />
+                        <IconButton icon="credit-card-clock" iconColor="#ffcb05" size={18} style={marketStyles.creditableIcon} />
                     </View>
                     </ImageBackground>
                 </TouchableOpacity>

@@ -14,6 +14,8 @@ import { styles } from "./ReceivePaymentStyle"
 import ButtonAction from "../../components/Buttons/ButtonAction"
 
 const TransferScreen: React.FC = ({ route }) => {
+  const navigation = useNavigation()
+  const { user } = route.params
   const [isLoading, setIsLoading] = useState(false)
   const [notificationVisible, setNotificationVisible] = useState(false)
   const [withdrawalError, setWithdrawalError] = useState("")
@@ -58,9 +60,6 @@ const TransferScreen: React.FC = ({ route }) => {
     payerNumber: "",
     reason: "",
   })
-
-  const navigation = useNavigation()
-  const { user } = route.params
 
   const handlePayment = async () => {
     setIsLoading(true)

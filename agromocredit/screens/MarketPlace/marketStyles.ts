@@ -39,6 +39,11 @@ export const marketStyles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         color: '#fff',
-        marginTop: 20,
+        marginVertical: 20,
+    },
+
+    creditableIcon: {
+        padding: -5,
+        margin: -5,
     },
 });

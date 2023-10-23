@@ -16,6 +16,7 @@ import { store } from "./services/store"
 import TransferScreen from "./screens/Transactions/TransferScreen"
 import ItemCategorieScreen from "./screens/MarketPlace/ItemCategoriesScreen"
 import CategoryProductsScreen from "./screens/MarketPlace/CategoryProducts"
+import ProductScreen from "./screens/MarketPlace/ProductScreen"
 
 const Stack = createStackNavigator()
 
@@ -44,6 +45,7 @@ export default function App() {
           <Stack.Screen name="Transfer" component={TransferScreen} />
           <Stack.Screen name="MarketPlace" component={ItemCategorieScreen} />
           <Stack.Screen name="CategoryProducts" component={CategoryProductsScreen} />
+          <Stack.Screen name="Product" component={ProductScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
