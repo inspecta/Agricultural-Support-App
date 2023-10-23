@@ -9,8 +9,10 @@ import InputText from "../../components/Inputs/InputText";
 import { useNavigation } from "@react-navigation/native";
 import ButtonAction from "../../components/Buttons/ButtonAction";
 import { screenStyles } from "../screenStyles";
+import { useGetCreditScoreQuery } from "../../services/slices/transactionSlice";
 
 const CategoryProductsScreen: React.FC = ({ route }) => {
+  const { user } = route.params;
   const { category, products } = route.params;
   const [formValues, setFormValues] = useState({
     payerNumber: "",
@@ -19,6 +21,10 @@ const CategoryProductsScreen: React.FC = ({ route }) => {
   });
   const [loadMore, setLoadMore] = useState(false);
   const [productsDisplaying, setProductsDisplaying] = useState(6);
+
+  const { data: creditScore } = useGetCreditScoreQuery(user.id);
+
+  const maxLoan = creditScore ? creditScore/10 * 1000000 : 0;
 
   const handleLoadMore = () => {
     setLoadMore(true);
@@ -56,6 +62,8 @@ const CategoryProductsScreen: React.FC = ({ route }) => {
                   onPress={() => {
                     navigation.navigate("Product", {
                       product: product,
+                      creditScore: creditScore,
+                        user: user,
                     });
                   }}
                 >
@@ -69,12 +77,21 @@ const CategoryProductsScreen: React.FC = ({ route }) => {
                         <Text style={styles.productName}>{product.name}</Text>
                         <Text style={styles.productPrice}>{product.price}</Text>
                       </View>
+                      {product.price <= maxLoan ? (
                       <IconButton
                         icon="credit-card-clock"
                         iconColor="#ffcb05"
                         size={18}
                         style={marketStyles.creditableIcon}
                       />
+                        ) : (
+                            <IconButton
+                            icon="credit-card-clock"
+                            iconColor="#fff"
+                            size={18}
+                            style={marketStyles.creditableIcon}
+                            />
+                        )}
                     </View>
                   </ImageBackground>
                 </TouchableOpacity>

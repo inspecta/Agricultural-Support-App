@@ -55,7 +55,8 @@ const ItemCategoriesScreen: React.FC<ItemCategoriesScreenProps> = ({ route }) =>
                 onPress={() => {
                   navigation.navigate("CategoryProducts", {
                     category: category.label,
-                    products: data, // Use the data from the query
+                    products: data,
+                    user: user, // Use the data from the query
                   });
                 }}
               >
