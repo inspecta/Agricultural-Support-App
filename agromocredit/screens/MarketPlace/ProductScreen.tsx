@@ -16,24 +16,24 @@ import { log } from "console"
 import { marketStyles } from "./marketStyles"
 import { IconButton } from "react-native-paper"
 
-interface Product {
-    productName: string
-    price: string
-    image: any
-    supplier: string
-    category: string
-  }
-
 interface ProductScreenProps {
-    route: {
-      params: {
-        product: Product
+  route: {
+    params: {
+      product: {
+        id: string
+        name: string
+        price: number
+        supplierNumber: string
+        category: string
+        image: any
       }
+      maxLoan: number
     }
   }
+}
 
 const Product: React.FC<ProductScreenProps> = ({ route }) => {
-    const { product } = route.params
+    const { product, maxLoan } = route.params
     const [activeDisplay, setActiveDisplay] = useState("details")
 
     let contentDisplay
@@ -47,18 +47,28 @@ const Product: React.FC<ProductScreenProps> = ({ route }) => {
         <View style={styles.contentContainer}>
           <View style={styles.productContainer}>
             <Text style={styles.productName}>
-            {product.productName}
+            {product.name}
             </Text>
             <IconButton onPress={() => handleChange("minimize")} icon="chevron-down" iconColor="#ffcb05" size={32} style={marketStyles.creditableIcon} />
           </View>
           <Text style={styles.productPrice}>{product.price}</Text>
           <View style={styles.productContainer}>
-            <Text style={styles.categoryText}>{product.supplier}</Text>
+            <Text style={styles.categoryText}>{`Supplier: ${product.supplierNumber}`}</Text>
             <Text style={styles.categoryText}>{product.category}</Text>
           </View>
           <View style={styles.productContainer}>
-              <IconButton icon="credit-card-clock" iconColor="#ffcb05" size={24} style={marketStyles.creditableIcon} />
-              <Text style={styles.categoryText}>You can purchase this product on credit</Text>
+            {product.price <= maxLoan ? (
+                <>
+                  <IconButton icon="credit-card-clock" iconColor="#ffcb05" size={24} style={marketStyles.creditableIcon} />
+                  <Text style={styles.categoryText}>You can purchase this product on credit</Text>
+                </>
+              ): (
+                <>
+                  <IconButton icon="credit-card-clock" iconColor="#000" size={24} style={marketStyles.creditableIcon} />
+                  <Text style={styles.categoryText}>Your credit score doesnt qualify for a credit purchase</Text>
+                </>
+              )
+            }
           </View>
           <View style={styles.productContainer}>
               <ButtonAction
@@ -67,12 +77,22 @@ const Product: React.FC<ProductScreenProps> = ({ route }) => {
               buttonStyles={styles.payButton}
               buttonTxtStyles={styles.payBtnTextStyles}
               />
-              <ButtonAction
-              onPress={() => console.log("Create Account")}
-              buttonText="BUY ON CREDIT"
-              buttonStyles={styles.creditButton}
-              buttonTxtStyles={styles.creditBtnTextStyles}
-              />
+              {product.price <= maxLoan ? (
+                <ButtonAction
+                onPress={() => console.log("Create Account")}
+                buttonText="BUY ON CREDIT"
+                buttonStyles={styles.creditButton}
+                buttonTxtStyles={styles.creditBtnTextStyles}
+                />
+              ): (
+                <ButtonAction
+                onPress={() => console.log("Create Account")}
+                buttonText="BUY ON CREDIT"
+                buttonStyles={styles.creditButtonDisabled}
+                buttonTxtStyles={styles.creditBtnTextStylesDisabled}
+                />
+              )}
+              
           </View>
       </View>
       )}else {

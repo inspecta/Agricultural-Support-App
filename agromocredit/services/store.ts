@@ -1,16 +1,19 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import { transactionSlice } from './slices/transactionSlice';
-import { momoSlice } from './slices/momoSlice'; // Import your momoSlice
+import { momoSlice } from './slices/momoSlice';
+import { marketPlaceSlice } from './slices/marketPlaceSlice';
 
 export const store = configureStore({
   reducer: {
     [transactionSlice.reducerPath]: transactionSlice.reducer,
-    [momoSlice.reducerPath]: momoSlice.reducer, // Include your momoSlice
+    [momoSlice.reducerPath]: momoSlice.reducer,
+    [marketPlaceSlice.reducerPath]: marketPlaceSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
-      transactionSlice.middleware, // Include the middleware for transactionSlice
-      momoSlice.middleware, // Include the middleware for momoSlice
+      transactionSlice.middleware,
+      momoSlice.middleware,
+      marketPlaceSlice.middleware
     ),
 });
 

@@ -5,120 +5,81 @@ import { IconButton } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./ItemCategoriesStyle";
 import { marketStyles } from "./marketStyles";
-import { useNavigation } from "@react-navigation/native"
+import { useNavigation } from "@react-navigation/native";
 import ButtonAction from "../../components/Buttons/ButtonAction";
 import { screenStyles } from "../screenStyles";
+import { useGetProductsByCategoryQuery } from "../../services/slices/marketPlaceSlice";
+import { log } from "console";
 
 interface User {
-    name: string
-    balance: number
-    id: number
-    phoneNumber: string
-  }
-  
-  interface ItemCategoriesScreenProps {
-    route: {
-      params: {
-        user: User
-      }
-    }
-  }
-
-const ItemCategoriesScreen: React.FC<ItemCategoriesScreenProps> = ({ route }) => {
-    const navigation = useNavigation()
-    const { user } = route.params
-  return (
-    <SafeAreaView>
-        <ScrollView style={marketStyles.container}>
-            <View style={marketStyles.titleContainer}>
-                <Text style={marketStyles.screenTitle}>CATEGORIES</Text>
-            </View>
-            <View style={marketStyles.categoriesContainer}>
-                <TouchableOpacity
-                    style={styles.categoryCard}
-                    onPress={() => {
-                        navigation.navigate("CategoryProducts", {
-                            category: "PEST CIDES",
-                        })
-                    }}
-                >
-                    <IconButton icon="bug" iconColor="#ffcb05" size={72} />
-                    <Text>PEST CIDES</Text>
-                    <Text style={marketStyles.smallText}>87 items</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.categoryCard}
-                    onPress={() => {
-                        navigation.navigate("CategoryProducts", {
-                            category: "GARDEN TOOLS",
-                        })
-                    }}
-                >
-                    <IconButton icon="mower" iconColor="#ffcb05" size={72} />
-                    <Text>GARDEN TOOLS</Text>
-                    <Text style={marketStyles.smallText}>87 items</Text>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                    style={styles.categoryCard}
-                    onPress={() => {
-                        navigation.navigate("CategoryProducts", {
-                            category: "MACHINERY",
-                        })
-                    }}
-                >
-                    <IconButton icon="tractor" iconColor="#ffcb05" size={72} />
-                    <Text>MACHINERY</Text>
-                    <Text style={marketStyles.smallText}>87 items</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.categoryCard}
-                    onPress={() => {
-                        navigation.navigate("CategoryProducts", {
-                            category: "SEEDLINGS",
-                        })
-                    }}
-                >
-                    <IconButton icon="flower" iconColor="#ffcb05" size={72} />
-                    <Text>SEEDLINGS</Text>
-                    <Text style={marketStyles.smallText}>87 items</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.categoryCard}
-                    onPress={() => {
-                        navigation.navigate("CategoryProducts", {
-                            category: "FERTILIZERS",
-                        })
-                    }}
-                >
-                    <IconButton icon="flash" iconColor="#ffcb05" size={72} />
-                    <Text>FERTILIZERS</Text>
-                    <Text style={marketStyles.smallText}>87 items</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.categoryCard}
-                    onPress={() => {
-                        navigation.navigate("CategoryProducts", {
-                            category: "FEEDS",
-                        })
-                    }}
-                >
-                    <IconButton icon="corn" iconColor="#ffcb05" size={72} />
-                    <Text>FEEDS</Text>
-                    <Text style={marketStyles.smallText}>87 items</Text>
-                </TouchableOpacity>
-            </View>
-            <ButtonAction
-                onPress={() => {
-                    navigation.navigate("Transfer", {
-                        user: user,
-                    })
-                }}
-                buttonText="MAKING A PAYMENT?"
-                buttonStyles={screenStyles.creditBtnStyles}
-                buttonTxtStyles={screenStyles.creditBtnTextStyles}
-                />
-        </ScrollView>
-    </SafeAreaView>
-  )
+  name: string;
+  balance: number;
+  id: number;
+  phoneNumber: string;
 }
 
-export default ItemCategoriesScreen
+interface ItemCategoriesScreenProps {
+  route: {
+    params: {
+      user: User;
+    };
+  }
+}
+
+const ItemCategoriesScreen: React.FC<ItemCategoriesScreenProps> = ({ route }) => {
+  const categories = [
+    { name: "pestcides", label: "PEST CIDES", icon: "bug" },
+    { name: "gardenTools", label: "GARDEN TOOLS", icon: "mower" },
+    { name: "machinery", label: "MACHINERY", icon: "tractor" },
+    { name: "seedlings", label: "SEEDLINGS", icon: "flower" },
+    { name: "fertilizers", label: "FERTILIZERS", icon: "flash" },
+    { name: "feeds", label: "FEEDS", icon: "corn" },
+  ];
+
+  const navigation = useNavigation();
+  const { user } = route.params;
+
+  return (
+    <SafeAreaView>
+      <ScrollView style={marketStyles.container}>
+        <View style={marketStyles.titleContainer}>
+          <Text style={marketStyles.screenTitle}>CATEGORIES</Text>
+        </View>
+        <View style={marketStyles.categoriesContainer}>
+          {categories.map((category) => {
+            const { data } = useGetProductsByCategoryQuery(category.label);
+            return (
+              <TouchableOpacity
+                style={styles.categoryCard}
+                key={category.name} // Add a unique key
+                onPress={() => {
+                  navigation.navigate("CategoryProducts", {
+                    category: category.label,
+                    products: data,
+                    user: user, // Use the data from the query
+                  });
+                }}
+              >
+                <IconButton icon={category.icon} iconColor="#ffcb05" size={72} />
+                <Text>{category.label}</Text>
+                <Text style={marketStyles.smallText}>{`${data?.length} item(s)`}</Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+        <ButtonAction
+          onPress={() => {
+            navigation.navigate("Transfer", {
+              user: user,
+            });
+          }}
+          buttonText="MAKING A PAYMENT?"
+          buttonStyles={screenStyles.creditBtnStyles}
+          buttonTxtStyles={screenStyles.creditBtnTextStyles}
+        />
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
+
+export default ItemCategoriesScreen;

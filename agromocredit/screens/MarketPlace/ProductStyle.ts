@@ -64,6 +64,17 @@ export const styles = StyleSheet.create({
         elevation: 10,
         width: "45%",
       },
+      creditButtonDisabled: {
+        height: 50,
+        backgroundColor: "#000",
+        borderRadius: 12,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        elevation: 10,
+        width: "45%",
+        opacity: 0.5,
+      },
     payBtnTextStyles: {
         color: "#000",
         textAlign: "center",
@@ -71,6 +82,9 @@ export const styles = StyleSheet.create({
     creditBtnTextStyles: {
         color: "#ffcb05",
         textAlign: "center",
-    }
-
+    },
+    creditBtnTextStylesDisabled: {
+        color: "#fff",
+        textAlign: "center",
+    },
 });
