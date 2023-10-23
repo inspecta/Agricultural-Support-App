@@ -8,11 +8,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context"
 import { styles } from "./ProductStyle"
 import ButtonAction from "../../components/Buttons/ButtonAction"
-import InputText from "../../components/Inputs/InputText"
 import { useNavigation } from "@react-navigation/native"
 import { screenStyles } from "../screenStyles"
-import { useLoginUserMutation } from "../../services/slices/transactionSlice"
-import { log } from "console"
 import { marketStyles } from "./marketStyles"
 import { IconButton } from "react-native-paper"
 
@@ -113,7 +110,7 @@ const Product: React.FC<ProductScreenProps> = ({ route }) => {
   return (
     <SafeAreaView style={screenStyles.creditScreenContainer}>
       <ImageBackground
-        source={product.image}
+        source={ {uri: product.image}}
         style={styles.welcomeScreenContainer}
       >
         <TouchableOpacity
