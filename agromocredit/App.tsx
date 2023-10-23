@@ -15,6 +15,7 @@ import {Provider} from "react-redux";
 import { store } from "./services/store"
 import TransferScreen from "./screens/Transactions/TransferScreen"
 import ItemCategorieScreen from "./screens/MarketPlace/ItemCategoriesScreen"
+import CategoryProductsScreen from "./screens/MarketPlace/CategoryProducts"
 
 const Stack = createStackNavigator()
 
@@ -42,6 +43,7 @@ export default function App() {
           <Stack.Screen name="LentOut" component={LentOutScreen} />
           <Stack.Screen name="Transfer" component={TransferScreen} />
           <Stack.Screen name="MarketPlace" component={ItemCategorieScreen} />
+          <Stack.Screen name="CategoryProducts" component={CategoryProductsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

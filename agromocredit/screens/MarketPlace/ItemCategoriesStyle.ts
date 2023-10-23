@@ -1,13 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    categoriesContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        color: '#fff',
-        marginTop: 20,
-    },
     categoryCard: {
         elevation: 10,
         backgroundColor: '#fff',

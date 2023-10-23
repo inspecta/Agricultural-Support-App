@@ -25,4 +25,20 @@ export const marketStyles = StyleSheet.create({
         fontSize: 12,
         marginVertical: 1,
     },
+    textInput: {
+        backgroundColor: "#fff",
+        borderColor: "#ffcb05",
+        borderWidth: 1,
+        borderRadius: 5,
+        padding: 5,
+        marginVertical: 5,
+        marginHorizontal: 15,
+    },
+    categoriesContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        color: '#fff',
+        marginTop: 20,
+    },
 });
