@@ -5,10 +5,26 @@ import { View, Text } from "react-native";
 import { screenStyles } from "../screenStyles";
 import TransactionRecord from "../../components/TransactionRecord";
 
-const CredditScreen = () => {
+interface User {
+    name: string
+    balance: number
+    id: number
+    phoneNumber: string
+  }
+  
+  interface CreditScreenProps {
+    route: {
+      params: {
+        user: User
+      }
+    }
+  }
+
+const CredditScreen: React.FC<CreditScreenProps> = ({ route }) => {
+    const { user } = route.params
     return (
         <SafeAreaView style={screenStyles.creditScreenContainer}>
-            <CreditScreenHeader screenTitle="CREDIT STATUS" activeButton="history" />
+            <CreditScreenHeader screenTitle="CREDIT STATUS" activeButton="history" user={user} />
             <View style={screenStyles.contentContainer}>
                 <Text style={screenStyles.creditScreenSubTitleText}>HISTROY</Text>
                 <Text style={screenStyles.creditScreenMajorText}>- UGX 898,000</Text>

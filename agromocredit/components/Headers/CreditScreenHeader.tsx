@@ -8,11 +8,16 @@ import { screenStyles } from "../../screens/screenStyles";
 interface CreditScreenHeaderProps {
     activeButton: string;
     screenTitle: string;
+    user: {
+        name: string
+        balance: number
+        id: number
+        phoneNumber: string
+    }
   }
 
-const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, activeButton, }) => {
+const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, activeButton, user }) => {
     const navigation = useNavigation()
-
     return (
         <View style={styles.container}>
             <View style={screenStyles.subTitle}>
@@ -26,6 +31,7 @@ const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, ac
                 <ButtonAction
                     onPress={() => {
                         navigation.navigate("PayLoan", {
+                            user: user
                         })
                       }}
                     buttonText="PAY NOW"
@@ -35,6 +41,7 @@ const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, ac
                 <ButtonAction
                     onPress={() => {
                         navigation.navigate("Credit", {
+                            user: user
                         })
                       }}
                     buttonText="CREDIT HISTORY"
@@ -44,6 +51,7 @@ const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, ac
                 <ButtonAction
                     onPress={() => {
                         navigation.navigate("Borrowing", {
+                            user: user
                         })
                       }}
                     buttonText="MOMO BORROW"
