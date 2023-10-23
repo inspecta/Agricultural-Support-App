@@ -43,15 +43,6 @@ const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, ac
                 />
                 <ButtonAction
                     onPress={() => {
-                        navigation.navigate("LentOut", {
-                        })
-                      }}
-                    buttonText="LENT OUT"
-                    buttonStyles={activeButton === 'lent' ? styles.activeBtnStyles : styles.creditBtnStyles}
-                    buttonTxtStyles={activeButton === 'lent' ? styles.activeBtnTextStyles : styles.creditBtnTextStyles}
-                />
-                <ButtonAction
-                    onPress={() => {
                         navigation.navigate("Borrowing", {
                         })
                       }}
