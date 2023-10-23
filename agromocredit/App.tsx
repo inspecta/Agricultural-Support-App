@@ -6,7 +6,6 @@ import PayLoanScreen from "./screens/Credit/PayLoanScreen"
 import EarningsScreen from "./screens/Transactions/EarningsScreen"
 import CreditScreen from "./screens/Credit/CreditScreen"
 import BorrowingScreen from "./screens/Credit/BorrowingSCreen"
-import LentOutScreen from "./screens/Credit/LentOutScreen"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import WithdrawScreenal from "./screens/Transactions/WithdrawalScreen"
@@ -14,6 +13,9 @@ import WithdrawalsScreen from "./screens/Transactions/WithdrawalsScreen"
 import {Provider} from "react-redux";
 import { store } from "./services/store"
 import TransferScreen from "./screens/Transactions/TransferScreen"
+import ItemCategorieScreen from "./screens/MarketPlace/ItemCategoriesScreen"
+import CategoryProductsScreen from "./screens/MarketPlace/CategoryProducts"
+import ProductScreen from "./screens/MarketPlace/ProductScreen"
 
 const Stack = createStackNavigator()
 
@@ -38,8 +40,10 @@ export default function App() {
           <Stack.Screen name="PayLoan" component={PayLoanScreen} />
           <Stack.Screen name="Earnings" component={EarningsScreen} />
           <Stack.Screen name="Credit" component={CreditScreen} />
-          <Stack.Screen name="LentOut" component={LentOutScreen} />
           <Stack.Screen name="Transfer" component={TransferScreen} />
+          <Stack.Screen name="MarketPlace" component={ItemCategorieScreen} />
+          <Stack.Screen name="CategoryProducts" component={CategoryProductsScreen} />
+          <Stack.Screen name="Product" component={ProductScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

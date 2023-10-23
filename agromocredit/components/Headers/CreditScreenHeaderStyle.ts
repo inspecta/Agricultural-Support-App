@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     },
     creditBtnStyles: {
         height: 80,
-        width: '23%',
+        width: '29%',
         backgroundColor: '#000',
         borderRadius: 12,
         elevation: 10,
@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     },
     activeBtnStyles: {
         height: 80,
-        width: '23%',
+        width: '40%',
         backgroundColor: '#ffcb05',
         borderRadius: 12,
         elevation: 10,
