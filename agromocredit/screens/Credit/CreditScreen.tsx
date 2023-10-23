@@ -1,82 +1,68 @@
-import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import CreditScreenHeader from "../../components/Headers/CreditScreenHeader";
-import { View, Text } from "react-native";
-import { screenStyles } from "../screenStyles";
-import TransactionRecord from "../../components/TransactionRecord";
+import React, { useState, useEffect } from "react"
+import { SafeAreaView } from "react-native-safe-area-context"
+import CreditScreenHeader from "../../components/Headers/CreditScreenHeader"
+import { View, Text } from "react-native"
+import { screenStyles } from "../screenStyles"
+import TransactionRecord from "../../components/TransactionRecord"
+import {
+  useGetUserLoansQuery,
+  useGetTotalLoanBalanceQuery,
+} from "../../services/slices/transactionSlice"
+import LoadingIndicator from "../Notifications/LoadingIndicator"
 
-interface User {
-    name: string
-    balance: number
-    id: number
-    phoneNumber: string
-  }
-  
-  interface CreditScreenProps {
-    route: {
-      params: {
-        user: User
-      }
-    }
-  }
+const CredditScreen = ({ route }) => {
+  const { user } = route.params
+  const { data: userLoanBalance } = useGetTotalLoanBalanceQuery(user.id)
+  const { data: fetchedLoans } = useGetUserLoansQuery(user.id)
 
-const CredditScreen: React.FC<CreditScreenProps> = ({ route }) => {
-    const { user } = route.params
-    return (
-        <SafeAreaView style={screenStyles.creditScreenContainer}>
-            <CreditScreenHeader screenTitle="CREDIT STATUS" activeButton="history" user={user} />
-            <View style={screenStyles.contentContainer}>
-                <Text style={screenStyles.creditScreenSubTitleText}>HISTROY</Text>
-                <Text style={screenStyles.creditScreenMajorText}>- UGX 898,000</Text>
-                <View style={screenStyles.recordContainer}>
-                    <TransactionRecord
-                        recordDate="15 SEP"
-                        recordValue="MULUNDO SAM"
-                        recordIcon=""
-                        recordSubject="WEED MASTER"
-                        recordSubAttr1="-UGX 20,800"
-                        recordSubAttr2="UGX 500,000"
-                        recordDated={true}
-                        detailsIcon={false}
-                        creditScreen={true}    
-                    />
-                    <TransactionRecord
-                        recordDate="22 APR"
-                        recordValue="MOMO"
-                        recordIcon=""
-                        recordSubject="GENERAL"
-                        recordSubAttr1="UGX 0"
-                        recordSubAttr2="GX 200,000"
-                        recordDated={true}
-                        detailsIcon={false}
-                        creditScreen={true}    
-                    />
-                    <TransactionRecord
-                        recordDate="13 MAR"
-                        recordValue="MULUNDO SAM"
-                        recordIcon=""
-                        recordSubject="WEED MASTER"
-                        recordSubAttr1="UGX 0"
-                        recordSubAttr2="GX 500,000"
-                        recordDated={true}
-                        detailsIcon={false}
-                        creditScreen={true}    
-                    />
-                    <TransactionRecord
-                        recordDate="02 JAN"
-                        recordValue="MOMO"
-                        recordIcon=""
-                        recordSubject="GENERAL"
-                        recordSubAttr1="UGX 0"
-                        recordSubAttr2="GX 600,000"
-                        recordDated={true}
-                        detailsIcon={false}
-                        creditScreen={true}    
-                    />
-                </View>
-            </View>
-        </SafeAreaView>
-    )
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 2000)
+  }, [])
+
+  return (
+    <SafeAreaView style={screenStyles.creditScreenContainer}>
+      <CreditScreenHeader screenTitle="CREDIT STATUS" activeButton="history" />
+      <View style={screenStyles.contentContainer}>
+        <Text style={screenStyles.creditScreenSubTitleText}>HISTORY</Text>
+        <Text style={screenStyles.creditScreenMajorText}>
+          {userLoanBalance.toLocaleString()}
+        </Text>
+        <View style={screenStyles.recordContainer}>
+          {isLoading ? (
+            LoadingIndicator()
+          ) : fetchedLoans && Array.isArray(fetchedLoans) ? (
+            fetchedLoans.map((loan) => {
+              const formattedDate = new Date(
+                loan.created_at
+              ).toLocaleDateString()
+              const amount = loan.amount.toFixed(2)
+
+              return (
+                <TransactionRecord
+                  key={loan.id}
+                  recordDate={formattedDate}
+                  recordValue={loan.user.name}
+                  recordIcon=""
+                  recordSubject={loan.loan_provider_id.name}
+                  recordSubAttr1={`Amount: ${amount} UGX`}
+                  recordSubAttr2=""
+                  recordDated={true}
+                  detailsIcon={false}
+                  creditScreen={true}
+                />
+              )
+            })
+          ) : (
+            <Text>No loan records available</Text>
+          )}
+        </View>
+      </View>
+    </SafeAreaView>
+  )
 }
 
 export default CredditScreen
