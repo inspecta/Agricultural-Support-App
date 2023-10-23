@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "rgba(255, 200, 0, 0.8)",
   },
   modalView: {
     backgroundColor: "white",
@@ -16,7 +17,8 @@ export const styles = StyleSheet.create({
   circle: {
     width: 100,
     height: 100,
-    backgroundColor: "gray",
+    backgroundColor: "white",
+    borderColor: "black",
     borderRadius: 50,
     justifyContent: "center",
     alignItems: "center",
