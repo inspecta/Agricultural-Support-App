@@ -1,10 +1,5 @@
 import React, { useState } from "react"
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ImageBackground,
-} from "react-native"
+import { View, Text, TouchableOpacity, ImageBackground } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { styles } from "./WelcomeStyle"
 import ButtonAction from "../../components/Buttons/ButtonAction"
@@ -20,8 +15,8 @@ const WelcomeScreen = () => {
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = React.useState(false)
 
-  const [loginUser] = useLoginUserMutation() 
- 
+  const [loginUser] = useLoginUserMutation()
+
   const navigation = useNavigation()
 
   let bottomContent
@@ -34,9 +29,12 @@ const WelcomeScreen = () => {
     setIsLoading(true)
 
     try {
-      const result = await loginUser({phoneNumber: momoNumber, password: password})
+      const result = await loginUser({
+        phoneNumber: momoNumber,
+        password: password,
+      })
 
-      if ('data' in result && result.data) {
+      if ("data" in result && result.data) {
         setIsLoading(false)
         const userData = result.data
         navigation.navigate("Dashboard", {

@@ -12,12 +12,12 @@ import generateNewReferenceId from "../../functions/GenerateReferenceId"
 import CustomModal from "../Notifications/CustomModal"
 import generateAccessToken from "../../functions/GenerateToken"
 import LoadingIndicator from "../Notifications/LoadingIndicator"
-import { useAddTransactionMutation } from "../../services/slices/transactionSlice";
+import { useAddTransactionMutation } from "../../services/slices/transactionSlice"
 
 const ReceivePaymentScreen: React.FC = ({ route }) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const [addTransaction] = useAddTransactionMutation()
-  
+
   const navigation = useNavigation()
   const { user } = route.params
 
@@ -94,11 +94,13 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
           amount: formValues.amount,
           payerNumber: formValues.payerNumber,
           reason: formValues.reason,
+          paymentDate: new Date().toLocaleDateString(),
+          transactionType: "REQUEST_PAYMENT",
         })
 
         setNotificationVisible(true)
 
-        addTransaction({transaction:transactionData, userId: user.id})
+        addTransaction({ transaction: transactionData, userId: user.id })
 
         setIsLoading(false)
       } else {

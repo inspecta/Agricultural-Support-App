@@ -47,7 +47,7 @@ const BorrowingScreen: React.FC<DashboardScreenProps> = ({ route }) => {
     const fetchCreditScore = async () => {
       try {
         const response = await axios.get(
-          `https://agromocredit.onrender.com/calculate-credit-score/${user.id}`
+          `http://192.168.1.117:8080/calculate-credit-score/${user.id}`
         )
         setCreditScore(response.data)
       } catch (error) {
@@ -72,7 +72,7 @@ const BorrowingScreen: React.FC<DashboardScreenProps> = ({ route }) => {
       setIsLoading(true)
 
       try {
-        const saveLoanUrl = `http://192.168.9.200:8080/save-loan/${user.id}`
+        const saveLoanUrl = `http://192.168.1.117:8080/save-loan/${user.id}`
         const response = await axios.post(saveLoanUrl, {
           amount: borrowAmount,
           interest_rate: 6,
@@ -80,13 +80,15 @@ const BorrowingScreen: React.FC<DashboardScreenProps> = ({ route }) => {
           user_id: user.id,
         })
 
-        if (response.status === 200) { 
+        if (response.status === 200) {
           setIsLoading(false)
 
           setTransactionDetails({
             amount: borrowAmount,
             loanProvider: "AGROMOCREDIT",
-            reason: "LOAN",
+            reason: "MONEY ON CREDIT",
+            paymentDate: new Date().toLocaleDateString(),
+            transactionType: "LOAN",
           })
 
           setNotificationVisible(true)
@@ -108,53 +110,59 @@ const BorrowingScreen: React.FC<DashboardScreenProps> = ({ route }) => {
   return (
     <SafeAreaView>
       <ScrollView style={screenStyles.creditScreenContainer}>
-      <CreditScreenHeader screenTitle="CREDIT STATUS" activeButton="borrow" />
-      <View style={screenStyles.contentContainer}>
-        <Text style={screenStyles.creditScreenSubTitleText}>
-          YOU CAN BORROW UP TO
-        </Text>
-        <Text style={screenStyles.creditScreenMajorText}>
-          UGX {user_maximum_amount}{" "}
-        </Text>
-        <Text style={{ fontSize: 13, color: "red" }}>Interest Rate: 6%</Text>
-
-        <View style={screenStyles.recordContainer}>
-          <TransactionRecord
-            recordDate="15 SEP"
-            recordValue="MULUNDO SAM"
-            recordIcon=""
-            recordSubject="WEED MASTER"
-            recordSubAttr1="UGX 498,000"
-            recordSubAttr2="UGX 500,000"
-            recordDated={true}
-            detailsIcon={false}
-            creditScreen={true}
+        <CreditScreenHeader screenTitle="CREDIT STATUS" activeButton="borrow" />
+        <View style={screenStyles.contentContainer}>
+          <Text style={screenStyles.creditScreenSubTitleText}>
+            YOU CAN BORROW UP TO
+          </Text>
+          <Text style={screenStyles.creditScreenMajorText}>
+            UGX {user_maximum_amount}{" "}
+          </Text>
+          <Text style={{ fontSize: 13, color: "red" }}>Interest Rate: 8.0%</Text>
+          {/* 
+          <View style={screenStyles.recordContainer}>
+            {loanDetails.map((loanDetail) => {
+              console.log(loanDetail)
+              return (
+                <TransactionRecord
+                  key={loanDetail.id}
+                  recordDate="15 SEP"
+                  recordValue="MULUNDO SAM"
+                  recordIcon=""
+                  recordSubject="WEED MASTER"
+                  recordSubAttr1="UGX 498,000"
+                  recordSubAttr2="UGX 500,000"
+                  recordDated={true}
+                  detailsIcon={false}
+                  creditScreen={true}
+                />
+              )
+            })}
+          </View> */}
+          <View style={screenStyles.creditScreenSubTitleText}>
+            <Text>ENTER AMOUNT TO BORROW</Text>
+            {/* {errorMessage && <Text>{errorMessage}</Text>} */}
+            <InputText
+              txtStyle={screenStyles.creditScreenTextInput2}
+              labelText="Amount you want to borrow!"
+              value={borrowAmount}
+              onChangeText={setBorrowAmount}
+            />
+            <ButtonAction
+              onPress={() => handleBorrowing()}
+              buttonText="BORROW"
+              buttonStyles={screenStyles.creditBtnStyles}
+              buttonTxtStyles={screenStyles.creditBtnTextStyles}
+            />
+          </View>
+          {/* Notification Modal */}
+          <CustomModal
+            visible={notificationVisible}
+            onClose={handleOK}
+            transactionDetails={transactionDetails}
           />
         </View>
-        <View style={screenStyles.creditScreenSubTitleText}>
-          <Text>ENTER AMOUNT TO BORROW</Text>
-          {/* {errorMessage && <Text>{errorMessage}</Text>} */}
-          <InputText
-            txtStyle={screenStyles.creditScreenTextInput2}
-            labelText="Amount you want to borrow!"
-            value={borrowAmount}
-            onChangeText={setBorrowAmount}
-          />
-          <ButtonAction
-            onPress={() => handleBorrowing()}
-            buttonText="BORROW"
-            buttonStyles={screenStyles.creditBtnStyles}
-            buttonTxtStyles={screenStyles.creditBtnTextStyles}
-          />
-        </View>
-        {/* Notification Modal */}
-        <CustomModal
-          visible={notificationVisible}
-          onClose={handleOK}
-          transactionDetails={transactionDetails}
-        />
-      </View>
-      {isLoading && LoadingIndicator()}
+        {isLoading && LoadingIndicator()}
       </ScrollView>
     </SafeAreaView>
   )

@@ -114,4 +114,14 @@ export const screenStyles = StyleSheet.create({
     color: "#000",
     textAlign: "center",
   },
+  errorContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  noRecordsText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "red",
+  },
 })
