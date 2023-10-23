@@ -4,9 +4,8 @@ import { View, Text, ScrollView } from "react-native"
 import { IconButton } from "react-native-paper";
 import { styles } from "./EarningsStyle";
 import {screenStyles} from "../screenStyles"
-import EarningsScreenHeaders from "../../components/Headers/EarningsScreenHeaders";
+import TransactionsScreenHeaders from "../../components/Headers/TransactionsScreenHeaders";
 import TransactionRecord from "../../components/TransactionRecord";
-import axios from "axios"
 import LoadingIndicator from "../Notifications/LoadingIndicator"
 import formatDateTime from "../../functions/FormatDateTime"
 import { useGetEarningsQuery } from "../../services/slices/transactionSlice";
@@ -41,13 +40,13 @@ const EarningsScreen: React.FC = ({ route }) => {
  
     return (
         <SafeAreaView style={screenStyles.container}>
-            <EarningsScreenHeaders  />
+            <TransactionsScreenHeaders  pageTitle = "EARNINGS" owner={user.id}/>
             <View style={screenStyles.subTitle}>
                 <Text style={screenStyles.subTitleText}>CURRENT BALANCE</Text>
                 <Text style={screenStyles.subTitleText}>SEP</Text>
             </View>
             <View style={screenStyles.subTitle}>
-                <Text style={screenStyles.majorText}>UGX {user.balance}</Text>
+                <Text style={screenStyles.majorText}>UGX {user.balance.toLocaleString()}</Text>
                 <View style={screenStyles.subTitle}>
                     <Text style={styles.comparisonText}>UGX 440</Text>
                     <IconButton icon="arrow-up" iconColor="#ffcb05" size={14} />
@@ -67,7 +66,7 @@ const EarningsScreen: React.FC = ({ route }) => {
                             recordValue={transaction.description}
                             recordIcon="shopping"
                             recordSubject="GENERAL"
-                            recordSubAttr1={`UGX ${transaction.amount}`}
+                            recordSubAttr1={`UGX ${transaction.amount.toLocaleString()}`}
                             recordSubAttr2={transaction.partyInvolved}
                             recordDated={true}
                             detailsIcon={true}

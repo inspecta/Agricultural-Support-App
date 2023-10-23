@@ -7,7 +7,7 @@ import axios from "axios"
 import LoadingIndicator from "../Notifications/LoadingIndicator"
 import CustomModal from "../Notifications/CustomModal"
 import { useNavigation } from "@react-navigation/native"
-import EarningsScreenHeaders from "../../components/Headers/EarningsScreenHeaders"
+import EarningsScreenHeaders from "../../components/Headers/TransactionsScreenHeaders"
 import { screenStyles } from "../screenStyles"
 import InputText from "../../components/Inputs/InputText"
 import { styles } from "./ReceivePaymentStyle"
@@ -152,7 +152,7 @@ const TransferScreen: React.FC = ({ route }) => {
 
   return (
     <SafeAreaView style={screenStyles.container}>
-      <EarningsScreenHeaders />
+      <EarningsScreenHeaders pageTitle="PAY MONEY" owner={user.id} />
       <View style={screenStyles.subTitle}>
         <Text style={screenStyles.subTitleText}>CURRENT BALANCE</Text>
         <Text style={screenStyles.subTitleText}>SEP</Text>

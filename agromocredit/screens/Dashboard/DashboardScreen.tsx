@@ -66,7 +66,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
         <View style={screenStyles.subTitle}>
           <View>
             <Text style={screenStyles.subTitleText}>YOUR CURRENT BALANCE</Text>
-            <Text style={screenStyles.majorText}>UGX {currentBalance}</Text>
+            <Text style={screenStyles.majorText}>UGX {currentBalance?.toLocaleString()}</Text>
           </View>
           <CreditScore owner={user.id} />
         </View>
@@ -82,7 +82,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
           >
             <View style={styles.transactionsButton}>
               <Text style={styles.transactionsButtonText}>
-                UGX {totalEarned !== null ? totalEarned : 0}
+                UGX {totalEarned !== null ? totalEarned.toLocaleString() : 0}
               </Text>
             </View>
             <Text style={styles.transactionsText}>EARNINGS</Text>
@@ -97,7 +97,7 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
           >
             <View style={styles.transactionsButton}>
               <Text style={styles.transactionsButtonText}>
-                UGX {totalWithdrawn !== null ? totalWithdrawn : 0}
+                UGX {totalWithdrawn !== null ? totalWithdrawn.toLocaleString() : 0}
               </Text>
             </View>
             <Text style={styles.transactionsText}>WITHDRAWALS</Text>
