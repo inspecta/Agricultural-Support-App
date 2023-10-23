@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const marketPlaceSlice = createApi({
-  reducerPath: 'api',
+  reducerPath: 'marketapi',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://agromocredit.onrender.com' }),
   tagTypes: ['transaction'],
   endpoints: (builder) => ({
