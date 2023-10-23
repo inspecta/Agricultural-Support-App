@@ -45,13 +45,12 @@ const WithdrawalsScreen: React.FC = ({ route }) => {
             <TransactionsScreenHeaders  pageTitle="WITHDRAWS" owner={user.id}/>
             <View style={screenStyles.subTitle}>
                 <Text style={screenStyles.subTitleText}>CURRENT BALANCE</Text>
-                <Text style={screenStyles.subTitleText}>SEP</Text>
             </View>
             <View style={screenStyles.subTitle}>
                 <Text style={screenStyles.majorText}>UGX {user.balance.toLocaleString()}</Text>
 
                 <View style={screenStyles.subTitle}>
-                    <Text style={styles.comparisonText}>UGX 440</Text>
+                    {/* <Text style={styles.comparisonText}>UGX 440</Text> */}
                     <IconButton icon="arrow-up" iconColor="#ffcb05" size={14} />
                 </View>
             </View>

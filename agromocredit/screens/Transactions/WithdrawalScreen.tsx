@@ -139,7 +139,6 @@ const WithdrawScreen: React.FC = ({ route }) => {
       <TransactionsScreenHeaders pageTitle="WITHDRAW" owner={user.id} />
       <View style={screenStyles.subTitle}>
         <Text style={screenStyles.subTitleText}>CURRENT BALANCE</Text>
-        <Text style={screenStyles.subTitleText}>SEP</Text>
       </View>
       <View style={screenStyles.subTitle}>
         <Text style={screenStyles.majorText}>UGX {currentBalance?.toLocaleString()}</Text>
