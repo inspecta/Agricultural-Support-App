@@ -26,6 +26,7 @@ interface ProductScreenProps {
         supplierNumber: string
         category: string
         image: any
+        supplierName: string
       }
       maxLoan: number
     }
@@ -53,7 +54,7 @@ const Product: React.FC<ProductScreenProps> = ({ route }) => {
           </View>
           <Text style={styles.productPrice}>{product.price}</Text>
           <View style={styles.productContainer}>
-            <Text style={styles.categoryText}>{`Supplier: ${product.supplierNumber}`}</Text>
+            <Text style={styles.categoryText}>{`Supplier: ${product.supplierName}`}</Text>
             <Text style={styles.categoryText}>{product.category}</Text>
           </View>
           <View style={styles.productContainer}>
