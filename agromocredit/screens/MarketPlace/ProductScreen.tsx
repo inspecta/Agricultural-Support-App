@@ -26,13 +26,21 @@ interface ProductScreenProps {
         supplierName: string
       }
       maxLoan: number
+      user: {
+        name: string
+        balance: number
+        id: number
+        phoneNumber: string
+      }
     }
   }
 }
 
 const Product: React.FC<ProductScreenProps> = ({ route }) => {
-    const { product, maxLoan } = route.params
+    const { product, maxLoan, user } = route.params
     const [activeDisplay, setActiveDisplay] = useState("details")
+
+    const navigation = useNavigation()
 
     let contentDisplay
 
@@ -70,7 +78,13 @@ const Product: React.FC<ProductScreenProps> = ({ route }) => {
           </View>
           <View style={styles.productContainer}>
               <ButtonAction
-              onPress={() => console.log("Create Account")}
+              onPress={() => {
+                navigation.navigate("Transfer", {
+                  product: product,
+                  user:user
+                })
+              }
+              }
               buttonText="PAY WITH MOMO"
               buttonStyles={styles.payButton}
               buttonTxtStyles={styles.payBtnTextStyles}

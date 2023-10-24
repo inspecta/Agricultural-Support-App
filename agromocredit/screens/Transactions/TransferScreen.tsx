@@ -19,7 +19,9 @@ import {
 
 const TransferScreen: React.FC = ({ route }) => {
   const navigation = useNavigation()
-  const { user } = route.params
+  const { user, product } = route.params
+  console.log(user)
+  console.log(product)
   const [isLoading, setIsLoading] = useState(false)
   const [notificationVisible, setNotificationVisible] = useState(false)
   const [withdrawalError, setWithdrawalError] = useState("")
@@ -130,6 +132,17 @@ const TransferScreen: React.FC = ({ route }) => {
       user,
     })
   }
+
+  useEffect(() => {
+    // Populate the input fields with product details if available
+    if (product) {
+      setFormValues({
+        amount: String(product.price), // Convert to string
+        reason: product.name,
+        phoneNumber: product.supplierNumber,
+      })
+    }
+  }, [product]);
 
   return (
     <SafeAreaView style={screenStyles.container}>
