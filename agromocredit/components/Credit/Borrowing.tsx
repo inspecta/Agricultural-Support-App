@@ -1,33 +1,26 @@
 import React, { useState, useEffect } from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
-import CreditScreenHeader from "../../components/Headers/CreditScreenHeader"
+import CreditScreenHeader from "../Headers/CreditScreenHeader"
 import { View, Text, ScrollView } from "react-native"
-import InputText from "../../components/Inputs/InputText"
-import ButtonAction from "../../components/Buttons/ButtonAction"
-import { screenStyles } from "../screenStyles"
-import TransactionRecord from "../../components/TransactionRecord"
-import LoadingIndicator from "../Notifications/LoadingIndicator"
-import CustomModal from "../Notifications/CustomModal"
+import InputText from "../Inputs/InputText"
+import ButtonAction from "../Buttons/ButtonAction"
+import { screenStyles } from "../../screens/screenStyles"
+import TransactionRecord from "../TransactionRecord"
+import LoadingIndicator from "../../screens/Notifications/LoadingIndicator"
+import CustomModal from "../../screens/Notifications/CustomModal"
 import { useNavigation } from "@react-navigation/native"
 import axios from "axios"
 
-interface User {
-  name: string
-  balance: number
-  id: number
-  phoneNumber: string
-}
-
-interface DashboardScreenProps {
-  route: {
-    params: {
-      user: User
-    }
+interface BorrowingProps {
+  user: {
+      name: string
+      balance: number
+      id: number
+      phoneNumber: string
   }
 }
 
-const BorrowingScreen: React.FC<DashboardScreenProps> = ({ route }) => {
-  const { user } = route.params
+const Borrowing: React.FC<BorrowingProps> = ({ user }) => {
   const navigation = useNavigation()
 
   const [creditScore, setCreditScore] = useState(0)
@@ -108,9 +101,6 @@ const BorrowingScreen: React.FC<DashboardScreenProps> = ({ route }) => {
   }
 
   return (
-    <SafeAreaView>
-      <ScrollView style={screenStyles.creditScreenContainer}>
-        <CreditScreenHeader screenTitle="CREDIT STATUS" activeButton="borrow" />
         <View style={screenStyles.contentContainer}>
           <Text style={screenStyles.creditScreenSubTitleText}>
             YOU CAN BORROW UP TO
@@ -162,10 +152,7 @@ const BorrowingScreen: React.FC<DashboardScreenProps> = ({ route }) => {
             transactionDetails={transactionDetails}
           />
         </View>
-        {isLoading && LoadingIndicator()}
-      </ScrollView>
-    </SafeAreaView>
   )
 }
 
-export default BorrowingScreen
+export default Borrowing

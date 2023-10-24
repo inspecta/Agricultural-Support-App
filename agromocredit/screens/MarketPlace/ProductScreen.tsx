@@ -8,11 +8,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context"
 import { styles } from "./ProductStyle"
 import ButtonAction from "../../components/Buttons/ButtonAction"
-import InputText from "../../components/Inputs/InputText"
 import { useNavigation } from "@react-navigation/native"
 import { screenStyles } from "../screenStyles"
-import { useLoginUserMutation } from "../../services/slices/transactionSlice"
-import { log } from "console"
 import { marketStyles } from "./marketStyles"
 import { IconButton } from "react-native-paper"
 
@@ -26,15 +23,24 @@ interface ProductScreenProps {
         supplierNumber: string
         category: string
         image: any
+        supplierName: string
       }
       maxLoan: number
+      user: {
+        name: string
+        balance: number
+        id: number
+        phoneNumber: string
+      }
     }
   }
 }
 
 const Product: React.FC<ProductScreenProps> = ({ route }) => {
-    const { product, maxLoan } = route.params
+    const { product, maxLoan, user } = route.params
     const [activeDisplay, setActiveDisplay] = useState("details")
+
+    const navigation = useNavigation()
 
     let contentDisplay
 
@@ -53,7 +59,7 @@ const Product: React.FC<ProductScreenProps> = ({ route }) => {
           </View>
           <Text style={styles.productPrice}>{product.price}</Text>
           <View style={styles.productContainer}>
-            <Text style={styles.categoryText}>{`Supplier: ${product.supplierNumber}`}</Text>
+            <Text style={styles.categoryText}>{`Supplier: ${product.supplierName}`}</Text>
             <Text style={styles.categoryText}>{product.category}</Text>
           </View>
           <View style={styles.productContainer}>
@@ -72,7 +78,13 @@ const Product: React.FC<ProductScreenProps> = ({ route }) => {
           </View>
           <View style={styles.productContainer}>
               <ButtonAction
-              onPress={() => console.log("Create Account")}
+              onPress={() => {
+                navigation.navigate("Transfer", {
+                  product: product,
+                  user:user
+                })
+              }
+              }
               buttonText="PAY WITH MOMO"
               buttonStyles={styles.payButton}
               buttonTxtStyles={styles.payBtnTextStyles}
@@ -112,7 +124,7 @@ const Product: React.FC<ProductScreenProps> = ({ route }) => {
   return (
     <SafeAreaView style={screenStyles.creditScreenContainer}>
       <ImageBackground
-        source={product.image}
+        source={ {uri: product.image}}
         style={styles.welcomeScreenContainer}
       >
         <TouchableOpacity

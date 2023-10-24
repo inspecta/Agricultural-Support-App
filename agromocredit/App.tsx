@@ -2,10 +2,10 @@ import { StyleSheet, Text, View } from "react-native"
 import WelcomeScreen from "./screens/Welcome/WelcomeScreen"
 import DashboardScreen from "./screens/Dashboard/DashboardScreen"
 import ReceivePaymentScreen from "./screens/Transactions/ReceivePaymentScreen"
-import PayLoanScreen from "./screens/Credit/PayLoanScreen"
+import PayLoanScreen from "./components/Credit/PayLoan"
 import EarningsScreen from "./screens/Transactions/EarningsScreen"
 import CreditScreen from "./screens/Credit/CreditScreen"
-import BorrowingScreen from "./screens/Credit/BorrowingSCreen"
+import BorrowingScreen from "./components/Credit/Borrowing"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import WithdrawScreenal from "./screens/Transactions/WithdrawalScreen"
@@ -36,8 +36,6 @@ export default function App() {
           />
           <Stack.Screen name="Withdraw" component={WithdrawScreenal} />
           <Stack.Screen name="Withdraws" component={WithdrawalsScreen} />
-          <Stack.Screen name="Borrowing" component={BorrowingScreen} />
-          <Stack.Screen name="PayLoan" component={PayLoanScreen} />
           <Stack.Screen name="Earnings" component={EarningsScreen} />
           <Stack.Screen name="Credit" component={CreditScreen} />
           <Stack.Screen name="Transfer" component={TransferScreen} />
