@@ -20,8 +20,6 @@ import {
 const TransferScreen: React.FC = ({ route }) => {
   const navigation = useNavigation()
   const { user, product } = route.params
-  console.log(user)
-  console.log(product)
   const [isLoading, setIsLoading] = useState(false)
   const [notificationVisible, setNotificationVisible] = useState(false)
   const [withdrawalError, setWithdrawalError] = useState("")

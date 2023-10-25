@@ -4,6 +4,7 @@ import ButtonAction from "../Buttons/ButtonAction";
 import { useNavigation } from "@react-navigation/native"
 import { styles } from "./CreditScreenHeaderStyle";
 import { screenStyles } from "../../screens/screenStyles";
+import { useGetTotalLoanBalanceQuery } from "../../services/slices/transactionSlice";
 
 interface CreditScreenHeaderProps {
     activeButton: string;
@@ -16,9 +17,10 @@ interface CreditScreenHeaderProps {
     }
     handleTabs: (activeButton: string) => void
   }
-  
 const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, activeButton, handleTabs, user }) => {
     const navigation = useNavigation()
+
+    const { data: totalLoanBalance } = useGetTotalLoanBalanceQuery(user.id)
     return (
         <View style={styles.container}>
             <View style={screenStyles.subTitle}>
@@ -26,7 +28,8 @@ const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, ac
                 <Image source={require('../../screens/assets/titleImg.png')} />
             </View>
             <View style={screenStyles.subTitle}>
-            <Text style={screenStyles.creditScreenMajorText}>UGX 567,700</Text> 
+                <Text style={screenStyles.creditScreenSubTitleText}>CURRENT LOAN BALANCE</Text>
+                <Text style={screenStyles.creditScreenMajorText}>{totalLoanBalance}</Text>
             </View> 
             <View style={styles.buttonContainer}>
                 <ButtonAction

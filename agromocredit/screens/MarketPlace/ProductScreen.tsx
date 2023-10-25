@@ -91,14 +91,20 @@ const Product: React.FC<ProductScreenProps> = ({ route }) => {
               />
               {product.price <= maxLoan ? (
                 <ButtonAction
-                onPress={() => console.log("Create Account")}
-                buttonText="BUY ON CREDIT"
-                buttonStyles={styles.creditButton}
-                buttonTxtStyles={styles.creditBtnTextStyles}
+                onPress={() => {
+                    navigation.navigate("CreditPurchase", {
+                      product: product,
+                      user:user
+                    })
+                  }
+                }
+                  buttonText="BUY ON CREDIT"
+                  buttonStyles={styles.creditButton}
+                  buttonTxtStyles={styles.creditBtnTextStyles}
                 />
               ): (
                 <ButtonAction
-                onPress={() => console.log("Create Account")}
+                onPress={() => console.log("Inactive")}
                 buttonText="BUY ON CREDIT"
                 buttonStyles={styles.creditButtonDisabled}
                 buttonTxtStyles={styles.creditBtnTextStylesDisabled}
