@@ -140,7 +140,7 @@ const TransferScreen: React.FC = ({ route }) => {
         phoneNumber: product.supplierNumber,
       })
     }
-  }, [product]);
+  }, [product])
 
   return (
     <SafeAreaView style={screenStyles.container}>
@@ -149,7 +149,9 @@ const TransferScreen: React.FC = ({ route }) => {
         <Text style={screenStyles.subTitleText}>CURRENT BALANCE</Text>
       </View>
       <View style={screenStyles.subTitle}>
-        <Text style={screenStyles.majorText}>UGX {userBalance.toLocaleString()}</Text>
+        <Text style={screenStyles.majorText}>
+          UGX {userBalance.toLocaleString()}
+        </Text>
       </View>
 
       {withdrawalError ? (
@@ -185,6 +187,7 @@ const TransferScreen: React.FC = ({ route }) => {
         visible={notificationVisible}
         onClose={handleOK}
         transactionDetails={paymentDetails}
+        user={user}
       />
       {isLoading && LoadingIndicator()}
 

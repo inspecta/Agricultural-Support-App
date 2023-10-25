@@ -18,12 +18,16 @@ interface CustomModalProps {
     paymentDate: string
     transactionType: string
   }
+  user?: {
+    name: string
+  }
 }
 
 const CustomModal: React.FC<CustomModalProps> = ({
   visible,
   onClose,
   transactionDetails,
+  user,
 }) => {
   const paymentDate: Date = new Date()
   return (
@@ -49,7 +53,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
           </Text>
           <View style={styles.payerName}>
             <Text>Payer Name</Text>
-            <Text style={styles.payerCode}>Derrick Mulinde</Text>
+            <Text style={styles.payerCode}>{user.name.toUpperCase()}</Text>
           </View>
           <View style={styles.transactionDetails}>
             <View style={styles.transactionDetail}>
@@ -66,9 +70,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
             </View>
             <View style={styles.transactionDetail}>
               <Text>Reference No.</Text>
-              <Text style={styles.detailValue}>
-                {Math.floor(Math.random())}
-              </Text>
+              <Text style={styles.detailValue}>bf5d-7fdf5b2ce992</Text>
             </View>
           </View>
           <TouchableOpacity onPress={onClose} style={styles.button}>

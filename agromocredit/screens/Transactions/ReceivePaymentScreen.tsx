@@ -121,7 +121,7 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
 
   return (
     <SafeAreaView style={screenStyles.container}>
-      <EarningsScreenHeaders pageTitle="RECEIVE PAYMENT" owner={user.id}/>
+      <EarningsScreenHeaders pageTitle="RECEIVE PAYMENT" owner={user.id} />
       <Text style={screenStyles.subTitleText}>REQUEST FOR PAYMENT</Text>
       <View style={styles.requestPaymentForm}>
         <Text style={screenStyles.subText}>FOR</Text>
@@ -157,16 +157,17 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
           visible={notificationVisible}
           onClose={handleOK}
           transactionDetails={transactionDetails}
+          user={user}
         />
       </View>
       {isLoading && LoadingIndicator()}
       <View style={styles.logoContainer}>
-          {/* Add momo logo here */}
-          <Image
-            source={require('../../screens/assets/momoLogo.jpg')}
-            style={styles.logo}  
-          />
-        </View>
+        {/* Add momo logo here */}
+        <Image
+          source={require("../../screens/assets/momoLogo.jpg")}
+          style={styles.logo}
+        />
+      </View>
     </SafeAreaView>
   )
 }

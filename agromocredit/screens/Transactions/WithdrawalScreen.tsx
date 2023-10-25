@@ -21,12 +21,12 @@ const WithdrawScreen: React.FC = ({ route }) => {
   const [notificationVisible, setNotificationVisible] = useState(false)
   const [withdrawalError, setWithdrawalError] = useState("")
   const [currentBalance, setCurrentBalance] = useState<number | null>(null)
-  
+
   const { data: balance } = useGetBalanceQuery(route.params.user.id)
   const [addTransaction] = useAddTransactionMutation()
 
   useEffect(() => {
-    if(balance) setCurrentBalance(balance)
+    if (balance) setCurrentBalance(balance)
   }, [balance])
 
   const [formValues, setFormValues] = useState({
@@ -115,7 +115,7 @@ const WithdrawScreen: React.FC = ({ route }) => {
 
           setNotificationVisible(true)
 
-          addTransaction({transaction:transactionData, userId: user.id})
+          addTransaction({ transaction: transactionData, userId: user.id })
 
           setIsLoading(false)
         } else {
@@ -142,7 +142,9 @@ const WithdrawScreen: React.FC = ({ route }) => {
         <Text style={screenStyles.subTitleText}>CURRENT BALANCE</Text>
       </View>
       <View style={screenStyles.subTitle}>
-        <Text style={screenStyles.majorText}>UGX {currentBalance?.toLocaleString()}</Text>
+        <Text style={screenStyles.majorText}>
+          UGX {currentBalance?.toLocaleString()}
+        </Text>
         <View style={screenStyles.subTitle}>
           <Text style={screenStyles.subTitleText}>{user.phoneNumber}</Text>
         </View>
@@ -169,15 +171,16 @@ const WithdrawScreen: React.FC = ({ route }) => {
         visible={notificationVisible}
         onClose={handleOK}
         transactionDetails={transactionDetails}
+        user={user}
       />
       {isLoading && LoadingIndicator()}
       <View style={withdrawStyles.logoContainer}>
-          {/* Add momo logo here */}
-          <Image
-            source={require('../../screens/assets/momoLogo.jpg')}
-            style={withdrawStyles.logo}  
-          />
-        </View>
+        {/* Add momo logo here */}
+        <Image
+          source={require("../../screens/assets/momoLogo.jpg")}
+          style={withdrawStyles.logo}
+        />
+      </View>
     </SafeAreaView>
   )
 }
