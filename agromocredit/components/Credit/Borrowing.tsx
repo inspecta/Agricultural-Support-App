@@ -21,7 +21,6 @@ interface BorrowingProps {
 }
 
 const Borrowing: React.FC<BorrowingProps> = ({ user }) => {
-  console.log(user.id);
   
   const navigation = useNavigation()
 
@@ -74,7 +73,6 @@ const Borrowing: React.FC<BorrowingProps> = ({ user }) => {
           loan_provider_id: 1,
           user_id: user.id,
         })
-        console.log(response)
 
         if (response.status === 200) {
           setIsLoading(false)
@@ -112,26 +110,6 @@ const Borrowing: React.FC<BorrowingProps> = ({ user }) => {
             UGX {user_maximum_amount}{" "}
           </Text>
           <Text style={{ fontSize: 13, color: "red" }}>Interest Rate: 8.0%</Text>
-          {/* 
-          <View style={screenStyles.recordContainer}>
-            {loanDetails.map((loanDetail) => {
-              console.log(loanDetail)
-              return (
-                <TransactionRecord
-                  key={loanDetail.id}
-                  recordDate="15 SEP"
-                  recordValue="MULUNDO SAM"
-                  recordIcon=""
-                  recordSubject="WEED MASTER"
-                  recordSubAttr1="UGX 498,000"
-                  recordSubAttr2="UGX 500,000"
-                  recordDated={true}
-                  detailsIcon={false}
-                  creditScreen={true}
-                />
-              )
-            })}
-          </View> */}
           <View style={screenStyles.creditScreenSubTitleText}>
             <Text>ENTER AMOUNT TO BORROW</Text>
             {/* {errorMessage && <Text>{errorMessage}</Text>} */}

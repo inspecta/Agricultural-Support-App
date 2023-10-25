@@ -104,7 +104,7 @@ const Product: React.FC<ProductScreenProps> = ({ route }) => {
                 />
               ): (
                 <ButtonAction
-                onPress={() => console.log("Create Account")}
+                onPress={() => console.log("Inactive")}
                 buttonText="BUY ON CREDIT"
                 buttonStyles={styles.creditButtonDisabled}
                 buttonTxtStyles={styles.creditBtnTextStylesDisabled}

@@ -17,8 +17,6 @@ const CreditPurchaseScreen: React.FC = ({ route }) => {
 
     const navigation = useNavigation()
     const { user, product } = route.params
-    console.log(user)
-    console.log(product)
 
     const [borrowAmount, setBorrowAmount] = useState("")
     const [isLoading, setIsLoading] = React.useState(false)
@@ -65,7 +63,6 @@ const CreditPurchaseScreen: React.FC = ({ route }) => {
     }
 
     const creditAmount = product.price * 0.08 + product.price
-    console.log(creditAmount)
 
     const handleOK = () => {
     setNotificationVisible(false)

@@ -17,9 +17,7 @@ const formatDateTime = (
   const minutes: string = originalDate.getMinutes().toString().padStart(2, "0")
 
   const formattedDate: string = `${day} ${month} ${hours}:${minutes}`
-  // console.log(formattedDate)
-
-  // Format time as "HH:mm Hrs"
+  
   const formattedTime: string = `${hours}:${minutes} Hrs`
 
   const DateTimeObj = {
