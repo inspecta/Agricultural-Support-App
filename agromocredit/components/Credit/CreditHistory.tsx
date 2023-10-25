@@ -52,7 +52,7 @@ const CreditHistory: React.FC<CreditHistoryProps> = ({ user }) => {
                   recordValue={loan.user.name}
                   recordIcon=""
                   recordSubject={loan.loan_provider_id.name}
-                  recordSubAttr1={`Amount: ${amount} UGX`}
+                  recordSubAttr1={`${amount} UGX`}
                   recordSubAttr2=""
                   recordDated={true}
                   detailsIcon={false}

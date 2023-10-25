@@ -157,6 +157,7 @@ const WithdrawScreen: React.FC = ({ route }) => {
         labelText="Amount"
         value={formValues.amount}
         onChangeText={(text) => handleInputChange("amount", text)}
+        keyboardType="numeric"
       />
       <ButtonAction
         onPress={handleWithdrawal}

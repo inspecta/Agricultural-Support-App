@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, Image } from "react-native";
 import ButtonAction from "../Buttons/ButtonAction";
 import { useNavigation } from "@react-navigation/native"
@@ -16,8 +16,8 @@ interface CreditScreenHeaderProps {
     }
     handleTabs: (activeButton: string) => void
   }
-
-const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, activeButton, handleTabs }) => {
+  
+const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, activeButton, handleTabs, user }) => {
     const navigation = useNavigation()
     return (
         <View style={styles.container}>
@@ -26,7 +26,7 @@ const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, ac
                 <Image source={require('../../screens/assets/titleImg.png')} />
             </View>
             <View style={screenStyles.subTitle}>
-            <Text style={screenStyles.creditScreenMajorText}>UGX 567,700</Text>
+            <Text style={screenStyles.creditScreenMajorText}>UGX 567,700</Text> 
             </View> 
             <View style={styles.buttonContainer}>
                 <ButtonAction
@@ -43,7 +43,7 @@ const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, ac
                 />
                 <ButtonAction
                     onPress={() => {handleTabs('borrow')}}
-                    buttonText="MOMO BORROW"
+                    buttonText="BORROW"
                     buttonStyles={activeButton === 'borrow' ? styles.activeBtnStyles : styles.creditBtnStyles}
                     buttonTxtStyles={activeButton === 'borrow' ? styles.activeBtnTextStyles : styles.creditBtnTextStyles}
                 />
