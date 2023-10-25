@@ -16,6 +16,7 @@ import TransferScreen from "./screens/Transactions/TransferScreen"
 import ItemCategorieScreen from "./screens/MarketPlace/ItemCategoriesScreen"
 import CategoryProductsScreen from "./screens/MarketPlace/CategoryProducts"
 import ProductScreen from "./screens/MarketPlace/ProductScreen"
+import CreditPurchaseScreen from "./screens/Credit/CreditPurchaseScreen"
 
 const Stack = createStackNavigator()
 
@@ -42,6 +43,7 @@ export default function App() {
           <Stack.Screen name="MarketPlace" component={ItemCategorieScreen} />
           <Stack.Screen name="CategoryProducts" component={CategoryProductsScreen} />
           <Stack.Screen name="Product" component={ProductScreen} />
+          <Stack.Screen name="CreditPurchase" component={CreditPurchaseScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
