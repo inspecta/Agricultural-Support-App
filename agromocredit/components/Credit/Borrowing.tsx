@@ -40,7 +40,7 @@ const Borrowing: React.FC<BorrowingProps> = ({ user }) => {
     const fetchCreditScore = async () => {
       try {
         const response = await axios.get(
-          `http://192.168.1.117:8080/calculate-credit-score/${user.id}`
+          `https://agromocredit.onrender.com/calculate-credit-score/${user.id}`
         )
         setCreditScore(response.data)
       } catch (error) {
@@ -65,7 +65,7 @@ const Borrowing: React.FC<BorrowingProps> = ({ user }) => {
       setIsLoading(true)
 
       try {
-        const saveLoanUrl = `http://192.168.1.117:8080/save-loan/${user.id}`
+        const saveLoanUrl = `https://agromocredit.onrender.com/save-loan/${user.id}`
         const response = await axios.post(saveLoanUrl, {
           amount: borrowAmount,
           interest_rate: 6,
@@ -137,6 +137,7 @@ const Borrowing: React.FC<BorrowingProps> = ({ user }) => {
               labelText="Amount you want to borrow!"
               value={borrowAmount}
               onChangeText={setBorrowAmount}
+              keyboardType="numeric"
             />
             <ButtonAction
               onPress={() => handleBorrowing()}
