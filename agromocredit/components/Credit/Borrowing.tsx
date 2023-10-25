@@ -21,6 +21,8 @@ interface BorrowingProps {
 }
 
 const Borrowing: React.FC<BorrowingProps> = ({ user }) => {
+  console.log(user.id);
+  
   const navigation = useNavigation()
 
   const [creditScore, setCreditScore] = useState(0)
@@ -69,9 +71,10 @@ const Borrowing: React.FC<BorrowingProps> = ({ user }) => {
         const response = await axios.post(saveLoanUrl, {
           amount: borrowAmount,
           interest_rate: 6,
-          loan_provider_id: 2,
+          loan_provider_id: 1,
           user_id: user.id,
         })
+        console.log(response)
 
         if (response.status === 200) {
           setIsLoading(false)
