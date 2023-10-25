@@ -43,7 +43,7 @@ const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({ screenTitle, ac
                 />
                 <ButtonAction
                     onPress={() => {handleTabs('borrow')}}
-                    buttonText="MOMO BORROW"
+                    buttonText="BORROW"
                     buttonStyles={activeButton === 'borrow' ? styles.activeBtnStyles : styles.creditBtnStyles}
                     buttonTxtStyles={activeButton === 'borrow' ? styles.activeBtnTextStyles : styles.creditBtnTextStyles}
                 />
