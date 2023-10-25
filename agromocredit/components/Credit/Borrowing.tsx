@@ -9,24 +9,25 @@ import TransactionRecord from "../TransactionRecord"
 import LoadingIndicator from "../../screens/Notifications/LoadingIndicator"
 import CustomModal from "../../screens/Notifications/CustomModal"
 import { useNavigation } from "@react-navigation/native"
+import { useGetTotalLoanBalanceQuery } from "../../services/slices/transactionSlice"
 import axios from "axios"
 
 interface BorrowingProps {
   user: {
-      name: string
-      balance: number
-      id: number
-      phoneNumber: string
+    name: string
+    balance: number
+    id: number
+    phoneNumber: string
   }
 }
 
 const Borrowing: React.FC<BorrowingProps> = ({ user }) => {
-  
   const navigation = useNavigation()
 
   const [creditScore, setCreditScore] = useState(0)
   const [borrowAmount, setBorrowAmount] = useState("")
-  const [isLoading, setIsLoading] = React.useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
   const [notificationVisible, setNotificationVisible] = useState(false)
   const [transactionDetails, setTransactionDetails] = useState({
     amount: "",
@@ -53,18 +54,21 @@ const Borrowing: React.FC<BorrowingProps> = ({ user }) => {
   }, [user.id])
 
   /** The maximum loan a user can get at the moment */
-  const user_maximum_amount = (
-    (creditScore / 10) *
-    MAXIMUM_BORROWING_AMOUNT
-  ).toLocaleString()
+  const maximum_possible_loan = (creditScore / 10) * MAXIMUM_BORROWING_AMOUNT
+
+  // Check if the user has a loan available
+  const { data: currentLoans } = useGetTotalLoanBalanceQuery(user.id)
+
+  const user_maximum_amount = maximum_possible_loan - currentLoans
 
   /*** Handle borrowing money */
   const handleBorrowing = async () => {
-    if (+borrowAmount < +user_maximum_amount && +borrowAmount > 10000) {
-      console.log("Cannot borrow more than " + user_maximum_amount)
+    if (+borrowAmount > +user_maximum_amount) {
+      setErrorMessage("You can't borrow more than " + user_maximum_amount)
+    } else if (+borrowAmount < 9999) {
+      setErrorMessage("You can't borrow less than UgShs 10,000")
     } else {
       setIsLoading(true)
-
       try {
         const saveLoanUrl = `https://agromocredit.onrender.com/save-loan/${user.id}`
         const response = await axios.post(saveLoanUrl, {
@@ -102,38 +106,51 @@ const Borrowing: React.FC<BorrowingProps> = ({ user }) => {
   }
 
   return (
-        <View style={screenStyles.contentContainer}>
-          <Text style={screenStyles.creditScreenSubTitleText}>
-            YOU CAN BORROW UP TO
+    <View style={screenStyles.contentContainer}>
+      <View style={screenStyles.creditScreenSubTitleText}>
+        <Text>ENTER AMOUNT TO BORROW</Text>
+        {errorMessage && (
+          <Text
+            style={{
+              color: "red",
+              fontSize: 15,
+              marginTop: 10,
+              textAlign: "center",
+              backgroundColor: "rgba(255, 0, 0, 0.26)",
+              padding: 5,
+              borderRadius: 5,
+            }}
+          >
+            {errorMessage}
           </Text>
-          <Text style={screenStyles.creditScreenMajorText}>
-            UGX {user_maximum_amount}{" "}
-          </Text>
-          <Text style={{ fontSize: 13, color: "red" }}>Interest Rate: 8.0%</Text>
-          <View style={screenStyles.creditScreenSubTitleText}>
-            <Text>ENTER AMOUNT TO BORROW</Text>
-            {/* {errorMessage && <Text>{errorMessage}</Text>} */}
-            <InputText
-              txtStyle={screenStyles.creditScreenTextInput2}
-              labelText="Amount you want to borrow!"
-              value={borrowAmount}
-              onChangeText={setBorrowAmount}
-              keyboardType="numeric"
-            />
-            <ButtonAction
-              onPress={() => handleBorrowing()}
-              buttonText="BORROW"
-              buttonStyles={screenStyles.creditBtnStyles}
-              buttonTxtStyles={screenStyles.creditBtnTextStyles}
-            />
-          </View>
-          {/* Notification Modal */}
-          <CustomModal
-            visible={notificationVisible}
-            onClose={handleOK}
-            transactionDetails={transactionDetails}
+        )}
+        <Text style={{ fontSize: 13, color: "red" }}>Interest Rate: 8.0%</Text>
+        <View style={screenStyles.creditScreenSubTitleText}>
+          <Text>ENTER AMOUNT TO BORROW</Text>
+          {/* {errorMessage && <Text>{errorMessage}</Text>} */}
+          <InputText
+            txtStyle={screenStyles.creditScreenTextInput2}
+            labelText="Amount you want to borrow!"
+            value={borrowAmount}
+            onChangeText={setBorrowAmount}
+            keyboardType="numeric"
+          />
+          <ButtonAction
+            onPress={() => handleBorrowing()}
+            buttonText="BORROW"
+            buttonStyles={screenStyles.creditBtnStyles}
+            buttonTxtStyles={screenStyles.creditBtnTextStyles}
           />
         </View>
+        {/* Notification Modal */}
+        <CustomModal
+          visible={notificationVisible}
+          onClose={handleOK}
+          transactionDetails={transactionDetails}
+          user={user}
+        />
+      </View>
+    </View>
   )
 }
 

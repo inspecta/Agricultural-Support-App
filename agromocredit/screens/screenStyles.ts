@@ -76,7 +76,7 @@ export const screenStyles = StyleSheet.create({
     backgroundColor: "transparent",
     borderBottomColor: "#5B6373",
     borderBottomWidth: 0.5,
-    color: "#fff",
+    color: "#000",
     marginVertical: 20,
   },
   creditScreenTextInput2: {
