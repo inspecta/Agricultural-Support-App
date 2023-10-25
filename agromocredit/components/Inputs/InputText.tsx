@@ -23,6 +23,7 @@ const InputText: React.FC<InputTextProps> = ({
       onChangeText={onChangeText}
       style={txtStyle}
       placeholder={labelText}
+      placeholderTextColor="#fff"
       value={value}
       {...rest}
     />
