@@ -7,7 +7,7 @@ import { screenStyles } from "../screenStyles"
 import CreditScore from "../../components/CreditScore"
 import { useNavigation } from "@react-navigation/native"
 import { useGetBalanceQuery, useGetTotalEarnedQuery, useGetTotalCreditQuery } from "../../services/slices/transactionSlice";
-import { ScrollView } from "react-native-gesture-handler"
+import { ScrollView } from "react-native"
 
 interface User {
   name: string

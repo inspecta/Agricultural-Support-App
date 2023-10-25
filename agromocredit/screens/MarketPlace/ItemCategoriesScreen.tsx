@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView } from "react-native";
 import { IconButton } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./ItemCategoriesStyle";
@@ -9,7 +9,6 @@ import { useNavigation } from "@react-navigation/native";
 import ButtonAction from "../../components/Buttons/ButtonAction";
 import { screenStyles } from "../screenStyles";
 import { useGetProductsByCategoryQuery } from "../../services/slices/marketPlaceSlice";
-import { log } from "console";
 
 interface User {
   name: string;
