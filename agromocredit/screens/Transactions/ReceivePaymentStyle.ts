@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
     logoContainer: {
         alignItems: "center",
       },
-      logo: {
+    logo: {
         width: 70,
         height: 70,
         marginTop: 2

@@ -151,7 +151,7 @@ const TransferScreen: React.FC = ({ route }) => {
         <Text style={screenStyles.subTitleText}>CURRENT BALANCE</Text>
       </View>
       <View style={screenStyles.subTitle}>
-        <Text style={screenStyles.majorText}>UGX {userBalance}</Text>
+        <Text style={screenStyles.majorText}>UGX {userBalance.toLocaleString()}</Text>
       </View>
 
       {withdrawalError ? (
@@ -160,7 +160,7 @@ const TransferScreen: React.FC = ({ route }) => {
 
       <InputText
         txtStyle={styles.textInput}
-        labelText="Phone Number To Send Money To"
+        labelText="Recipient's Phone Number"
         value={formValues.phoneNumber}
         onChangeText={(text) => handleInputChange("phoneNumber", text)}
       />
