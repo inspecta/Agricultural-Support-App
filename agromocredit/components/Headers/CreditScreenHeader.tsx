@@ -36,7 +36,7 @@ const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({
         <Text style={screenStyles.creditScreenSubTitleText}>
           CURRENT LOAN BALANCE:
         </Text>
-        <Text>{totalLoanBalance.toLocaleString()}</Text>
+        <Text>{totalLoanBalance? totalLoanBalance.toLocaleString(): '0'}</Text>
       </View>
       <View style={styles.buttonContainer}>
         <ButtonAction

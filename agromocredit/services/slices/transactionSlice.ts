@@ -16,9 +16,11 @@ export const transactionSlice = createApi({
     }),
     getEarnings: builder.query({
       query: (userId) => `/request-payment/${userId}`,
+      transformResponse: (response) => (response as Array<any>).sort((a, b) => b.id - a.id),
     }),
     getWithdraws: builder.query({
       query: (userId) => `/withdraw/${userId}`,
+      transformResponse: (response) => (response as Array<any>).sort((a, b) => b.id - a.id),
     }),
     getCreditScore: builder.query({
       query: (userId) => `/calculate-credit-score/${userId}`,
