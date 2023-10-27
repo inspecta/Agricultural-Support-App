@@ -47,7 +47,7 @@ const ItemCategoriesScreen: React.FC<ItemCategoriesScreenProps> = ({ route }) =>
         </View>
         <View style={marketStyles.categoriesContainer}>
           {categories.map((category) => {
-            const { data } = useGetProductsByCategoryQuery(category.label);
+            const { data, isLoading } = useGetProductsByCategoryQuery(category.label);
             return (
               <TouchableOpacity
                 style={styles.categoryCard}
@@ -62,7 +62,7 @@ const ItemCategoriesScreen: React.FC<ItemCategoriesScreenProps> = ({ route }) =>
               >
                 <IconButton icon={category.icon} iconColor="#ffcb05" size={72} />
                 <Text>{category.label}</Text>
-                <Text style={marketStyles.smallText}>{`${data?.length} item(s)`}</Text>
+                <Text style={marketStyles.smallText}>{isLoading ? `Loading...` : `${data?.length} item(s)`}</Text>
               </TouchableOpacity>
             );
           })}
