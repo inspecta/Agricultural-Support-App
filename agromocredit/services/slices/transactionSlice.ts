@@ -16,11 +16,13 @@ export const transactionSlice = createApi({
     }),
     getEarnings: builder.query({
       query: (userId) => `/request-payment/${userId}`,
-      transformResponse: (response) => (response as Array<any>).sort((a, b) => b.id - a.id),
+      transformResponse: (response) =>
+        (response as Array<any>).sort((a, b) => b.id - a.id),
     }),
     getWithdraws: builder.query({
       query: (userId) => `/withdraw/${userId}`,
-      transformResponse: (response) => (response as Array<any>).sort((a, b) => b.id - a.id),
+      transformResponse: (response) =>
+        (response as Array<any>).sort((a, b) => b.id - a.id),
     }),
     getCreditScore: builder.query({
       query: (userId) => `/calculate-credit-score/${userId}`,
@@ -38,10 +40,16 @@ export const transactionSlice = createApi({
         body: transaction,
       }),
     }),
-
     loginUser: builder.mutation({
       query: (user) => ({
         url: "/login-user",
+        method: "POST",
+        body: user,
+      }),
+    }),
+    registerUser: builder.mutation({
+      query: (user) => ({
+        url: "/register-user",
         method: "POST",
         body: user,
       }),
@@ -54,6 +62,7 @@ export const {
   useGetTotalEarnedQuery,
   useGetTotalCreditQuery,
   useLoginUserMutation,
+  useRegisterUserMutation,
   useGetEarningsQuery,
   useAddTransactionMutation,
   useGetCreditScoreQuery,
