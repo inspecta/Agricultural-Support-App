@@ -11,6 +11,9 @@ import { useGetTotalLoanBalanceQuery } from "../../services/slices/transactionSl
 import CustomModal from "../../screens/Notifications/CustomModal"
 import { useNavigation } from "@react-navigation/native"
 import axios from "axios"
+import ErrorMessage from "../../screens/Notifications/ErrorMessage"
+import InputNumber from "../Inputs/InputNumber"
+import LoadingIndicator from "../../screens/Notifications/LoadingIndicator"
 
 interface PayLoanProps {
   user: {
@@ -36,17 +39,20 @@ const PayLoan: React.FC<PayLoanProps> = ({ user }) => {
   const handlePayLoan = async () => {
     setIsLoading(true)
 
-    if (user.balance < +amount) {
+    if (!amount) {
+      setErrorMessage("How much you are paying!")
+    } else if (user.balance < +amount) {
       setErrorMessage("Insufficient balance to pay loan.")
     } else {
       setIsLoading(true)
       try {
         const saveLoanUrl = `https://agromocredit.onrender.com/save-loan/${user.id}`
         const response = await axios.post(saveLoanUrl, {
-          amount: -amount,
+          amount: amount,
           interest_rate: 6,
           loan_provider_id: 1,
           user_id: user.id,
+          type: "PAY_LOAN",
         })
 
         if (response.status === 200) {
@@ -79,54 +85,16 @@ const PayLoan: React.FC<PayLoanProps> = ({ user }) => {
   return (
     <View style={screenStyles.contentContainer}>
       <Text style={screenStyles.creditScreenSubTitleText}>
-        OUTSTANDING LOANS
+        OUTSTANDING LOAN BALANCE
       </Text>
-      <Text style={screenStyles.creditScreenMajorText}>
+      <Text style={{ fontWeight: "bold", fontSize: 28, marginBottom: 10 }}>
         UGX {currentLoanAmount.toLocaleString()}
       </Text>
-      {/* <View style={screenStyles.recordContainer}>
-                <TransactionRecord
-                    recordDate=""
-                    recordValue="MULUNDO SAM"
-                    recordIcon=""
-                    recordSubject="WEED MASTER"
-                    recordSubAttr1="UGX 498,000"
-                    recordSubAttr2="UGX 500,000"
-                    recordDated={false}
-                    detailsIcon={false}
-                    creditScreen={true}    
-                />
-                <TransactionRecord
-                    recordDate=""
-                    recordValue="MTN"
-                    recordIcon=""
-                    recordSubject="GENERAL"
-                    recordSubAttr1="UGX 50,000"
-                    recordSubAttr2="UGX 150,000"
-                    recordDated={false}
-                    detailsIcon={false}
-                    creditScreen={true}    
-                />
-            </View> */}
       <View>
         <Text>AMOUNT</Text>
-        {errorMessage && (
-          <Text
-            style={{
-              color: "red",
-              fontSize: 15,
-              marginTop: 10,
-              textAlign: "center",
-              backgroundColor: "rgba(255, 0, 0, 0.26)",
-              padding: 5,
-              borderRadius: 5,
-            }}
-          >
-            {errorMessage}
-          </Text>
-        )}
-        <InputText
-          txtStyle={screenStyles.creditScreenTextInput}
+        {errorMessage && <ErrorMessage message={errorMessage} />}
+        <InputNumber
+          txtStyle={screenStyles.creditScreenTextInput2}
           labelText="AMOUNT TO PAY"
           value={amount}
           onChangeText={setAmount}
@@ -145,6 +113,7 @@ const PayLoan: React.FC<PayLoanProps> = ({ user }) => {
         transactionDetails={transactionDetails}
         user={user}
       />
+      {isLoading && LoadingIndicator()}
     </View>
   )
 }

@@ -17,7 +17,6 @@ const InputText: React.FC<InputTextProps> = ({
   value,
   ...rest
 }) => {
-  const [text, setText] = React.useState("")
   return (
     <TextInput
       onChangeText={onChangeText}

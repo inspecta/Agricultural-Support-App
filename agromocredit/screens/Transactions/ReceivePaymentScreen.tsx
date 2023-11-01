@@ -13,10 +13,14 @@ import CustomModal from "../Notifications/CustomModal"
 import generateAccessToken from "../../functions/GenerateToken"
 import LoadingIndicator from "../Notifications/LoadingIndicator"
 import { useAddTransactionMutation } from "../../services/slices/transactionSlice"
+import InputNumber from "../../components/Inputs/InputNumber"
+import ErrorMessage from "../Notifications/ErrorMessage"
+import validatePhoneNumber from "../../functions/ValidatePhoneNumber"
 
 const ReceivePaymentScreen: React.FC = ({ route }) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const [addTransaction] = useAddTransactionMutation()
+  const [errorMessage, setErrorMessage] = React.useState("")
 
   const navigation = useNavigation()
   const { user } = route.params
@@ -42,73 +46,89 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
   })
 
   const handleFormSubmit = async () => {
-    setIsLoading(true)
-
-    const newReferenceId = await generateNewReferenceId()
-    const accessToken = await generateAccessToken()
-
-    const formData = {
-      payerNumber: formValues.payerNumber,
-      amount: formValues.amount,
-      reason: formValues.reason,
-    }
-
-    const requestParams = {
-      amount: formData.amount,
-      currency: "EUR",
-      externalId: "string",
-      payer: {
-        partyIdType: "MSISDN",
-        partyId: formData.payerNumber,
-      },
-      payerMessage: formData.reason,
-      payeeNote: "MoMo",
-    }
-
-    const headers = {
-      "Ocp-Apim-Subscription-Key": "2820b39d5bc2421da2b3f42b4cce8929",
-      "X-Reference-Id": newReferenceId,
-      "X-Target-Environment": "sandbox",
-      Authorization: `Bearer ${accessToken}`,
-    }
-
-    try {
-      const response = await axios.post(
-        "https://sandbox.momodeveloper.mtn.com/collection/v1_0/requesttopay",
-        requestParams,
-        {
-          headers,
-        }
-      )
-
-      if (response.status === 202) {
-        const transactionData = {
-          amount: formData.amount,
-          description: formData.reason,
-          partyInvolved: formData.payerNumber,
-          transactionType: "REQUEST_PAYMENT",
-          transactionDate: new Date().toISOString(),
-        }
-
-        setTransactionDetails({
-          amount: formValues.amount,
-          payerNumber: formValues.payerNumber,
-          reason: formValues.reason,
-          paymentDate: new Date().toLocaleDateString(),
-          transactionType: "REQUEST_PAYMENT",
-        })
-
-        setNotificationVisible(true)
-
-        addTransaction({ transaction: transactionData, userId: user.id })
-
-        setIsLoading(false)
-      } else {
-        console.log("Could not complete transaction.")
-      }
-    } catch (error) {
-      console.error(error)
+    if (!validatePhoneNumber(formValues.payerNumber.trim())) {
+      setErrorMessage("Invalid phone number.")
       setIsLoading(false)
+    } else if (isNaN(+formValues.amount)) {
+      setErrorMessage("Please enter a valid amount.")
+      setIsLoading(false)
+    } else if (+formValues.amount < 999) {
+      setErrorMessage("Min. amount is Ugx 1,000")
+      setIsLoading(false)
+    } else {
+      setIsLoading(true)
+
+      const newReferenceId = await generateNewReferenceId()
+      const accessToken = await generateAccessToken()
+
+      const formData = {
+        payerNumber: formValues.payerNumber,
+        amount: formValues.amount,
+        reason: formValues.reason,
+      }
+
+      const requestParams = {
+        amount: formData.amount,
+        currency: "EUR",
+        externalId: "string",
+        payer: {
+          partyIdType: "MSISDN",
+          partyId: formData.payerNumber,
+        },
+        payerMessage: formData.reason,
+        payeeNote: "MoMo",
+      }
+
+      const headers = {
+        "Ocp-Apim-Subscription-Key": "2820b39d5bc2421da2b3f42b4cce8929",
+        "X-Reference-Id": newReferenceId,
+        "X-Target-Environment": "sandbox",
+        Authorization: `Bearer ${accessToken}`,
+      }
+
+      try {
+        const response = await axios.post(
+          "https://sandbox.momodeveloper.mtn.com/collection/v1_0/requesttopay",
+          requestParams,
+          {
+            headers,
+          }
+        )
+
+        if (response.status === 202) {
+          const transactionData = {
+            amount: formData.amount,
+            description: formData.reason,
+            partyInvolved: formData.payerNumber,
+            transactionType: "REQUEST_PAYMENT",
+            transactionDate: new Date().toISOString(),
+          }
+
+          setTransactionDetails({
+            amount: formValues.amount,
+            payerNumber: formValues.payerNumber,
+            reason: formValues.reason,
+            paymentDate: new Date().toLocaleDateString(),
+            transactionType: "REQUEST_PAYMENT",
+          })
+
+          setNotificationVisible(true)
+
+          addTransaction({ transaction: transactionData, userId: user.id })
+
+          setIsLoading(false)
+        } else {
+          setIsLoading(false)
+          setErrorMessage(
+            "Sorry. Couldn't complete transaction. Check transaction details and try again."
+          )
+        }
+      } catch (error) {
+        setIsLoading(false)
+        setErrorMessage(
+          "Sorry. Couldn't complete transaction. Check transaction details and try again."
+        )
+      }
     }
   }
 
@@ -116,6 +136,7 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
     setNotificationVisible(false)
     navigation.navigate("Dashboard", {
       user: user,
+      newBalance: +formValues.amount + user.balance,
     })
   }
 
@@ -123,16 +144,17 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
     <SafeAreaView style={screenStyles.container}>
       <EarningsScreenHeaders pageTitle="RECEIVE PAYMENT" owner={user.id} />
       <Text style={screenStyles.subTitleText}>REQUEST FOR PAYMENT</Text>
+      {errorMessage && <ErrorMessage message={errorMessage} />}
       <View style={styles.requestPaymentForm}>
         <Text style={screenStyles.subText}>FOR</Text>
-        <InputText
+        <InputNumber
           txtStyle={styles.textInput}
-          labelText="From"
+          labelText="Payer's Phone Number"
           name="payerNumber"
           value={formValues.payerNumber}
           onChangeText={(text) => handleInputChange("payerNumber", text)}
         />
-        <InputText
+        <InputNumber
           txtStyle={styles.textInput}
           labelText="Amount"
           name="amount"
@@ -141,7 +163,7 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
         />
         <InputText
           txtStyle={styles.textInput}
-          labelText="Reason"
+          labelText="Payment Reason"
           name="reason"
           value={formValues.reason}
           onChangeText={(text) => handleInputChange("reason", text)}
@@ -161,13 +183,12 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
         />
       </View>
       {isLoading && LoadingIndicator()}
-      <View style={styles.logoContainer}>
-        {/* Add momo logo here */}
+      {/* <View style={styles.logoContainer}>
         <Image
           source={require("../../screens/assets/momoLogo.jpg")}
           style={styles.logo}
         />
-      </View>
+      </View> */}
     </SafeAreaView>
   )
 }
