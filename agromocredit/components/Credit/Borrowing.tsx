@@ -11,6 +11,8 @@ import CustomModal from "../../screens/Notifications/CustomModal"
 import { useNavigation } from "@react-navigation/native"
 import { useGetTotalLoanBalanceQuery } from "../../services/slices/transactionSlice"
 import axios from "axios"
+import InputNumber from "../Inputs/InputNumber"
+import ErrorMessage from "../../screens/Notifications/ErrorMessage"
 
 interface BorrowingProps {
   user: {
@@ -76,6 +78,7 @@ const Borrowing: React.FC<BorrowingProps> = ({ user }) => {
           interest_rate: 6,
           loan_provider_id: 1,
           user_id: user.id,
+          type: "GET_LOAN",
         })
 
         if (response.status === 200) {
@@ -108,32 +111,21 @@ const Borrowing: React.FC<BorrowingProps> = ({ user }) => {
   return (
     <View style={screenStyles.contentContainer}>
       <View style={screenStyles.creditScreenSubTitleText}>
-        <Text>ENTER AMOUNT TO BORROW</Text>
-        {errorMessage && (
-          <Text
-            style={{
-              color: "red",
-              fontSize: 15,
-              marginTop: 10,
-              textAlign: "center",
-              backgroundColor: "rgba(255, 0, 0, 0.26)",
-              padding: 5,
-              borderRadius: 5,
-            }}
-          >
-            {errorMessage}
-          </Text>
-        )}
-        <Text style={{ fontSize: 13, color: "red" }}>Interest Rate: 8.0%</Text>
+        <Text>YOU CAN BORROW UP TO</Text>
+        <Text style={{ fontWeight: "bold", fontSize: 28 }}>
+          UGX {user_maximum_amount.toLocaleString()}
+        </Text>
+        {errorMessage && <ErrorMessage message={errorMessage} />}
+        {<ErrorMessage message="Interest Rate: 8.0%" />}
+        <Text></Text>
         <View style={screenStyles.creditScreenSubTitleText}>
           <Text>ENTER AMOUNT TO BORROW</Text>
-          {/* {errorMessage && <Text>{errorMessage}</Text>} */}
-          <InputText
+          {errorMessage && <Text>{errorMessage}</Text>}
+          <InputNumber
             txtStyle={screenStyles.creditScreenTextInput2}
             labelText="Amount you want to borrow!"
             value={borrowAmount}
             onChangeText={setBorrowAmount}
-            keyboardType="numeric"
           />
           <ButtonAction
             onPress={() => handleBorrowing()}
@@ -150,6 +142,7 @@ const Borrowing: React.FC<BorrowingProps> = ({ user }) => {
           user={user}
         />
       </View>
+      {isLoading && LoadingIndicator()}
     </View>
   )
 }

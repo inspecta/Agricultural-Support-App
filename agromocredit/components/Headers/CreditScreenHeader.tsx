@@ -33,10 +33,10 @@ const CreditScreenHeader: React.FC<CreditScreenHeaderProps> = ({
         <Image source={require("../../screens/assets/titleImg.png")} />
       </View>
       <View style={screenStyles.subTitle}>
-        <Text style={screenStyles.creditScreenSubTitleText}>
-          CURRENT LOAN BALANCE:
+        <Text style={{ fontSize: 20, fontWeight: "bold" }}>LOAN BALANCE:</Text>
+        <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+          UGX {totalLoanBalance ? totalLoanBalance.toLocaleString() : "0"}
         </Text>
-        <Text>{totalLoanBalance? totalLoanBalance.toLocaleString(): '0'}</Text>
       </View>
       <View style={styles.buttonContainer}>
         <ButtonAction
