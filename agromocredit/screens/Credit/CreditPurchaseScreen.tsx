@@ -69,6 +69,7 @@ const CreditPurchaseScreen: React.FC = ({ route }) => {
       user: user,
     })
   }
+  
   return (
     <SafeAreaView style={screenStyles.creditScreenContainer}>
       <View style={styles.container}>

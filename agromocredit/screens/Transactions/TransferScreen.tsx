@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { View, Text, TextInput, Button, Image } from "react-native"
+import { View, Text } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import generateAccessTokenDisbursement from "../../functions/GenerateTokenDisbursement"
 import generateNewReferenceId from "../../functions/GenerateReferenceId"
@@ -16,13 +16,16 @@ import {
   useGetBalanceQuery,
   useAddTransactionMutation,
 } from "../../services/slices/transactionSlice"
+import InputNumber from "../../components/Inputs/InputNumber"
+import ErrorMessage from "../Notifications/ErrorMessage"
+import validatePhoneNumber from "../../functions/ValidatePhoneNumber"
 
 const TransferScreen: React.FC = ({ route }) => {
   const navigation = useNavigation()
   const { user, product } = route.params
   const [isLoading, setIsLoading] = useState(false)
   const [notificationVisible, setNotificationVisible] = useState(false)
-  const [withdrawalError, setWithdrawalError] = useState("")
+  const [transferError, setTransferError] = useState("")
 
   const { data: userBalance } = useGetBalanceQuery(user.id)
   const [addTransaction] = useAddTransactionMutation()
@@ -52,16 +55,19 @@ const TransferScreen: React.FC = ({ route }) => {
     const paymentAmount = parseFloat(formValues.amount)
 
     if (isNaN(paymentAmount)) {
-      setWithdrawalError("Please enter a valid amount.")
+      setTransferError("Please enter a valid amount.")
       setIsLoading(false)
     } else if (paymentAmount > userBalance) {
-      setWithdrawalError("Amount can't exceed available balance.")
+      setTransferError("Amount can't exceed available balance.")
       setIsLoading(false)
     } else if (paymentAmount < 500) {
-      setWithdrawalError("Minimum payment amount is 1000.")
+      setTransferError("Minimum payment amount is 1000.")
+      setIsLoading(false)
+    } else if (!validatePhoneNumber(paymentDetails.payerNumber)) {
+      setTransferError("Invalid phone number.")
       setIsLoading(false)
     } else {
-      setWithdrawalError("")
+      setTransferError("")
 
       const newReferenceId = await generateNewReferenceId()
       const accessToken = await generateAccessTokenDisbursement()
@@ -115,10 +121,10 @@ const TransferScreen: React.FC = ({ route }) => {
 
           setIsLoading(false)
         } else {
-          console.log("Could not complete transaction.")
+          setTransferError("Could not complete transaction.")
         }
       } catch (error) {
-        console.error(error)
+        setTransferError("Could not complete transaction.")
         setIsLoading(false)
       }
     }
@@ -128,6 +134,7 @@ const TransferScreen: React.FC = ({ route }) => {
     setNotificationVisible(false)
     navigation.navigate("Dashboard", {
       user,
+      newBalance: user.balance - +formValues.amount,
     })
   }
 
@@ -135,7 +142,7 @@ const TransferScreen: React.FC = ({ route }) => {
     // Populate the input fields with product details if available
     if (product) {
       setFormValues({
-        amount: String(product.price), // Convert to string
+        amount: String(product.price),
         reason: product.name,
         phoneNumber: product.supplierNumber,
       })
@@ -154,18 +161,16 @@ const TransferScreen: React.FC = ({ route }) => {
         </Text>
       </View>
 
-      {withdrawalError ? (
-        <Text style={{ color: "red" }}>{withdrawalError}</Text>
-      ) : null}
+      {transferError && <ErrorMessage message={transferError} />}
 
-      <InputText
+      <InputNumber
         txtStyle={styles.textInput}
         labelText="Recipient's Phone Number"
         value={formValues.phoneNumber}
         onChangeText={(text) => handleInputChange("phoneNumber", text)}
       />
 
-      <InputText
+      <InputNumber
         txtStyle={styles.textInput}
         labelText="Amount To Pay"
         value={formValues.amount}
@@ -190,14 +195,6 @@ const TransferScreen: React.FC = ({ route }) => {
         user={user}
       />
       {isLoading && LoadingIndicator()}
-
-      <View style={styles.logoContainer}>
-        {/* Add momo logo here */}
-        <Image
-          source={require("../../screens/assets/momoLogo.jpg")}
-          style={{ width: 100, height: 100, marginTop: 15 }}
-        />
-      </View>
     </SafeAreaView>
   )
 }

@@ -45,9 +45,15 @@ const CustomModal: React.FC<CustomModalProps> = ({
           </View>
         </View>
         <View style={styles.infoDiv}>
-          <Text style={styles.txnHeader}>Transaction Successful 🎉</Text>
-          <Text style={styles.txnAmount}>UGX {transactionDetails.amount}</Text>
-          <Text style={styles.from}>From</Text>
+          <Text style={styles.txnHeader}>Transaction Successful 💯</Text>
+          <Text style={styles.txnAmount}>
+            UGX{" "}
+            {transactionDetails.amount
+              ? (+transactionDetails.amount).toLocaleString()
+              : "0"}
+          </Text>
+
+          <Text style={styles.from}>FROM</Text>
           <Text style={styles.payerNumber}>
             {transactionDetails.payerNumber}
           </Text>
@@ -87,7 +93,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "rgba(255, 200, 0, 0.9)",
     justifyContent: "center",
-    padding: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
   },
   imgContainer: {
     alignItems: "center",
@@ -102,8 +109,8 @@ const styles = StyleSheet.create({
   },
   checkmark: {
     position: "absolute",
-    top: "50%",
-    left: "70%",
+    top: 90,
+    left: 240,
     width: 35,
     height: 35,
     transform: [{ translateX: -50 }, { translateY: -50 }],
@@ -112,32 +119,38 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   checkmarkText: {
-    fontSize: 20,
+    fontSize: 15,
     color: "green",
   },
   infoDiv: {
     backgroundColor: "white",
-    padding: 20,
-    borderRadius: 20,
+    padding: 30,
+    borderRadius: 15,
   },
   txnHeader: {
     textAlign: "center",
     fontSize: 20,
+    paddingBottom: 20,
+    fontWeight: "100",
   },
   txnAmount: {
     textAlign: "center",
     fontWeight: "bold",
+    paddingVertical: 5,
   },
   from: {
     fontSize: 14,
     color: "gray",
     textAlign: "center",
+    paddingVertical: 5,
   },
   payerNumber: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
+    paddingVertical: 5,
   },
+
   payerName: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -145,7 +158,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: "lightgray",
-    paddingVertical: 10,
+    paddingVertical: 15,
   },
   transactionDetails: {
     marginTop: 10,
@@ -157,7 +170,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   detailValue: {
-    color: "black",
+    color: "#4d4d4d",
   },
   button: {
     marginTop: 10,
@@ -166,12 +179,12 @@ const styles = StyleSheet.create({
     color: "white",
     backgroundColor: "#166cee",
     padding: 10,
-    borderRadius: 3,
+    borderRadius: 10,
     alignItems: "center",
   },
   buttonText: {
     color: "white",
-    fontSize: 14,
+    fontSize: 15,
   },
   payerCode: {
     color: "gray",

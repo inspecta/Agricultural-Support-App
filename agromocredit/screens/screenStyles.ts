@@ -98,6 +98,7 @@ export const screenStyles = StyleSheet.create({
     color: "#fff",
     marginVertical: 10,
     padding: 0,
+    fontSize: 20,
   },
   creditBtnStyles: {
     height: 50,

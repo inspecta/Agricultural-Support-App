@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { View, Text, TextInput, Button, Image } from "react-native"
+import { View, Text } from "react-native"
 import { SafeAreaView } from "react-native-safe-area-context"
 import generateAccessTokenDisbursement from "../../functions/GenerateTokenDisbursement"
 import generateNewReferenceId from "../../functions/GenerateReferenceId"
@@ -15,6 +15,8 @@ import { withdrawStyles } from "./WithdrawalStyle"
 import ButtonAction from "../../components/Buttons/ButtonAction"
 import { useGetBalanceQuery } from "../../services/slices/transactionSlice"
 import { useAddTransactionMutation } from "../../services/slices/transactionSlice"
+import InputNumber from "../../components/Inputs/InputNumber"
+import ErrorMessage from "../Notifications/ErrorMessage"
 
 const WithdrawScreen: React.FC = ({ route }) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -59,10 +61,10 @@ const WithdrawScreen: React.FC = ({ route }) => {
       setWithdrawalError("Please enter a valid amount.")
       setIsLoading(false)
     } else if (withdrawalAmount > currentBalance) {
-      setWithdrawalError("Withdrawal amount exceeds available balance.")
+      setWithdrawalError("Amount can't exceed available balance.")
       setIsLoading(false)
-    } else if (withdrawalAmount < 500) {
-      setWithdrawalError("Minimum withdraw amount is 500.")
+    } else if (withdrawalAmount < 999) {
+      setWithdrawalError("Min. withdraw amount is UGX 1,000.")
       setIsLoading(false)
     } else {
       setWithdrawalError("")
@@ -119,10 +121,10 @@ const WithdrawScreen: React.FC = ({ route }) => {
 
           setIsLoading(false)
         } else {
-          console.log("Could not complete transaction.")
+          setWithdrawalError("Could not complete transaction.")
         }
       } catch (error) {
-        console.error(error)
+        setWithdrawalError("Could not complete transaction.")
         setIsLoading(false)
       }
     }
@@ -132,12 +134,14 @@ const WithdrawScreen: React.FC = ({ route }) => {
     setNotificationVisible(false)
     navigation.navigate("Dashboard", {
       user,
+      newBalance: +user.balance - +formValues.amount,
     })
   }
 
   return (
     <SafeAreaView style={screenStyles.container}>
       <TransactionsScreenHeaders pageTitle="WITHDRAW" owner={user.id} />
+      {withdrawalError && <ErrorMessage message={withdrawalError} />}
       <View style={screenStyles.subTitle}>
         <Text style={screenStyles.subTitleText}>CURRENT BALANCE</Text>
       </View>
@@ -150,16 +154,11 @@ const WithdrawScreen: React.FC = ({ route }) => {
         </View>
       </View>
 
-      {withdrawalError ? (
-        <Text style={{ color: "red" }}>{withdrawalError}</Text>
-      ) : null}
-
-      <InputText
+      <InputNumber
         txtStyle={styles.textInput}
         labelText="Amount"
         value={formValues.amount}
         onChangeText={(text) => handleInputChange("amount", text)}
-        keyboardType="numeric"
       />
       <ButtonAction
         onPress={handleWithdrawal}
@@ -174,13 +173,6 @@ const WithdrawScreen: React.FC = ({ route }) => {
         user={user}
       />
       {isLoading && LoadingIndicator()}
-      <View style={withdrawStyles.logoContainer}>
-        {/* Add momo logo here */}
-        <Image
-          source={require("../../screens/assets/momoLogo.jpg")}
-          style={withdrawStyles.logo}
-        />
-      </View>
     </SafeAreaView>
   )
 }

@@ -4,7 +4,7 @@ import { styles } from "./LoadingIndicatorStyle"
 const LoadingIndicator = () => {
   return (
     <View style={styles.loadingContainer}>
-      <ActivityIndicator size={65} color="#36e600" />
+      <ActivityIndicator size={75} color="#36e600" />
     </View>
   )
 }
