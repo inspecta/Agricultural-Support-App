@@ -9,16 +9,29 @@ import CustomModal from "../Notifications/CustomModal"
 import { useNavigation } from "@react-navigation/native"
 import TransactionsScreenHeaders from "../../components/Headers/TransactionsScreenHeaders"
 import { screenStyles } from "../screenStyles"
-import InputText from "../../components/Inputs/InputText"
 import { styles } from "./ReceivePaymentStyle"
-import { withdrawStyles } from "./WithdrawalStyle"
 import ButtonAction from "../../components/Buttons/ButtonAction"
 import { useGetBalanceQuery } from "../../services/slices/transactionSlice"
 import { useAddTransactionMutation } from "../../services/slices/transactionSlice"
 import InputNumber from "../../components/Inputs/InputNumber"
 import ErrorMessage from "../Notifications/ErrorMessage"
 
-const WithdrawScreen: React.FC = ({ route }) => {
+interface WithdrawScreenProps {
+  route: {
+    params: {
+      user: User
+    }
+  }
+}
+
+interface User {
+  name: string
+  balance: number
+  id: number
+  phoneNumber: string
+}
+
+const WithdrawScreen: React.FC<WithdrawScreenProps> = ({ route }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [notificationVisible, setNotificationVisible] = useState(false)
   const [withdrawalError, setWithdrawalError] = useState("")

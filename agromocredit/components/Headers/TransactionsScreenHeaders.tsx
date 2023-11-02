@@ -1,9 +1,9 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { View, Text } from "react-native"
 import CreditScore from "../CreditScore"
 import { screenStyles } from "../../screens/screenStyles"
-import { useGetTotalEarnedQuery } from "../../services/slices/transactionSlice"
 import getCurrentDate from "../../functions/getCurrentDate"
+import axios from "axios"
 
 interface TransactionsScreenHeaderProps {
   pageTitle: string
@@ -14,7 +14,23 @@ const EarningsScreenHeaders: React.FC<TransactionsScreenHeaderProps> = ({
   pageTitle,
   owner,
 }) => {
-  const { data: totalEarned } = useGetTotalEarnedQuery(owner)
+  const [totalEarned, setTotalEarned] = useState<number | null>(null)
+
+  const fetchTotalEarned = async () => {
+    try {
+      const response = await axios.get(
+        `https://agromocredit.onrender.com/${owner}/total-earned`
+      )
+      setTotalEarned(response.data)
+    } catch (error) {
+      console.error("Error fetching totalEarned:", error)
+    }
+  }
+
+  useEffect(() => {
+    fetchTotalEarned()
+  }, [])
+
   return (
     <>
       <View style={screenStyles.subTitle}>
@@ -25,7 +41,7 @@ const EarningsScreenHeaders: React.FC<TransactionsScreenHeaderProps> = ({
         <View>
           <Text style={screenStyles.subTitleText}>TOTAL EARNED</Text>
           <Text style={screenStyles.majorText}>
-            UGX {totalEarned && totalEarned.toLocaleString()}
+            UGX {totalEarned !== null ? totalEarned.toLocaleString() : "..."}
           </Text>
         </View>
         <CreditScore owner={owner} />

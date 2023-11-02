@@ -5,14 +5,9 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import { styles } from "./DashboardStyle"
 import { screenStyles } from "../screenStyles"
 import CreditScore from "../../components/CreditScore"
-import { useNavigation } from "@react-navigation/native"
-import {
-  useGetBalanceQuery,
-  useGetTotalEarnedQuery,
-  useGetTotalCreditQuery,
-} from "../../services/slices/transactionSlice"
+import { useNavigation, useFocusEffect } from "@react-navigation/native"
 import { ScrollView } from "react-native-gesture-handler"
-import { queryClient } from "../../components/QueryClient"
+import axios from "axios"
 
 interface User {
   name: string
@@ -25,7 +20,6 @@ interface DashboardScreenProps {
   route: {
     params: {
       user: User
-      newBalance: number
     }
   }
 }
@@ -37,39 +31,36 @@ const DashboardScreen: React.FC<DashboardScreenProps> = ({ route }) => {
   const [totalEarned, setTotalEarned] = useState<number | null>(null)
   const [totalWithdrawn, setTotalWithdrawn] = useState<number | null>(null)
 
-  const BALANCE_QUERY_KEY = "balanceData"
-  const EARNINGS_QUERY_KEY = "earningsData"
-  const CREDIT_QUERY_KEY = "creditData"
+  const fetchData = async () => {
+    try {
+      const balanceResponse = await axios.get(
+        `https://agromocredit.onrender.com/${user.id}/get-balance`
+      )
+      setCurrentBalance(balanceResponse.data)
 
-  const { data: bal } = useGetBalanceQuery(user.id, BALANCE_QUERY_KEY)
-  const { data: earnings } = useGetTotalEarnedQuery(user.id, EARNINGS_QUERY_KEY)
-  const { data: credit } = useGetTotalCreditQuery(user.id, CREDIT_QUERY_KEY)
+      const earnedResponse = await axios.get(
+        `https://agromocredit.onrender.com/${user.id}/total-earned`
+      )
+      setTotalEarned(earnedResponse.data)
+
+      const withdrawnResponse = await axios.get(
+        `https://agromocredit.onrender.com/${user.id}/total-credit`
+      )
+      setTotalWithdrawn(withdrawnResponse.data)
+    } catch (error) {
+      console.error("Error fetching data:", error)
+    }
+  }
+
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchData()
+    }, [])
+  )
 
   useEffect(() => {
-    if (bal !== null) {
-      setCurrentBalance(bal)
-    }
-    if (earnings !== null) {
-      setTotalEarned(earnings)
-    }
-    if (credit !== null) {
-      setTotalWithdrawn(credit)
-    }
-  }, [bal, earnings, credit])
-
-  useEffect(() => {
-    const fetchDataInterval = setInterval(() => {
-      queryClient.refetchQueries([
-        BALANCE_QUERY_KEY,
-        EARNINGS_QUERY_KEY,
-        CREDIT_QUERY_KEY,
-      ])
-    }, 2000)
-
-    return () => {
-      clearInterval(fetchDataInterval)
-    }
-  }, [queryClient])
+    fetchData()
+  }, [])
 
   return (
     <SafeAreaView>

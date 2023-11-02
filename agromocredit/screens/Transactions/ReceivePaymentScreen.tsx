@@ -17,7 +17,24 @@ import InputNumber from "../../components/Inputs/InputNumber"
 import ErrorMessage from "../Notifications/ErrorMessage"
 import validatePhoneNumber from "../../functions/ValidatePhoneNumber"
 
-const ReceivePaymentScreen: React.FC = ({ route }) => {
+interface ReceivePaymentScreenProps {
+  route: {
+    params: {
+      user: User
+    }
+  }
+}
+
+interface User {
+  name: string
+  balance: number
+  id: number
+  phoneNumber: string
+}
+
+const ReceivePaymentScreen: React.FC<ReceivePaymentScreenProps> = ({
+  route,
+}) => {
   const [isLoading, setIsLoading] = React.useState(false)
   const [addTransaction] = useAddTransactionMutation()
   const [errorMessage, setErrorMessage] = React.useState("")
@@ -136,7 +153,6 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
     setNotificationVisible(false)
     navigation.navigate("Dashboard", {
       user: user,
-      newBalance: +formValues.amount + user.balance,
     })
   }
 
@@ -183,12 +199,6 @@ const ReceivePaymentScreen: React.FC = ({ route }) => {
         />
       </View>
       {isLoading && LoadingIndicator()}
-      {/* <View style={styles.logoContainer}>
-        <Image
-          source={require("../../screens/assets/momoLogo.jpg")}
-          style={styles.logo}
-        />
-      </View> */}
     </SafeAreaView>
   )
 }
