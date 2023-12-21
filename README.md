@@ -151,8 +151,6 @@ You can create an APK using Expo (Set of tools and services built around React N
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-> Describe 1 - 3 features you will add to the project.
-
 - [ ] **[1]** Secure authentication
 - [ ] **[2]** Going live with MTN
 - [ ] **[3]** Encorporating more farming services
@@ -182,8 +180,6 @@ I want to thank Matte Ismail, Joy Bakesiga, Emmanuel Balikuddembe, and Jonathan 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## ❓ FAQ (OPTIONAL) <a name="faq"></a>
-
-> Add at least 2 questions new developers would ask when they decide to use your project.
 
 - **[1]** Can I clone and use this project's source code?
 
